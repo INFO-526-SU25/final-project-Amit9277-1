@@ -1,11 +1,11 @@
 ---
-title: "Proposal title"
-subtitle: "Proposal"
+title: "Analytical Visualization on the History of Himalyan Expeditions"
+subtitle: "INFO 526 Final Project Proposal"
 author: 
-  - name: "Team Name"
+  - name: "Cat-Amit"
     affiliations:
       - name: "School of Information, University of Arizona"
-description: "Project description"
+description: "This study analyzes Himalayan expeditions conducted from 2020 to 2024. It aims to understand the preferred routes of a particular nation and to determine how death rates for different agencies vary by time of year."
 format:
   html:
     code-tools: true
@@ -21,7 +21,10 @@ execute:
 ```{r}
 #| label: load-pkgs
 #| message: false
+
+## install.packages("tidytuesdayR")
 library(tidyverse)
+
 ```
 
 ## Dataset
@@ -29,16 +32,94 @@ library(tidyverse)
 ```{r}
 #| label: load-dataset
 #| message: false
+
+tuesdata <- tidytuesdayR::tt_load('2025-01-21')
+
+exped_tidy <- tuesdata$exped_tidy
+peaks_tidy <- tuesdata$peaks_tidy
+
+head(exped_tidy, n=10)
+head(peaks_tidy, n=10)
+
 ```
 
-A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.
-
-Make sure to load the data and use inline code for some of this information.
+We chose this dataset because not only did our team find the prospect of analyzing Himalayan mountaineering expeditions to be incredibly interesting, but also because the dataset contained a good balance between qualitative and quantitative data, with a variety of different data types (character, integer, date, logical, etc.). The large amount of time data inspired us to think about potential time series visualizations and the variables present allowed for diverse questions from analysis of lethality to the impact of hiker background.
 
 ## Questions
 
-The two questions you want to answer.
+Q1: Are certain routes favored by expeditions from particular nations, and do they have disparate success rates?
+
+Q2: Do certain Agencies have a higher number of member/personal deaths than others with respect to season/date?
 
 ## Analysis plan
 
--   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
+#### Q1 Plan:
+
+We’ll first count, for each country, how many times each route was attempted and how many of those attempts succeeded. Then we’ll make a bar chart where:
+
+-   **X-axis** is the route name (categorical)
+
+-   **Y-axis** is the number of attempts (numeric)
+
+-   **Bar fill** shows the success rate (e.g. darker = higher percentage of summits)
+
+-   **Facets** split the chart by nation so each country has its own panel
+
+This layout lets us instantly see which routes each country prefers (tallest bars) and how well they do on them (color intensity). We can then tweak—say, switch to a heatmap of nation vs. route with attempts as tile size and success rate as color—if we want another perspective.
+
+The variables involved in this graph are as follows:
+
+Existing variables:
+
+NATION (Categorical) - Principle nationality.\
+ROUTE1,...,ROUTE4 (Categorical) - Climbing route.\
+SUCCESS1,....,SUCCESS4 (Binary/Numeric) - Success on route.
+
+New variables to be created:
+
+ROUTE (categorical) - A single “long” route identifier created by pivoting ROUTE1–ROUTE4 into one column.\
+SUCCESS (binary/numeric) - Corresponding to each ROUTE, the matching SUCCESS flag (0 = fail, 1 = success).\
+ATTEMPTS (numeric) - Count of expeditions per (NATION, ROUTE) pair.\
+SUCCESS_RATE (numeric, 0-1) - For each (NATION, ROUTE):
+
+$$
+\text{success\_rate} = \frac{\text{total successes}}{\text{total attempts}}
+$$
+
+#### Q2 Plan:
+
+We anticipate that the best way to answer this question is to have a graph with percent death (color by either Hiker or Personnel) by agency. These graphs will be faceted by season. So far, a bar graph is the anticipated result though we are open to trying different types of graphs.
+
+The variables involved in this graph are as follows:
+
+Existing variables:\
+\
+AGENCY - Trekking agency\
+MDEATHS - Member deaths (per trip)\
+TOTMEMBERS - total members (per trip)\
+HDEATHS - hired personnel deaths (per trip)\
+TOTHIRED - total hired personnel (per trip)\
+YEAR - year\
+SEASON - season
+
+New variables to be created:\
+\
+PMDEATHS - MDEATHS/TOTMEMBERS - percent member deaths\
+PHDEATHS - HDEATHS/TOTHIRED -\
+percent personnel deaths\
+PTOTDEATHS - (HDEATHS + MDEATHS)/(TOTHIRED + TOTMEMBERS) - percent total deaths
+
+## Plan of Attack
+
+| Task Name | Status | Due | Priority | Summary |
+|-----------------------|-------------|-------------|-------------|-------------|
+| Prepare Proposal | In-Progress | 2025-06-11 | High Priority | Choose the dataset with mutual consent and prepare the proposal based on it. |
+| Data Clean up | To-Do |  | High priority |  |
+| Creating new variables | To-Do |  | Moderate priority |  |
+| Creating draft of the graph | To-Do |  | Moderate priority |  |
+| Meeting up to discuss edits to the graph | To-Do |  | Low priority |  |
+| Polishing the graph | To-Do |  | Moderate priority |  |
+| Create write up explanations for both code and graph | To-Do |  | Moderate priority |  |
+| Create interactive powerpoint - moderate priority | To-Do |  | Moderate priority |  |
+| Film presentation | To-Do |  | Low priority |  |
+| Edit Presentation | To-Do |  | Low priority |  |
