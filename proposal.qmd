@@ -36,14 +36,16 @@ library(janitor)
 
 tuesdata <- tidytuesdayR::tt_load('2025-01-21')
 
+#Although our two questions only use exped_tidy, we have added code to make a separate peaks_tidy in case we find out that we need variables from that dataframe later on.
+
 exped_tidy <- tuesdata$exped_tidy
-peaks_tidy <- tuesdata$peaks_tidy
+#peaks_tidy <- tuesdata$peaks_tidy
 
 exped_tidy <- clean_names(exped_tidy)
-peaks_tidy <- clean_names(peaks_tidy)
+#peaks_tidy <- clean_names(peaks_tidy)
 
 head(exped_tidy, n=10)
-head(peaks_tidy, n=10)
+#head(peaks_tidy, n=10)
 
 ```
 
@@ -56,6 +58,8 @@ Q1: Are certain routes favored by expeditions from particular nations, and do th
 Q2: Do certain Agencies have a higher number of member/personal deaths than others with respect to season/date?
 
 ## Analysis plan
+
+Data cleanup: after using clean_names(), we anticipate that data cleanup will only require ignoring NA values in the dataset.
 
 #### Q1 Plan:
 
@@ -92,7 +96,7 @@ $$
 
 #### Q2 Plan:
 
-We anticipate that the best way to answer this question is to have a graph with percent death (color by either Hiker or Personnel) by agency. These graphs will be faceted by season. So far, a bar graph is the anticipated result though we are open to trying different types of graphs.
+We anticipate that the best way to answer this question is to have a graph with percent total death by agency. These graphs will be faceted by season. To account for the difference in number of traveling done by season, we plan to adverage the percent death values. So far, a bar graph is the anticipated result though we are open to trying different types of graphs. If a bar graph is the final graph, we will use a stacked bar chart that shows what portion of the total death by agency is hiker or member deaths.
 
 The variables involved in this graph are as follows:
 
@@ -104,13 +108,15 @@ Existing variables:\
 *hdeaths* - hired personnel deaths (per trip)\
 *tothired* - total hired personnel (per trip)\
 *year* - year\
-*season* - season
+*season_factor* - season
 
 New variables to be created:\
 \
-pmdeaths - *mdeaths*/*totmembers*  - percent member deaths\
+pmdeaths - *mdeaths*/*totmembers* - percent member deaths\
 phdeaths -*hdeaths*/*tothired* -percent personnel deaths\
 ptotdeaths - (*hdeaths*+ *mdeaths*)/(*tothired* + *totmembers* ) - percent total deaths
+
+For each season, we will annotate temperature and weather conditions which will be researched from internet sources. This may require a second graph that colors based on route. If this is the case, we will also require the variable: *route1,...,route4*
 
 ## Plan of Attack
 
