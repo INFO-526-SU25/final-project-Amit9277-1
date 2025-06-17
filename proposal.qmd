@@ -24,6 +24,7 @@ execute:
 
 ## install.packages("tidytuesdayR")
 library(tidyverse)
+library(janitor)
 
 ```
 
@@ -37,6 +38,9 @@ tuesdata <- tidytuesdayR::tt_load('2025-01-21')
 
 exped_tidy <- tuesdata$exped_tidy
 peaks_tidy <- tuesdata$peaks_tidy
+
+exped_tidy <- clean_names(exped_tidy)
+peaks_tidy <- clean_names(peaks_tidy)
 
 head(exped_tidy, n=10)
 head(peaks_tidy, n=10)
@@ -71,16 +75,16 @@ The variables involved in this graph are as follows:
 
 Existing variables:
 
-NATION (Categorical) - Principle nationality.\
-ROUTE1,...,ROUTE4 (Categorical) - Climbing route.\
-SUCCESS1,....,SUCCESS4 (Binary/Numeric) - Success on route.
+*nation* (Categorical) - Principle nationality.\
+*route1,...,route4* (Categorical) - Climbing route.\
+*success1,....,success4* (Binary/Numeric) - Success on route.
 
 New variables to be created:
 
-ROUTE (categorical) - A single “long” route identifier created by pivoting ROUTE1–ROUTE4 into one column.\
-SUCCESS (binary/numeric) - Corresponding to each ROUTE, the matching SUCCESS flag (0 = fail, 1 = success).\
-ATTEMPTS (numeric) - Count of expeditions per (NATION, ROUTE) pair.\
-SUCCESS_RATE (numeric, 0-1) - For each (NATION, ROUTE):
+*route* (categorical) - A single “long” route identifier created by pivoting *route1–route4* into one column.\
+*success* (binary/numeric) - Corresponding to each *route*, the matching *success* flag (0 = fail, 1 = success).\
+*attempts* (numeric) - Count of expeditions per (*nation, route*) pair.\
+success*\_rate* (numeric, 0-1) - For each (*nation, route*):
 
 $$
 \text{success\_rate} = \frac{\text{total successes}}{\text{total attempts}}
@@ -94,36 +98,31 @@ The variables involved in this graph are as follows:
 
 Existing variables:\
 \
-AGENCY - Trekking agency\
-MDEATHS - Member deaths (per trip)\
-TOTMEMBERS - total members (per trip)\
-HDEATHS - hired personnel deaths (per trip)\
-TOTHIRED - total hired personnel (per trip)\
-YEAR - year\
-SEASON - season
+*agency* - Trekking agency\
+*mdeaths* - Member deaths (per trip)\
+*totmembers* - total members (per trip)\
+*hdeaths* - hired personnel deaths (per trip)\
+*tothired* - total hired personnel (per trip)\
+*year* - year\
+*season* - season
 
 New variables to be created:\
 \
-PMDEATHS - MDEATHS/TOTMEMBERS - percent member deaths\
-PHDEATHS - HDEATHS/TOTHIRED -\
-percent personnel deaths\
-PTOTDEATHS - (HDEATHS + MDEATHS)/(TOTHIRED + TOTMEMBERS) - percent total deaths
+pmdeaths - *mdeaths*/*totmembers*  - percent member deaths\
+phdeaths -*hdeaths*/*tothired* -percent personnel deaths\
+ptotdeaths - (*hdeaths*+ *mdeaths*)/(*tothired* + *totmembers* ) - percent total deaths
 
 ## Plan of Attack
 
-| Task Name | Assignee | Status | Due | Priority | Summary |
-|----------|----------|----------|----------|----------|----------------------|
-| Prepare Proposal | Cat & Amit | Done | 2025-06-10 | High Priority | Collaboratively select a dataset and define two research questions. Both will come-up with a question. |
-| Proposal Peer Review | Cat & Amit | In-Progress | 2025-06-13 | High Priority | Each member will review one proposal from the assigned two proposal. Members will then review each others inputs and finalize it with mutual consent. Push the final review to respective repository as issue. |
-| Proposal Peer Review Edits | Cat | To-Do | 2025-06-15 | High Priority | Make edits based on reviews from peers and have the proposal ready for the instructor to review. |
-| Proposal Instructor Review Edits | Amit | To-Do | 2025-06-18 | High Priority | Make edits based on review from instructor to finalize the proposal. |
-| Data Cleanup | Cat | To-Do | 2025-06-19 | High Priority | Clean the dataset (handle missing values, outliers, formatting). Consult Amit for any major decisions on data handling. |
-| Creating New Variables | Amit | To-Do | 2025-06-19 | Moderate Priority | Create derived variables for analysis based on research questions. Share variable definitions with Cat for feedback. |
-| Creating Draft of the Graph | Cat | To-Do | 2025-06-21 | Moderate Priority | Develop initial visualizations for the two research questions. Share drafts with Amit for input. |
-| Meeting to Discuss Graph Edits | Cat & Amit | To-Do | 2025-06-21 | Low Priority | Meet to review graph drafts, discuss improvements, and agree on final visualization approach. |
-| Polishing the Graph | Amit | To-Do | 2025-06-22 | Moderate Priority | Refine visualizations based on meeting feedback. Ensure clarity and alignment with research questions. |
-| Write-Up of Analysis and Code | Cat | To-Do | 2025-06-25 | Moderate Priority | Write explanations for code and graphs, detailing methodology and findings. Amit reviews for clarity and accuracy. |
-| Create Interactive PowerPoint | Amit | To-Do | 2025-06-25 | Moderate Priority | Design an interactive PowerPoint presentation summarizing findings. Incorporate feedback from Cat on layout and content. |
-| Film Presentation | Cat & Amit | To-Do | 2025-06-27 | Low Priority | Jointly record the video presentation. Cat handles setup; Amit ensures script alignment with slides. |
-| Edit Presentation | Amit | To-Do | 2025-06-29 | Low Priority | Edit the video for clarity and polish. Share with Cat for final approval before submission. |
-| Final Project Submission | Cat & Amit | To-Don | 2025-06-30 | Low Priority | Make any last minute changes and submit the final project with mutual sign-off from both the team members. |
+| Task Name | Status | Due | Priority | Summary |
+|---------------|---------------|---------------|---------------|---------------|
+| Prepare Proposal | In-Progress | 2025-06-11 | High Priority | Choose the dataset with mutual consent and prepare the proposal based on it. |
+| Data Clean up | To-Do |  | High priority |  |
+| Creating new variables | To-Do |  | Moderate priority |  |
+| Creating draft of the graph | To-Do |  | Moderate priority |  |
+| Meeting up to discuss edits to the graph | To-Do |  | Low priority |  |
+| Polishing the graph | To-Do |  | Moderate priority |  |
+| Create write up explanations for both code and graph | To-Do |  | Moderate priority |  |
+| Create interactive powerpoint - moderate priority | To-Do |  | Moderate priority |  |
+| Film presentation | To-Do |  | Low priority |  |
+| Edit Presentation | To-Do |  | Low priority |  |
