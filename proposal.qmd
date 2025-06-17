@@ -121,7 +121,7 @@ For each season, we will annotate temperature and weather conditions which will 
 ## Plan of Attack
 
 | Task Name | Status | Due | Priority | Summary |
-|---------------|---------------|---------------|---------------|---------------|
+|----|----|----|----|----|
 | Prepare Proposal | In-Progress | 2025-06-11 | High Priority | Choose the dataset with mutual consent and prepare the proposal based on it. |
 | Data Clean up | To-Do |  | High priority |  |
 | Creating new variables | To-Do |  | Moderate priority |  |
