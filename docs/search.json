@@ -1,0 +1,121 @@
+[
+  {
+    "objectID": "proposal.html",
+    "href": "proposal.html",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "",
+    "text": "## install.packages(\"tidytuesdayR\")\nlibrary(tidyverse)\nlibrary(janitor)"
+  },
+  {
+    "objectID": "proposal.html#dataset",
+    "href": "proposal.html#dataset",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Dataset",
+    "text": "Dataset\n\ntuesdata &lt;- tidytuesdayR::tt_load('2025-01-21')\n\n#Although our two questions only use exped_tidy, we have added code to make a separate peaks_tidy in case we find out that we need variables from that dataframe later on.\n\nexped_tidy &lt;- tuesdata$exped_tidy\n#peaks_tidy &lt;- tuesdata$peaks_tidy\n\nexped_tidy &lt;- clean_names(exped_tidy)\n#peaks_tidy &lt;- clean_names(peaks_tidy)\n\nhead(exped_tidy, n=10)\n\n# A tibble: 10 × 69\n   expid     peakid  year season season_factor  host host_factor route1   route2\n   &lt;chr&gt;     &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt; \n 1 EVER20101 EVER    2020      1 Spring            2 China       N Col-N… &lt;NA&gt;  \n 2 EVER20102 EVER    2020      1 Spring            2 China       N Col-N… &lt;NA&gt;  \n 3 EVER20103 EVER    2020      1 Spring            2 China       N Col-N… &lt;NA&gt;  \n 4 AMAD20301 AMAD    2020      3 Autumn            1 Nepal       SW Ridge &lt;NA&gt;  \n 5 AMAD20302 AMAD    2020      3 Autumn            1 Nepal       SW Ridge &lt;NA&gt;  \n 6 AMAD20303 AMAD    2020      3 Autumn            1 Nepal       SW Ridge &lt;NA&gt;  \n 7 AMAD20304 AMAD    2020      3 Autumn            1 Nepal       SW Ridge &lt;NA&gt;  \n 8 AMAD20305 AMAD    2020      3 Autumn            1 Nepal       SW Ridge &lt;NA&gt;  \n 9 AMAD20306 AMAD    2020      3 Autumn            1 Nepal       SW Ridge &lt;NA&gt;  \n10 AMAD20307 AMAD    2020      3 Autumn            1 Nepal       SW Ridge &lt;NA&gt;  \n# ℹ 60 more variables: route3 &lt;lgl&gt;, route4 &lt;lgl&gt;, nation &lt;chr&gt;, leaders &lt;chr&gt;,\n#   sponsor &lt;chr&gt;, success1 &lt;lgl&gt;, success2 &lt;lgl&gt;, success3 &lt;lgl&gt;,\n#   success4 &lt;lgl&gt;, ascent1 &lt;chr&gt;, ascent2 &lt;chr&gt;, ascent3 &lt;lgl&gt;, ascent4 &lt;lgl&gt;,\n#   claimed &lt;lgl&gt;, disputed &lt;lgl&gt;, countries &lt;chr&gt;, approach &lt;chr&gt;,\n#   bcdate &lt;date&gt;, smtdate &lt;date&gt;, smttime &lt;chr&gt;, smtdays &lt;dbl&gt;, totdays &lt;dbl&gt;,\n#   termdate &lt;date&gt;, termreason &lt;dbl&gt;, termreason_factor &lt;chr&gt;, termnote &lt;chr&gt;,\n#   highpoint &lt;dbl&gt;, traverse &lt;lgl&gt;, ski &lt;lgl&gt;, parapente &lt;lgl&gt;, camps &lt;dbl&gt;, …\n\n#head(peaks_tidy, n=10)\n\nWe chose this dataset because not only did our team find the prospect of analyzing Himalayan mountaineering expeditions to be incredibly interesting, but also because the dataset contained a good balance between qualitative and quantitative data, with a variety of different data types (character, integer, date, logical, etc.). The large amount of time data inspired us to think about potential time series visualizations and the variables present allowed for diverse questions from analysis of lethality to the impact of hiker background."
+  },
+  {
+    "objectID": "proposal.html#questions",
+    "href": "proposal.html#questions",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Questions",
+    "text": "Questions\nQ1: Are certain routes favored by expeditions from particular nations, and do they have disparate success rates?\nQ2: Do certain Agencies have a higher number of member/personal deaths than others with respect to season/date?"
+  },
+  {
+    "objectID": "proposal.html#analysis-plan",
+    "href": "proposal.html#analysis-plan",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Analysis plan",
+    "text": "Analysis plan\nData cleanup: after using clean_names(), we anticipate that data cleanup will only require ignoring NA values in the dataset.\n\nQ1 Plan:\nWe’ll first count, for each country, how many times each route was attempted and how many of those attempts succeeded. Then we’ll make a bar chart where:\n\nX-axis is the route name (categorical)\nY-axis is the number of attempts (numeric)\nBar fill shows the success rate (e.g. darker = higher percentage of summits)\nFacets split the chart by nation so each country has its own panel\n\nThis layout lets us instantly see which routes each country prefers (tallest bars) and how well they do on them (color intensity). We can then tweak—say, switch to a heatmap of nation vs. route with attempts as tile size and success rate as color—if we want another perspective.\nThe variables involved in this graph are as follows:\nExisting variables:\nnation (Categorical) - Principle nationality.\nroute1,…,route4 (Categorical) - Climbing route.\nsuccess1,….,success4 (Binary/Numeric) - Success on route.\nNew variables to be created:\nroute (categorical) - A single “long” route identifier created by pivoting route1–route4 into one column.\nsuccess (binary/numeric) - Corresponding to each route, the matching success flag (0 = fail, 1 = success).\nattempts (numeric) - Count of expeditions per (nation, route) pair.\nsuccess_rate (numeric, 0-1) - For each (nation, route):\n\\[\n\\text{success\\_rate} = \\frac{\\text{total successes}}{\\text{total attempts}}\n\\]\n\n\nQ2 Plan:\nWe anticipate that the best way to answer this question is to have a graph with percent total death by agency. These graphs will be faceted by season. To account for the difference in number of traveling done by season, we plan to adverage the percent death values. So far, a bar graph is the anticipated result though we are open to trying different types of graphs. If a bar graph is the final graph, we will use a stacked bar chart that shows what portion of the total death by agency is hiker or member deaths.\nThe variables involved in this graph are as follows:\nExisting variables:\n\nagency - Trekking agency\nmdeaths - Member deaths (per trip)\ntotmembers - total members (per trip)\nhdeaths - hired personnel deaths (per trip)\ntothired - total hired personnel (per trip)\nyear - year\nseason_factor - season\nNew variables to be created:\n\npmdeaths - mdeaths/totmembers - percent member deaths\nphdeaths -hdeaths/tothired -percent personnel deaths\nptotdeaths - (hdeaths+ mdeaths)/(tothired + totmembers ) - percent total deaths\nFor each season, we will annotate temperature and weather conditions which will be researched from internet sources. This may require a second graph that colors based on route. If this is the case, we will also require the variable: route1,…,route4"
+  },
+  {
+    "objectID": "proposal.html#plan-of-attack",
+    "href": "proposal.html#plan-of-attack",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Plan of Attack",
+    "text": "Plan of Attack\n\n\n\n\n\n\n\n\n\n\n\nTask Name\nAssignee\nStatus\nDue\nPriority\nSummary\n\n\n\n\nPrepare Proposal\nCat & Amit\nDone\n2025-06-10\nHigh Priority\nCollaboratively select a dataset and define two research questions. Both will come-up with a question.\n\n\nProposal Peer Review\nCat & Amit\nDone\n2025-06-16*\nHigh Priority\nEach member will review one proposal from the assigned two proposal. Members will then review each others inputs and finalize it with mutual consent. Push the final review to respective repository as issue.\n\n\nProposal Peer Review Edits\nCat\nIn-Progress\n2025-06-18\nHigh Priority\nMake edits based on reviews from peers and have the proposal ready for the instructor to review.\n\n\nProposal Instructor Review Edits\nAmit\nTo-Do\n2025-06-20\nHigh Priority\nMake edits based on review from instructor to finalize the proposal.\n\n\nData Cleanup\nCat\nTo-Do\n2025-06-19\nHigh Priority\nClean the dataset (handle missing values, outliers, formatting). Consult Amit for any major decisions on data handling.\n\n\nCreating New Variables\nAmit\nTo-Do\n2025-06-19\nModerate Priority\nCreate derived variables for analysis based on research questions. Share variable definitions with Cat for feedback.\n\n\nCreating Draft of the Graph\nCat\nTo-Do\n2025-06-21\nModerate Priority\nDevelop initial visualizations for the two research questions. Share drafts with Amit for input.\n\n\nMeeting to Discuss Graph Edits\nCat & Amit\nTo-Do\n2025-06-21\nLow Priority\nMeet to review graph drafts, discuss improvements, and agree on final visualization approach.\n\n\nPolishing the Graph\nAmit\nTo-Do\n2025-06-22\nModerate Priority\nRefine visualizations based on meeting feedback. Ensure clarity and alignment with research questions.\n\n\nWrite-Up of Analysis and Code\nCat\nTo-Do\n2025-06-25\nModerate Priority\nWrite explanations for code and graphs, detailing methodology and findings. Amit reviews for clarity and accuracy.\n\n\nCreate Interactive PowerPoint\nAmit\nTo-Do\n2025-06-25\nModerate Priority\nDesign an interactive PowerPoint presentation summarizing findings. Incorporate feedback from Cat on layout and content.\n\n\nFilm Presentation\nCat & Amit\nTo-Do\n2025-06-27\nLow Priority\nJointly record the video presentation. Cat handles setup; Amit ensures script alignment with slides.\n\n\nEdit Presentation\nAmit\nTo-Do\n2025-06-29\nLow Priority\nEdit the video for clarity and polish. Share with Cat for final approval before submission.\n\n\nFinal Project Submission\nCat & Amit\nTo-Do\n2025-06-30\nLow Priority\nMake any last minute changes and submit the final project with mutual sign-off from both the team members."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Project Title",
+    "section": "",
+    "text": "Add project abstract here."
+  },
+  {
+    "objectID": "index.html#abstract",
+    "href": "index.html#abstract",
+    "title": "Project Title",
+    "section": "",
+    "text": "Add project abstract here."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This project was developed by [Team Name] For INFO 526 - Data Analysis and Visualization at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.\n\nTeam member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.)."
+  },
+  {
+    "objectID": "presentation.html#quarto",
+    "href": "presentation.html#quarto",
+    "title": "Project title",
+    "section": "Quarto",
+    "text": "Quarto\n\nThe presentation is created using the Quarto CLI\n## sets the start of a new slide"
+  },
+  {
+    "objectID": "presentation.html#layouts",
+    "href": "presentation.html#layouts",
+    "title": "Project title",
+    "section": "Layouts",
+    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\nlike\nthis\n\nAnd add footnotes"
+  },
+  {
+    "objectID": "presentation.html#code",
+    "href": "presentation.html#code",
+    "title": "Project title",
+    "section": "Code",
+    "text": "Code\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+  },
+  {
+    "objectID": "presentation.html#plots",
+    "href": "presentation.html#plots",
+    "title": "Project title",
+    "section": "Plots",
+    "text": "Plots"
+  },
+  {
+    "objectID": "presentation.html#plot-and-text",
+    "href": "presentation.html#plot-and-text",
+    "title": "Project title",
+    "section": "Plot and text",
+    "text": "Plot and text\n\n\n\nSome text\ngoes here"
+  },
+  {
+    "objectID": "presentation.html#tables",
+    "href": "presentation.html#tables",
+    "title": "Project title",
+    "section": "Tables",
+    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\nAdelie\nTorgersen\n39.1\n18.7\n181\n3750\nmale\n\n\nAdelie\nTorgersen\n39.5\n17.4\n186\n3800\nfemale\n\n\nAdelie\nTorgersen\n40.3\n18.0\n195\n3250\nfemale\n\n\nAdelie\nTorgersen\nNA\nNA\nNA\nNA\nNA\n\n\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n\n\nAdelie\nTorgersen\n39.3\n20.6\n190\n3650\nmale"
+  },
+  {
+    "objectID": "presentation.html#images",
+    "href": "presentation.html#images",
+    "title": "Project title",
+    "section": "Images",
+    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
+  },
+  {
+    "objectID": "presentation.html#math-expressions",
+    "href": "presentation.html#math-expressions",
+    "title": "Project title",
+    "section": "Math Expressions",
+    "text": "Math Expressions\nYou can write LaTeX math expressions inside a pair of dollar signs, e.g. $\\alpha+\\beta$ renders \\(\\alpha + \\beta\\). You can use the display style with double dollar signs:\n$$\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i$$\n\\[\n\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i\n\\]\nLimitations:\n\nThe source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting $$ must appear in the very beginning of a line, followed immediately by a non-space character, and the ending $$ must be at the end of a line, led by a non-space character;\nThere should not be spaces after the opening $ or before the closing $."
+  },
+  {
+    "objectID": "presentation.html#feeling-adventurous",
+    "href": "presentation.html#feeling-adventurous",
+    "title": "Project title",
+    "section": "Feeling adventurous?",
+    "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that’s what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs."
+  }
+]
