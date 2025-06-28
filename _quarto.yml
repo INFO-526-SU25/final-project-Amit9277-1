@@ -7,7 +7,7 @@ website:
   navbar:
     right:
       - icon: github
-        href: https://github.com/INFO-526-SU25/final-project-Amit9277-1 # Needs to be changed to your project repo
+        href:  https://info-526-su24.github.io/final-project-Amit9277-1 # Needs to be changed to your project repo
     left:
       - text: Project
         href: index.qmd
