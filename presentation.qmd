@@ -45,7 +45,9 @@ knitr::opts_chunk$set(
 ```{r}
 #| label: load-data
 #| include: false
-# Load data here
+
+tuesdata <- tidytuesdayR::tt_load('2025-01-21')
+
 exped_tidy <- tuesdata$exped_tidy
 exped_tidy <- clean_names(exped_tidy)
 head(exped_tidy, n=10)
@@ -139,23 +141,7 @@ or in two columns
 
 ## Code
 
-```{r, echo=FALSE}
-model <- lm(mpg ~ speed, data = mtcars) 
-
-model |> tidy()
-
-model |> glance()
-
-```
-
 ## Plots
-
-```{r}
-penguins |>
-  mutate(species = ifelse(species == "Adelie", "Adelie", "Other")) |>
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point()
-```
 
 ## Plot and text
 

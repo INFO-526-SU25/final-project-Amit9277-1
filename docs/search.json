@@ -74,7 +74,7 @@
     "href": "presentation.html#code",
     "title": "Project title",
     "section": "Code",
-    "text": "Code\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+    "text": "Code"
   },
   {
     "objectID": "presentation.html#plots",
@@ -116,6 +116,76 @@
     "href": "presentation.html#feeling-adventurous",
     "title": "Project title",
     "section": "Feeling adventurous?",
-    "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that’s what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs."
+    "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that’s what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs. ::::::::: ::::::::::"
+  },
+  {
+    "objectID": "presentation.html#introduction",
+    "href": "presentation.html#introduction",
+    "title": "Project title",
+    "section": "Introduction",
+    "text": "Introduction\nDataset: The History of Himalayan Mountaineering Expeditions from Tidytuesday, taken from the archive by Elizabeth Hawley from the Himalayan Dataset.\nQuestions:\n\nAre certain routes favored by expeditions from particular nations, and do they have disparate success rates?\nDo certain Agencies have a higher number of member/personal deaths than others with respect to season/date?"
+  },
+  {
+    "objectID": "presentation.html#variables",
+    "href": "presentation.html#variables",
+    "title": "Project title",
+    "section": "Variables",
+    "text": "Variables"
+  },
+  {
+    "objectID": "presentation.html#graphs",
+    "href": "presentation.html#graphs",
+    "title": "Project title",
+    "section": "Graph(s)",
+    "text": "Graph(s)"
+  },
+  {
+    "objectID": "presentation.html#analysis",
+    "href": "presentation.html#analysis",
+    "title": "Project title",
+    "section": "Analysis",
+    "text": "Analysis"
+  },
+  {
+    "objectID": "presentation.html#variables-1",
+    "href": "presentation.html#variables-1",
+    "title": "Project title",
+    "section": "Variables",
+    "text": "Variables\n\n\nExisting variables\n\nagency - Trekking agency\nmdeaths - Member deaths (per trip)\ntotmembers - total members (per trip)\nhdeaths - hired personnel deaths (per trip)\ntothired - total hired personnel (per trip)\nyear - year\nseason_factor - season\n\n\nNew variables\n\npmdeaths - mdeaths/totmembers - percent member deaths\nphdeaths -hdeaths/tothired -percent personnel deaths\nptotdeaths - (hdeaths+ mdeaths)/(tothired + totmembers ) - percent total deaths"
+  },
+  {
+    "objectID": "presentation.html#graph",
+    "href": "presentation.html#graph",
+    "title": "Project title",
+    "section": "Graph",
+    "text": "Graph"
+  },
+  {
+    "objectID": "presentation.html#analysis-1",
+    "href": "presentation.html#analysis-1",
+    "title": "Project title",
+    "section": "Analysis",
+    "text": "Analysis"
+  },
+  {
+    "objectID": "presentation.html#conclusion",
+    "href": "presentation.html#conclusion",
+    "title": "Project title",
+    "section": "Conclusion",
+    "text": "Conclusion"
+  },
+  {
+    "objectID": "presentation.html#limitations",
+    "href": "presentation.html#limitations",
+    "title": "Project title",
+    "section": "Limitations",
+    "text": "Limitations"
+  },
+  {
+    "objectID": "presentation.html#future-directions",
+    "href": "presentation.html#future-directions",
+    "title": "Project title",
+    "section": "Future Directions",
+    "text": "Future Directions"
   }
 ]
