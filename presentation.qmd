@@ -1,7 +1,7 @@
 ---
 title: "Project title"
 subtitle: "INFO 526 - Summer 2024 - Final Project"
-author: "Author names"
+author: "Cat Xia and Amit Chawla"
 title-slide-attributes:
   data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
   data-background-size: stretch
@@ -22,7 +22,7 @@ execute:
 
 # Load packages here
 pacman::p_load(tidymodels,
-               tidyverse)
+               tidyverse, janitor)
 
 ```
 
@@ -46,25 +46,82 @@ knitr::opts_chunk$set(
 #| label: load-data
 #| include: false
 # Load data here
-data(mtcars)
-mtcars$speed <- mtcars$hp / mtcars$wt
-
-data("penguins")
+exped_tidy <- tuesdata$exped_tidy
+exped_tidy <- clean_names(exped_tidy)
+head(exped_tidy, n=10)
 ```
 
-# Using Quarto for presentations
+# Himalayan Expeditions from 2021 to 2024
 
-## Quarto
+## Introduction
 
--   The presentation is created using the Quarto CLI
+Dataset: The History of Himalayan Mountaineering Expeditions from Tidytuesday, taken from the archive by Elizabeth Hawley from the Himalayan Dataset.
 
--   `##` sets the start of a new slide
+Questions:
+
+-   Are certain routes favored by expeditions from particular nations, and do they have disparate success rates?
+
+-   Do certain Agencies have a higher number of member/personal deaths than others with respect to season/date?
+
+# Question One: Are certain routes favored by expeditions from particular nations, and do they have disparate success rates?
+
+## Variables
+
+## Graph(s)
+
+## Analysis
+
+# Question Two: Do certain Agencies have a higher number of member/personal deaths than others with respect to season/date?
+
+## Variables
+
+::::: columns
+::: {.column width="40%"}
+Existing variables
+
+-   agency - Trekking agency
+
+-   mdeaths - Member deaths (per trip)
+
+-   totmembers - total members (per trip)
+
+-   hdeaths - hired personnel deaths (per trip)
+
+-   tothired - total hired personnel (per trip)
+
+-   year - year
+
+-   season_factor - season
+:::
+
+::: {.column width="60%"}
+New variables
+
+-   pmdeaths - *mdeaths*/*totmembers* - percent member deaths
+
+-   phdeaths -*hdeaths*/*tothired* -percent personnel deaths
+
+-   ptotdeaths - (*hdeaths*+ *mdeaths*)/(*tothired* + *totmembers* ) - percent total deaths
+:::
+:::::
+
+## Graph
+
+## Analysis
+
+# Conclusion and Future Directions
+
+## Conclusion
+
+## Limitations
+
+## Future Directions
 
 ## Layouts
 
 You can use plain text
 
-::: columns
+::::: columns
 ::: {.column width="40%"}
 -   or bullet points[^1]
 :::
@@ -72,7 +129,7 @@ You can use plain text
 ::: {.column width="60%"}
 or in two columns
 :::
-:::
+:::::
 
 [^1]: And add footnotes
 
@@ -102,7 +159,7 @@ penguins |>
 
 ## Plot and text
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 -   Some text
 
@@ -119,7 +176,7 @@ penguins |>
   theme(legend.key.size = unit(0.8, "cm"))
 ```
 :::
-:::
+:::::
 
 # A new section...
 
@@ -162,4 +219,4 @@ Limitations:
 
 -   You are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.
 
--   But some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs.
+-   But some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs. ::::::::: ::::::::::

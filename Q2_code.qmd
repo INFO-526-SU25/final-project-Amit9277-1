@@ -1,0 +1,82 @@
+---
+title: "Q2_code"
+format: html
+---
+```{r load-pkgs}
+#| label: load-pkgs
+#| message: false
+
+## install.packages("tidytuesdayR")
+library(tidyverse)
+library(janitor)
+library(forcats)
+```
+
+```{r load-dataset}
+#| label: load-dataset
+#| message: false
+
+tuesdata <- tidytuesdayR::tt_load('2025-01-21')
+
+#Although our two questions only use exped_tidy, we have added code to make a separate peaks_tidy in case we find out that we need variables from that dataframe later on.
+
+exped_tidy <- tuesdata$exped_tidy
+#peaks_tidy <- tuesdata$peaks_tidy
+
+exped_tidy <- clean_names(exped_tidy)
+#peaks_tidy <- clean_names(peaks_tidy)
+
+head(exped_tidy, n=10)
+#head(peaks_tidy, n=10)
+```
+```{r}
+exped_tidy <- exped_tidy |>
+  mutate(
+    "pmdeaths" = mdeaths/totmembers,
+    "phdeaths" = hdeaths/tothired,
+    "ptotdeaths" = (hdeaths+ mdeaths)/(tothired + totmembers )
+  )
+exped_tidy_deadly <- exped_tidy |>
+  filter(pmdeaths > 0 | phdeaths > 0) |>
+  filter(!is.na(agency))
+exped_tidy_deadly
+```
+
+```{r}
+deadly_agencies <- unique(exped_tidy_deadly$agency)
+non_deadly <- exped_tidy |>
+  filter(!agency %in% deadly_agencies)
+non_deadly_agencies <- unique(non_deadly$agency)
+length(non_deadly_agencies)
+length(deadly_agencies)
+```
+
+
+```{r}
+
+exped_tidy_deadly |>
+  ggplot(aes(x = fct_rev(fct_infreq(agency)), fill = after_stat(count))) +
+  geom_bar() +
+  coord_flip() +
+  scale_y_continuous(breaks = c(0, 2, 4, 6, 8, 10)) +
+  scale_fill_gradient(low = "#ffce00", high = "darkred") +
+  labs(
+    title = "Number of expeditions through the Himalayas \nthat resulted in death by Agency",
+    subtitle = "from 2021 - 2024",
+    caption = "Source: Tidytuesday",
+    x = NULL,
+    y = "Number of expeditions that resulted in at least one death",
+    fill = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank()
+  )
+```
+
+```{r}
+
+```
+
