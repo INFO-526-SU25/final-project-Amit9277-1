@@ -71,8 +71,6 @@ We’ll first count, for each country, how many times each route was attempted a
 
 -   **Bar fill** shows the success rate (e.g. darker = higher percentage of summits)
 
--   **Facets** split the chart by nation so each country has its own panel
-
 This layout lets us instantly see which routes each country prefers (tallest bars) and how well they do on them (color intensity). We can then tweak—say, switch to a heatmap of nation vs. route with attempts as tile size and success rate as color—if we want another perspective.
 
 The variables involved in this graph are as follows:
@@ -91,8 +89,10 @@ New variables to be created:
 success*\_rate* (numeric, 0-1) - For each (*nation, route*):
 
 $$
-\text{success\_rate} = \frac{\text{total successes}}{\text{total attempts}}
+\text{success_rate} = \frac{\text{total successes}}{\text{total attempts}}
 $$
+
+The approach to utilize the pivoted columns will be represent the routes bifurcation by individual peaks and then it will be plotted with correspondence to the success rate and number of attempts.
 
 #### Q2 Plan:
 
@@ -121,7 +121,7 @@ For each season, we will annotate temperature and weather conditions which will 
 ## Plan of Attack
 
 | Task Name | Assignee | Status | Due | Priority | Summary |
-|----|----|----|----|----|----|
+|------------|------------|------------|------------|------------|------------|
 | Prepare Proposal | Cat & Amit | Done | 2025-06-10 | High Priority | Collaboratively select a dataset and define two research questions. Both will come-up with a question. |
 | Proposal Peer Review | Cat & Amit | Done | 2025-06-16\* | High Priority | Each member will review one proposal from the assigned two proposal. Members will then review each others inputs and finalize it with mutual consent. Push the final review to respective repository as issue. |
 | Proposal Peer Review Edits | Cat | Done | 2025-06-18 | High Priority | Make edits based on reviews from peers and have the proposal ready for the instructor to review. |
