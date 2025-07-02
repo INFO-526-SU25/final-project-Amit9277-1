@@ -39,13 +39,16 @@ tuesdata <- tidytuesdayR::tt_load('2025-01-21')
 #Although our two questions only use exped_tidy, we have added code to make a separate peaks_tidy in case we find out that we need variables from that dataframe later on.
 
 exped_tidy <- tuesdata$exped_tidy
-#peaks_tidy <- tuesdata$peaks_tidy
+peaks_tidy <- tuesdata$peaks_tidy
 
 exped_tidy <- clean_names(exped_tidy)
-#peaks_tidy <- clean_names(peaks_tidy)
+peaks_tidy <- clean_names(peaks_tidy)
 
 head(exped_tidy, n=10)
-#head(peaks_tidy, n=10)
+head(peaks_tidy, n=10)
+
+#write.csv(exped_tidy, "data/exped_tidy.csv")
+#write.csv(peaks_tidy, "data/peaks_tidy.csv")
 
 ```
 
@@ -121,7 +124,7 @@ For each season, we will annotate temperature and weather conditions which will 
 ## Plan of Attack
 
 | Task Name | Assignee | Status | Due | Priority | Summary |
-|----|----|----|----|----|----|
+|------------|------------|------------|------------|------------|------------|
 | Prepare Proposal | Cat & Amit | Done | 2025-06-10 | High Priority | Collaboratively select a dataset and define two research questions. Both will come-up with a question. |
 | Proposal Peer Review | Cat & Amit | Done | 2025-06-16\* | High Priority | Each member will review one proposal from the assigned two proposal. Members will then review each others inputs and finalize it with mutual consent. Push the final review to respective repository as issue. |
 | Proposal Peer Review Edits | Cat | Done | 2025-06-18 | High Priority | Make edits based on reviews from peers and have the proposal ready for the instructor to review. |
@@ -131,9 +134,9 @@ For each season, we will annotate temperature and weather conditions which will 
 | Creating Draft of the Graph | Cat | Done | 2025-06-21 | Moderate Priority | Develop initial visualizations for the two research questions. Share drafts with Amit for input. |
 | Meeting to Discuss Graph Edits | Cat & Amit | Done | 2025-06-21 | Low Priority | Meet to review graph drafts, discuss improvements, and agree on final visualization approach. |
 | Polishing the Graph | Amit | Done | 2025-06-22 | Moderate Priority | Refine visualizations based on meeting feedback. Ensure clarity and alignment with research questions. |
-| Write-Up of Analysis and Code | Cat | In-Progress | 2025-06-25 | Moderate Priority | Write explanations for code and graphs, detailing methodology and findings. Amit reviews for clarity and accuracy. |
-| Create Interactive PowerPoint | Amit | In-Progress | 2025-06-27 | Moderate Priority | Design an interactive PowerPoint presentation summarizing findings. Incorporate feedback from Cat on layout and content. |
-| Film Presentation | Cat & Amit | To-Do | 2025-06-29 | Low Priority | Jointly record the video presentation. Cat handles setup; Amit ensures script alignment with slides. |
-| Edit Presentation | Amit | To-Do | 2025-07-01 | Low Priority | Edit the video for clarity and polish. Share with Cat for final approval before submission. |
-| Project Website | Amit | In-Progress | 2025-07-02 | Low Priority | Publish project website to GitHub with all the project components. |
+| Write-Up of Analysis and Code | Cat | Done | 2025-06-25 | Moderate Priority | Write explanations for code and graphs, detailing methodology and findings. Amit reviews for clarity and accuracy. |
+| Create Interactive PowerPoint | Amit | Done | 2025-06-27 | Moderate Priority | Design an interactive PowerPoint presentation summarizing findings. Incorporate feedback from Cat on layout and content. |
+| Film Presentation | Cat & Amit | Done | 2025-06-29 | Low Priority | Jointly record the video presentation. Cat handles setup; Amit ensures script alignment with slides. |
+| Edit Presentation | Amit | Done | 2025-07-01 | Low Priority | Edit the video for clarity and polish. Share with Cat for final approval before submission. |
+| Project Website | Amit | Done | 2025-07-02 | Low Priority | Publish project website to GitHub with all the project components. |
 | Final Project Submission | Cat & Amit | To-Do | 2025-07-02 | Low Priority | Make any last minute changes and submit the final project with mutual sign-off from both the team members. |
