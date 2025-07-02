@@ -1,8 +1,16 @@
 ---
 title: "Q2_code"
-format: html
+format:
+  html:
+    embed-resources: true
+toc: true
+execute:
+  warning: false
+  message: false
+  error: false
 ---
-```{r load-pkgs}
+
+```{r}
 #| label: load-pkgs
 #| message: false
 
@@ -14,7 +22,7 @@ library(dplyr)
 library(patchwork)
 ```
 
-```{r load-dataset}
+```{r}
 #| label: load-dataset
 #| message: false
 
@@ -31,6 +39,7 @@ exped_tidy <- clean_names(exped_tidy)
 head(exped_tidy, n=10)
 #head(peaks_tidy, n=10)
 ```
+
 ```{r}
 exped_tidy <- exped_tidy |>
   mutate(
@@ -55,7 +64,6 @@ non_deadly_agencies <- unique(non_deadly$agency)
 length(non_deadly_agencies)
 length(deadly_agencies)
 ```
-
 
 ```{r}
 
@@ -98,8 +106,7 @@ deaths_2021_raw <- deaths_2021 |>
 deaths_2021_raw
 ```
 
-
-```{r 2021}
+```{r2021 deaths av}
 deaths_2021_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
@@ -130,7 +137,7 @@ deaths_2021_av |>
   )
 ```
 
-```{r 2021}
+```{r 2021 deaths raw}
 deaths_2021_raw |>
   ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
   geom_col() +
@@ -178,8 +185,7 @@ deaths_2022_raw <- deaths_2022 |>
 deaths_2022_raw
 ```
 
-
-```{r 2022}
+```{r 2022 Percent}
 percent_2022 <- deaths_2022_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
@@ -214,8 +220,7 @@ percent_2022 <- deaths_2022_av |>
   )
 ```
 
-
-```{r 2022}
+```{r 2022 Raw}
 raw_2022 <- deaths_2022_raw |>
   ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
   geom_col() +
@@ -268,8 +273,7 @@ deaths_2023_raw <- deaths_2023 |>
 deaths_2023_raw
 ```
 
-
-```{r 2023}
+```{r 2023 Percent}
 percent_2023 <- deaths_2023_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
@@ -309,8 +313,7 @@ percent_2023 <- deaths_2023_av |>
   )
 ```
 
-
-```{r 2023}
+```{r 2023 Raw}
 raw_2023 <- deaths_2023_raw |>
   ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
   geom_col() +
@@ -353,7 +356,7 @@ deaths_2024_raw <- deaths_2024 |>
 deaths_2024_raw
 ```
 
-```{r 2024}
+```{r 2024 Percent}
 percent_2024 <- deaths_2024_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
@@ -385,7 +388,7 @@ percent_2024 <- deaths_2024_av |>
 percent_2024
 ```
 
-```{r 2024}
+```{r 2024 Raw}
 raw_2024 <- deaths_2024_raw |>
   ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
   geom_col() +
@@ -412,37 +415,13 @@ raw_2024
 ```
 
 ```{r combine}
-combined_plot <- wrap_plots(percent_2021, raw_2021, percent_2022, raw_2022, percent_2023, raw_2023, percent_2024, raw_2024, ncol = 2) 
+#| include: false
+#combined_plot <- wrap_plots(percent_2021, raw_2021, percent_2022, raw_2022, percent_2023, raw_2023, percent_2024, raw_2024, ncol = 2) 
 
-combined_plot
-```
-```{r}
-final_2021 <- (percent_2021 + raw_2021)
-final_2021
+#combined_plot
 ```
 
 ```{r}
-# Combine plots with patchwork
-combined_plot <- (p1 + p2) / (p3 + p4) +
-  plot_layout(guides = "collect") +
-  plot_annotation(
-    title = "National Route Preferences and Success Rates\nin High-Altitude Peak Expeditions (2020-2024)",
-    subtitle = "Bubble Size and Color Show Attempts, with Success Rates\nfor Top 3 Nations Across Four Most Popular Peaks",
-    caption = "Source: https://github.com/rfordatascience/tidytuesday",
-    theme = theme(
-      plot.title = element_text(face = "bold", size = 18, hjust = 0.2),
-      plot.subtitle = element_text(size = 14, hjust = 0.2),
-      plot.caption = element_text(size = 14)
-    )
-  ) &
-  theme(
-    legend.position = "bottom",
-    legend.box = "horizontal",
-    legend.title.align = 0.5,
-    #legend.margin = margin(t = 5, b = 5),
-    legend.title = element_text(size = 14)
-  )
-
-plot(combined_plot)
+#final_2021 <- (percent_2021 + raw_2021)
+#final_2021
 ```
-

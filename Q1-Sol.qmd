@@ -34,7 +34,7 @@ options(width = 65)
 
 # set figure parameters for knitr
 knitr::opts_chunk$set(
-  fig.width = 11, # 7" width
+  fig.width = 11, # 11" width
   fig.asp = 0.618, # the golden ratio
   fig.retina = 3, # dpi multiplier for displaying HTML output on retina
   fig.align = "center", # center align figures
@@ -139,6 +139,8 @@ top_nations <- total_attempts$nation
 # Filter the dataframe to include only the top 3 nations
 ever_top3 <- ever_df |> 
   filter(nation %in% top_nations)
+
+print(ever_top3)
 
 # Create the bubble chart
 p1 <- ggplot(ever_top3, aes(x = route, y = success_rate_on_route)) +
