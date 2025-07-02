@@ -1,11 +1,11 @@
 ---
-title: "Project Title"
+title: "Analytical Visualization on the History of Himalyan Expeditions"
 subtitle: "INFO 526 - Summer 2024 - Final Project"
 author: 
-  - name: "Team name"
+  - name: "Cat Xia & Amit Chawla"
     affiliations:
       - name: "School of Information, University of Arizona"
-description: "Project description"
+description: "This study analyzes Himalayan expeditions conducted from 2020 to 2024. It aims to understand the preferred routes of a particular nation and to determine how death rates for different agencies vary by time of year."
 format:
    html:
     code-tools: true
@@ -19,4 +19,641 @@ execute:
 
 ## Abstract
 
-Add project abstract here.
+The Himalayan Database, a meticulous archive originating from the pioneering work of Elizabeth Hawley, provides an invaluable resource for understanding the history of mountaineering in the Nepal Himalaya. This project leverages a *subset* of this comprehensive database, specifically focusing on expedition data recorded between 2020 and 2024, to analyze key trends and influential factors in contemporary Himalayan climbing. Utilizing two tidy tibbles, 'peaks' and 'expeditions,' we investigate patterns related to seasonality, success rates, and national participation within this recent timeframe. Furthermore, the analysis delves into the relationships between critical expedition choices, such as selected routes and agency affiliations, and their impact on expedition outcomes, including success probabilities and fatality risks. By examining these variables across diverse nationalities and temporal periods within this focused dataset, this study aims to contribute a deeper, data-driven understanding of the multifaceted elements influencing mountaineering endeavors in the challenging Himalayan environment.
+
+## Introduction
+
+Mountaineering in the Nepal Himalaya represents one of humanity's most profound engagements with extreme natural environments, characterized by unparalleled challenges and breathtaking achievements. Understanding the dynamics and outcomes of these expeditions is crucial for both historical context and future endeavors. This project embarks on an exploratory analysis of a *specific segment* of the rich historical data encapsulated within The Himalayan Database, an enduring legacy of Elizabeth Hawley's dedicated efforts to document every facet of Himalayan climbing history. Originally compiled from a vast array of sources and made freely available online since 2017, the full database serves as a cornerstone for mountaineering research.
+
+Our study specifically focuses on intriguing patterns and insights derived from mountaineering expeditions undertaken in the Nepal Himalaya *during the years 2020 to 2024*. By analyzing this extensive, yet focused, dataset of Himalayan climbs—structured into 'peaks' and 'expeditions' tibbles—this project seeks to uncover significant relationships between the strategic choices climbers make—such as their selected routes and expedition agencies—and their chances of achieving success or facing the tragic risk of fatalities. The analysis particularly aims to shed light on how these critical factors vary across different nations and evolving time periods within this contemporary five-year window. Through this focused exploration of a recent subset of The Himalayan Database, we aspire to offer a deeper, data-driven understanding of what influences expedition outcomes in one of the world's most challenging and captivating mountaineering environments.
+
+## Question 1
+
+Are Certain Routes Favored by Expeditions from Particular Nations, and Do They Have Disparate Success Rates?
+
+### Introduction
+
+This section initiates our investigation into the strategic choices made by mountaineering expeditions in the Nepal Himalaya and their correlation with expedition outcomes. Specifically, we aim to uncover whether the selection of particular climbing routes is influenced by the nationality of the expedition team. Furthermore, we will explore if these nationally-favored routes demonstrate significantly different success rates, potentially highlighting variations in national climbing philosophies, accumulated experience on specific routes, or inherent disparities in route difficulty. A crucial aspect of our analysis involves truncating low-volume attempts. This methodological decision is made to avoid the undue influence of statistical outliers that could arise from a small number of expeditions on a given route, ensuring that our insights are derived from more statistically robust patterns.
+
+### Approach
+
+Our analytical approach to address this question is structured into three main phases:
+
+-   **1. Peak-Specific Success Rate Calibration:** To establish a foundational understanding, we first calibrated the general success rates for the top four most frequently attempted peaks within our 2020-2024 expeditions dataset. This step provides a broad overview of expedition success for these prominent summits, setting a comparative context for the more granular route-specific analysis.
+
+-   **2. Visualization of Route Success by Nation:** Following the general calibration, we proceeded to visualize the success percentages of popular chosen routes for each of these four peaks, broken down by the participating nations. A bubble chart was employed for this visualization. In these charts, the size of each bubble represents the volume of attempts by a specific nation on a particular route, while its position indicates the corresponding success percentage. This allows for a clear, intuitive representation of both the popularity and efficacy of routes across different national teams.
+
+-   **3. Integrated Visualization and Interpretation:** To facilitate a comprehensive comparative analysis and derive overarching interpretations, the individual bubble charts for all four peaks were combined into a single, integrated visualization. This unified view enables a direct comparison of route preferences and success rate disparities across multiple popular peaks and diverse national expedition teams, offering deeper insights into the interplay of national origin, route choice, and expedition success in the challenging Himalayan environment.
+
+### Analysis
+
+::: panel-tabset
+## General Census
+
+``` r
+general_census <- ggplot(summary_data, aes(x = reorder(pkname, -attempts), y = success_rate, fill = attempts)) +
+  geom_col() +
+  geom_text(aes(label = success_rate_label),
+            vjust = -0.5,  # Position above bars
+            color = "black") +
+  scale_fill_viridis_c(
+    option = "viridis",
+    name = "Number of Attempts"
+  ) +
+  coord_cartesian(ylim = c(0, 100)) +  # Success rate is in percent (0-100)
+  labs(
+    x = "Peaks",
+    y = "Success Rate (%)",
+    title = "Success Rate of Top 4 Peaks Attempted by all Nations",
+    subtitle = "Bar height indicates success rate; color indicates attempts",
+    caption = "Source: https://github.com/rfordatascience/tidytuesday"
+  ) +
+  theme_minimal(base_size = 14)
+```
+
+## Everest
+
+``` r
+p1 <- ggplot(ever_top3, aes(x = route, y = success_rate_on_route)) +
+  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),
+             alpha = 0.7,
+             position = "identity") +
+  geom_text_repel(data = subset(ever_top3, attempts_on_route_per_nation >= 1),
+                  aes(label = nation, color = attempts_on_route_per_nation),
+                  size = 5,
+                  box.padding = 0.7,
+                  point.padding = 0.6,
+                  min.segment.length = Inf) +
+  scale_color_viridis_c(option = "turbo",
+                        name = "Attempts on Route",
+                        breaks = c(1, 10, 20, 30, 40),
+                        limits = c(0, 40),
+                        guide = "none") +
+  scale_size_continuous(range = c(3, 15),
+                        name = "Attempts on Route",
+                        breaks = c(10, 20, 30),
+                        limits = c(0, 40),
+                        guide = "none")+
+  annotate("text", y = 125, x = 0.7, label = "Everest", size = 5, fontface = "bold") +
+  labs(x = NULL,
+       y = "Success Rate (%)") +
+  scale_y_continuous(breaks = seq(0, 100, by = 25)) +
+  scale_x_discrete(labels = label_wrap(10)) +
+  coord_cartesian(ylim = c(-5, 125)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(hjust = 0.5, size = 9),
+    legend.position = "none"
+  )
+```
+
+## Ama Dablam
+
+``` r
+p2 <- ggplot(amad_top3, aes(x = route, y = success_rate_on_route)) +
+  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),
+             alpha = 0.7,
+             position = position_jitter(width = 0)) +
+  geom_text_repel(data = subset(amad_top3, attempts_on_route_per_nation >= 1),
+                  aes(label = nation, color = attempts_on_route_per_nation),
+                  size = 5,
+                  box.padding = 0.6,
+                  point.padding = 0.8,
+                  min.segment.length = Inf) +
+  scale_color_viridis_c(option = "turbo",
+                        name = "Attempts on Route",
+                        breaks = c(1, 10, 20, 30, 40),
+                        limits = c(0, 40),
+                        guide = "none") +
+  scale_size_continuous(range = c(3, 15),
+                        name = "Attempts on Route",
+                        breaks = c(10, 20, 30),
+                        limits = c(0, 40),
+                        guide = "none") +
+  annotate("text", y = 120, x = 0.9, label = "Ama Dablam", size = 5, fontface = "bold") +
+  labs(x = NULL,
+       y = NULL) +
+  scale_y_continuous(breaks = seq(0, 100, by = 25)) + # Adjusted seq start to 0 for clarity
+  scale_x_discrete(labels = label_wrap(10)) +
+  coord_cartesian(ylim = c(-5, 120)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(hjust = 0.5, size = 9),
+    legend.position = "none"
+  )
+```
+
+## Lhotse
+
+``` r
+p3 <- ggplot(lhot_top3, aes(x = route, y = success_rate_on_route)) +
+  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),
+             alpha = 0.6,
+             position = "identity") +
+  geom_text_repel(data = subset(lhot_top3, attempts_on_route_per_nation >= 1),
+                  aes(label = nation, color = attempts_on_route_per_nation),
+                  size = 5,
+                  box.padding = 0.6,
+                  point.padding = 0.8,
+                  min.segment.length = Inf,
+                  position = "identity") +
+  scale_color_viridis_c(option = "turbo",
+                        name = "Attempts on Route",
+                        breaks = c(1, 10, 20, 30, 40),
+                        limits = c(0, 40),
+                        guide = "none") +
+  scale_size_continuous(range = c(3, 15),
+                        name = "Attempts on Route",
+                        breaks = c(10, 20, 30),
+                        limits = c(0, 40),
+                        guide = "none")+
+  annotate("text", y = 130, x = 0.6, label = "Lhotse", size = 5, fontface = "bold") +
+  labs(x = "Route",
+       y = "Success Rate (%)") +
+  scale_y_continuous(breaks = seq(0, 100, by = 25)) +
+  scale_x_discrete(labels = label_wrap(10)) +
+  coord_cartesian(ylim = c(-5, 130)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(hjust = 0.5, size = 9),
+    legend.position = "none"
+  )
+```
+
+## Manaslu
+
+``` r
+p4 <- ggplot(mana_top3, aes(x = route, y = success_rate_on_route)) +
+  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),
+             alpha = 0.7,
+             position = "identity") +
+  geom_text_repel(data = subset(mana_top3, attempts_on_route_per_nation >= 1),
+                  aes(label = nation, color = attempts_on_route_per_nation),
+                  size = 5,
+                  box.padding = 0.6,
+                  point.padding = 0.8,
+                  min.segment.length = Inf,
+                  position = "identity") +
+  scale_color_viridis_c(option = "turbo",
+                        name = "\n",
+                        breaks = c(1, 10, 20, 30, 40),
+                        limits = c(0, 40),
+                        guide = guide_colorbar(direction = "horizontal", title.position = "top")) +
+  scale_size_continuous(range = c(3, 15),
+                        name = "                       Attempts on route metrix (size + color)",
+                        breaks = c(1, 10, 20, 30, 40),
+                        limits = c(0, 40),
+                        guide = guide_legend(title.position = "top"))+
+  annotate("text", y = 120, x = 0.55, label = "Manaslu", size = 5, fontface = "bold") +
+  labs (x = "Route",
+       y = NULL) +
+  scale_y_continuous(breaks = seq(0, 100, by = 25)) +
+  scale_x_discrete(labels = label_wrap(10)) +
+  coord_cartesian(ylim = c(-5, 120)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(hjust = 0.5, size = 9),
+    legend.position = "none"
+  )
+```
+
+## Combined 4 Bubble Chart Plots
+
+``` r
+combined_plot <- (p1 + p2) / (p3 + p4) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = "National Route Preferences and Success Rates\nin High-Altitude Peak Expeditions (2020-2024)",
+    subtitle = "Bubble Size and Color Show Attempts, with Success Rates\nfor Top 3 Nations Across Four Most Popular Peaks",
+    caption = "Source: https://github.com/rfordatascience/tidytuesday",
+    theme = theme(
+      plot.title = element_text(face = "bold", size = 18, hjust = 0.2),
+      plot.subtitle = element_text(size = 14, hjust = 0.2),
+      plot.caption = element_text(size = 14)
+    )
+  ) &
+  theme(
+    legend.position = "bottom",
+    legend.box = "horizontal",
+    legend.title.align = 0.5,
+    #legend.margin = margin(t = 5, b = 5),
+    legend.title = element_text(size = 14)
+  )
+```
+:::
+
+### Visualization
+
+```{r}
+#| label: Initial Setup
+
+if (!require("pacman")) 
+  install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               janitor,
+               scales,
+               stringr,
+               ggthemes,
+               ggrepel,
+               patchwork,
+               grid)
+
+# set theme for ggplot2
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 20))
+
+# set width of code output
+options(width = 65)
+
+# set figure parameters for knitr
+knitr::opts_chunk$set(
+  fig.width = 11, # 11" width
+  fig.asp = 0.618, # the golden ratio
+  fig.retina = 3, # dpi multiplier for displaying HTML output on retina
+  fig.align = "center", # center align figures
+  dpi = 300 # higher dpi, sharper image
+)
+```
+
+```{r}
+#| label: Data Load and prep
+
+tuesdata <- tidytuesdayR::tt_load('2025-01-21')
+
+exped_tidy <- tuesdata$exped_tidy
+peaks_tidy <- tuesdata$peaks_tidy
+
+
+exped_tidy_cleaned <- clean_names(exped_tidy)
+peaks_tidy_cleaned <- clean_names(peaks_tidy)
+
+pivoted_data <- exped_tidy_cleaned |>
+  pivot_longer(
+    cols = c(route1, route2, route3, route4, success1, success2, success3, success4),
+    names_to = c(".value", "index"),
+    names_pattern = "(route|success)(\\d+)"
+  )
+
+pivoted_data <- pivoted_data |>
+  filter(!is.na(route))
+
+pivoted_data <- pivoted_data |>
+  mutate(route = str_replace_all(route, "S Col SE Ridge", "S Col-SE Ridge"))
+
+summary_data <- pivoted_data |>
+  group_by(peakid) |>
+  summarize(
+    attempts = n(),
+    success_rate = (mean(success, na.rm = TRUE) * 100), # This remains NUMERIC for fill aesthetic
+    .groups = 'drop' # Good practice to drop grouping after summarize
+  ) |>
+  arrange(desc(attempts)) |>
+  slice_head(n = 4)
+
+# Create a SEPARATE column for the label, formatted as a character string
+summary_data$success_rate_label <- sprintf("%.1f%%", summary_data$success_rate)
+
+# Join with peaks_tidy_cleaned to get peak names, keeping original peakid
+summary_data <- summary_data |>
+  left_join(select(peaks_tidy_cleaned, peakid, pkname), by = "peakid")
+```
+
+```{r}
+#| label: General Census Plot
+
+general_census <- ggplot(summary_data, aes(x = reorder(pkname, -attempts), y = success_rate, fill = attempts)) +
+  geom_col() +
+  geom_text(aes(label = success_rate_label),
+            vjust = -0.5,  # Position above bars
+            color = "black") +
+  scale_fill_viridis_c(
+    option = "viridis",
+    name = "Number of Attempts"
+  ) +
+  coord_cartesian(ylim = c(0, 100)) +  # Success rate is in percent (0-100)
+  labs(
+    x = "Peaks",
+    y = "Success Rate (%)",
+    title = "Success Rate of Top 4 Peaks Attempted by all Nations",
+    subtitle = "Bar height indicates success rate; color indicates attempts",
+    caption = "Source: https://github.com/rfordatascience/tidytuesday"
+  ) +
+  theme_minimal(base_size = 14)
+```
+
+```{r}
+#| label: Plot 1 (Everest) for second visualization
+
+selected_peaks <- c("EVER", "AMAD", "LHOT", "MANA", "HIML")
+
+pivoted_data_cleaned <- pivoted_data |>
+  filter(!is.na(route) & !is.na(nation))
+
+summary_data_with_combined_key <- pivoted_data_cleaned |>
+  group_by(peakid, route, nation) |>
+  summarize(
+    attempts_on_route_per_nation = n(),
+    success_rate_on_route = (mean(success, na.rm = TRUE) * 100),
+    .groups = 'drop'
+  ) |>
+  mutate(peakid_route = paste(peakid, route, sep = " - ")) |>
+  arrange(peakid, route, desc(attempts_on_route_per_nation))
+
+ever_df <- summary_data_with_combined_key |>
+  filter(peakid == 'EVER')
+
+# Calculate total attempts per nation across all routes
+total_attempts <- ever_df |>
+  group_by(nation)|>
+  summarise(total_attempts = sum(attempts_on_route_per_nation)) |>
+  slice_max(order_by = total_attempts, n = 3)
+
+# Get the top 3 nations
+top_nations <- total_attempts$nation
+
+# Filter the dataframe to include only the top 3 nations
+ever_top3 <- ever_df |> 
+  filter(nation %in% top_nations)
+
+# Create the bubble chart
+p1 <- ggplot(ever_top3, aes(x = route, y = success_rate_on_route)) +
+  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),
+             alpha = 0.7,
+             position = "identity") +
+  geom_text_repel(data = subset(ever_top3, attempts_on_route_per_nation >= 1),
+                  aes(label = nation, color = attempts_on_route_per_nation),
+                  size = 5,
+                  box.padding = 0.7,
+                  point.padding = 0.6,
+                  min.segment.length = Inf) +
+  scale_color_viridis_c(option = "turbo",
+                        name = "Attempts on Route",
+                        breaks = c(1, 10, 20, 30, 40),
+                        limits = c(0, 40),
+                        guide = "none") +
+  scale_size_continuous(range = c(3, 15),
+                        name = "Attempts on Route",
+                        breaks = c(10, 20, 30),
+                        limits = c(0, 40),
+                        guide = "none")+
+  annotate("text", y = 125, x = 0.7, label = "Everest", size = 5, fontface = "bold") +
+  labs(x = NULL,
+       y = "Success Rate (%)") +
+  scale_y_continuous(breaks = seq(0, 100, by = 25)) +
+  scale_x_discrete(labels = label_wrap(10)) +
+  coord_cartesian(ylim = c(-5, 125)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(hjust = 0.5, size = 9),
+    legend.position = "none"
+  )
+```
+
+```{r}
+#| label: Plot 2 (Ama Dablam) for second visualization
+
+amad_df <- summary_data_with_combined_key |>
+  filter(peakid == 'AMAD')
+
+# Calculate total attempts per nation across all routes
+total_attempts <- amad_df |>
+  group_by(nation)|>
+  summarise(total_attempts = sum(attempts_on_route_per_nation)) |>
+  slice_max(order_by = total_attempts, n = 3)
+
+# Get the top 3 nations
+top_nations <- total_attempts$nation
+
+# Filter the dataframe to include only the top 3 nations
+amad_top3 <- amad_df |> 
+  filter(nation %in% top_nations)
+
+# Create the bubble chart
+p2 <- ggplot(amad_top3, aes(x = route, y = success_rate_on_route)) +
+  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),
+             alpha = 0.7,
+             position = position_jitter(width = 0)) +
+  geom_text_repel(data = subset(amad_top3, attempts_on_route_per_nation >= 1),
+                  aes(label = nation, color = attempts_on_route_per_nation),
+                  size = 5,
+                  box.padding = 0.6,
+                  point.padding = 0.8,
+                  min.segment.length = Inf) +
+  scale_color_viridis_c(option = "turbo",
+                        name = "Attempts on Route",
+                        breaks = c(1, 10, 20, 30, 40),
+                        limits = c(0, 40),
+                        guide = "none") +
+  scale_size_continuous(range = c(3, 15),
+                        name = "Attempts on Route",
+                        breaks = c(10, 20, 30),
+                        limits = c(0, 40),
+                        guide = "none") +
+  annotate("text", y = 120, x = 0.9, label = "Ama Dablam", size = 5, fontface = "bold") +
+  labs(x = NULL,
+       y = NULL) +
+  scale_y_continuous(breaks = seq(0, 100, by = 25)) + # Adjusted seq start to 0 for clarity
+  scale_x_discrete(labels = label_wrap(10)) +
+  coord_cartesian(ylim = c(-5, 120)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(hjust = 0.5, size = 9),
+    legend.position = "none"
+  )
+```
+
+```{r}
+#| label: Plot 3 (Lhotse) for second visualization
+
+lhot_df <- summary_data_with_combined_key |>
+  filter(peakid == 'LHOT')
+
+# Calculate total attempts per nation across all routes
+total_attempts <- lhot_df |>
+  group_by(nation)|>
+  summarise(total_attempts = sum(attempts_on_route_per_nation)) |>
+  slice_max(order_by = total_attempts, n = 3)
+
+# Get the top 3 nations
+top_nations <- total_attempts$nation
+
+# Filter the dataframe to include only the top 3 nations
+lhot_top3 <- lhot_df |> 
+  filter(nation %in% top_nations)
+
+# Create the bubble chart
+p3 <- ggplot(lhot_top3, aes(x = route, y = success_rate_on_route)) +
+  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),
+             alpha = 0.6,
+             position = "identity") +
+  geom_text_repel(data = subset(lhot_top3, attempts_on_route_per_nation >= 1),
+                  aes(label = nation, color = attempts_on_route_per_nation),
+                  size = 5,
+                  box.padding = 0.6,
+                  point.padding = 0.8,
+                  min.segment.length = Inf,
+                  position = "identity") +
+  scale_color_viridis_c(option = "turbo",
+                        name = "Attempts on Route",
+                        breaks = c(1, 10, 20, 30, 40),
+                        limits = c(0, 40),
+                        guide = "none") +
+  scale_size_continuous(range = c(3, 15),
+                        name = "Attempts on Route",
+                        breaks = c(10, 20, 30),
+                        limits = c(0, 40),
+                        guide = "none")+
+  annotate("text", y = 130, x = 0.6, label = "Lhotse", size = 5, fontface = "bold") +
+  labs(x = "Route",
+       y = "Success Rate (%)") +
+  scale_y_continuous(breaks = seq(0, 100, by = 25)) +
+  scale_x_discrete(labels = label_wrap(10)) +
+  coord_cartesian(ylim = c(-5, 130)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(hjust = 0.5, size = 9),
+    legend.position = "none"
+  )
+```
+
+```{r}
+#| label: Plot 4 (Manaslu) for second visualization
+
+mana_df <- summary_data_with_combined_key |>
+  filter(peakid == 'MANA')
+
+# Calculate total attempts per nation across all routes
+total_attempts <- mana_df |>
+  group_by(nation)|>
+  summarise(total_attempts = sum(attempts_on_route_per_nation)) |>
+  slice_max(order_by = total_attempts, n = 3)
+
+# Get the top 3 nations
+top_nations <- total_attempts$nation
+
+# Filter the dataframe to include only the top 3 nations
+mana_top3 <- mana_df |> 
+  filter(nation %in% top_nations)
+
+# Create the bubble chart
+p4 <- ggplot(mana_top3, aes(x = route, y = success_rate_on_route)) +
+  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),
+             alpha = 0.7,
+             position = "identity") +
+  geom_text_repel(data = subset(mana_top3, attempts_on_route_per_nation >= 1),
+                  aes(label = nation, color = attempts_on_route_per_nation),
+                  size = 5,
+                  box.padding = 0.6,
+                  point.padding = 0.8,
+                  min.segment.length = Inf,
+                  position = "identity") +
+  scale_color_viridis_c(option = "turbo",
+                        name = "\n",
+                        breaks = c(1, 10, 20, 30, 40),
+                        limits = c(0, 40),
+                        guide = guide_colorbar(direction = "horizontal", title.position = "top")) +
+  scale_size_continuous(range = c(3, 15),
+                        name = "                       Attempts on route metrix (size + color)",
+                        breaks = c(1, 10, 20, 30, 40),
+                        limits = c(0, 40),
+                        guide = guide_legend(title.position = "top"))+
+  annotate("text", y = 120, x = 0.55, label = "Manaslu", size = 5, fontface = "bold") +
+  labs (x = "Route",
+       y = NULL) +
+  scale_y_continuous(breaks = seq(0, 100, by = 25)) +
+  scale_x_discrete(labels = label_wrap(10)) +
+  coord_cartesian(ylim = c(-5, 120)) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(hjust = 0.5, size = 9),
+    legend.position = "none"
+  )
+```
+
+```{r}
+#| label: Combined all plots for second visualization
+
+# Combine plots with patchwork
+combined_plot <- (p1 + p2) / (p3 + p4) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = "National Route Preferences and Success Rates\nin High-Altitude Peak Expeditions (2020-2024)",
+    subtitle = "Bubble Size and Color Show Attempts, with Success Rates\nfor Top 3 Nations Across Four Most Popular Peaks",
+    caption = "Source: https://github.com/rfordatascience/tidytuesday",
+    theme = theme(
+      plot.title = element_text(face = "bold", size = 18, hjust = 0.2),
+      plot.subtitle = element_text(size = 14, hjust = 0.2),
+      plot.caption = element_text(size = 14)
+    )
+  ) &
+  theme(
+    legend.position = "bottom",
+    legend.box = "horizontal",
+    legend.title.align = 0.5,
+    #legend.margin = margin(t = 5, b = 5),
+    legend.title = element_text(size = 14)
+  )
+
+```
+
+::: panel-tabset
+## General Census Plot
+
+```{r}
+#| label: General Census Plot Visualization
+
+plot(general_census)
+```
+
+**Alt text:** Bar chart titled "Success Rate of Top 4 Peaks Attempted by all Nations (2020-2024)" showing success rates for Everest (88.9%), Ama Dablam (93.2%), Lhotse (88.9%), and Manaslu (52.6%). Bar height indicates success rate, with colors ranging from yellow (180 attempts) to dark purple (100 attempts) representing the number of attempts. Source: https://github.com/rfordatascience/tidytuesday.
+
+## National Route Preference and Success Rate Plot
+
+```{r}
+#| label: National Route Preference and Success Rate Plot Visualization
+
+plot(combined_plot)
+```
+
+**Alt text:** Bubble chart titled "National Route Preferences and Success Rates in High-Altitude Peak Expeditions (2020-2024)" showing success rates for top 3 nations across four popular peaks: Everest, Ama Dablam, Lhotse, and Manaslu. Bubbles represent attempts, with size and color indicating the number of attempts (1 to 40), and position showing success rates (0-100%). Routes include N Col-NE Ridge, N Face (Hornbein Couloir), S Col-SE Ridge for Everest; SW Ridge, W Face for Ama Dablam; S Col-W Face, W Face for Lhotse; and NE Face for Manaslu. Nations include USA, China, Nepal, India, and UK. Source: https://github.com/rfordatascience/tidytuesday.
+:::
+
+### Observation
+
+The combined bubble plots for Everest, Lhotse, Ama Dablam, and Manaslu reveal clear patterns in national route preferences and their corresponding success rates:
+
+-   **Dominant Route Concentration:** A significant majority of expedition attempts across these popular peaks are concentrated on a single, well-established route. For instance, the "S Col-SE Ridge" on Everest and the "W Face" on Lhotse are overwhelmingly favored, indicated by large bubbles representing high attempt volumes from nations like the USA, China, and Nepal. This suggests the existence of a 'standard' or 'commercial' route for each peak.
+
+-   **Marginality of Alternate Routes:** While other routes were attempted, their popularity and often their success rates were considerably lower. Smaller bubbles and, at times, lower success percentages for alternative paths (e.g., Everest's "N Col-NE Ridge") highlight a strong collective preference for the primary, more established route, with alternatives attracting fewer expeditions.
+
+-   **Strategic Path-Peak Selection:** The data strongly indicates that route selection is a critical determinant of expedition success, particularly for top-performing nations. Countries like the USA, China, Nepal, and India consistently favor specific path-peak combinations that demonstrate high success rates. This strategic alignment underscores a pragmatic approach where route choice is a calculated decision to optimize success probabilities.
+
+-   **Confirmation of Inherent Route Bias:** The observed patterns in the 2020-2024 dataset reinforce a historical trend where specific routes have emerged as the most reliable. The high success rates for concentrated attempts on routes like Everest's "S Col-SE Ridge" reflect a continuing bias towards 'proven' paths, likely due to well-documented passages, established infrastructure, and accumulated experience, which collectively contribute to a higher probability of success.
+
+## Question 2
+
+## Conclusion, Limitations, and Future Directions
+
+### Conclusion
+
+Our analysis of 2020-2024 Himalayan expeditions reveals that the overwhelmingly dominant and historically proven routes are consistently preferred and yield the highest success rates. Top-performing nations strategically prioritize these established paths, underscoring route selection as a critical determinant of expedition success. Conversely, alternative routes demonstrate notably lower effectiveness.
+
+Additionally, if you go on a Himalayan expedition, don't do so with Seven Summit Treks in the Spring
+
+### Key Limitations
+
+Our analysis faced two primary limitations:
+
+-   **Data Quality:** The initial dataset required significant pre-processing due to inconsistencies, particularly with consolidated route information, impacting granular analysis.
+
+-   **Data Sparsity:** A high variable count relative to the number of entries in our filtered dataset limited the ability to draw universally conclusive findings and complex statistical relationships.
+
+### Future Directions
+
+Building on these insights, future research should focus on:
+
+-   **In-depth Dataset Exploration:** Leveraging the comprehensive original Himalayan Database (<https://www.himalayandatabase.com/hbn2019.html>) to conduct more robust analyses and explore broader historical trends.
+
+-   **Expanded Variable Analysis:** Investigating a wider range of factors, such as leadership roles, team sizes, and seasonal influences.
+
+-   **Predictive Modeling:** Developing models to forecast expedition success based on various input factors, aiding future planning and risk management.

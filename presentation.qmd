@@ -103,7 +103,7 @@ Introduction:
 ::: {.column width="50%"}
 Approach:
 
--   First I have calibrated the general senses of top 4 peaks attempted by nations, to identify the general success rate of the peak.
+-   First I have calibrated the general census of top 4 peaks attempted by nations, to identify the general success rate of the peak.
 
 -   Next, visualized each peak and success percentage of popular chosen routes by nation, in a bubble chart.
 
@@ -111,11 +111,11 @@ Approach:
 :::
 :::::
 
-## General Senses
+## General Census
 
 ::::: columns
 ::: {.column width="30%"}
-The general senses shows that 3 out of top 4 peaks attempted for expedition shows fairly positive results around 90% success rate.
+The general census shows that 3 out of top 4 peaks attempted for expedition shows fairly positive results around 90% success rate.
 
 -   Now we will see what role does choice of route plays here....
 :::
