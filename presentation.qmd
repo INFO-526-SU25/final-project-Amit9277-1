@@ -720,8 +720,8 @@ deaths_2022_raw |>
   labs(
     fill = "Season",
     x = "Trekking Agency",
-    y = "Total Percent Death (Average)",
-    title = "Percent total deaths by Agency in 2022",
+    y = "Total Death",
+    title = "Total deaths by Agency in 2022",
     caption = "Source: TidyTuesday",
     subtitle = "M is trekking member death, H is hired staff death"
   ) +
@@ -955,7 +955,7 @@ deaths_2024_raw |>
 
     -   Is there any correlation between larger or smaller expedition groups in their likelihood of fatality?
 
-# Conclusion and Future Directions
+# Conclusion
 
 ## Conclusion
 
