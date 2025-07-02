@@ -447,16 +447,6 @@ plot(combined_plot)
 -   [**Strategic Path-Peak Selection:**]{.underline} Top-performing nations consistently favored a specific path-peak combination, indicating that **route selection is a critical determinant of expedition success**.
 -   [**Inherent Route Bias:**]{.underline} The observed pattern reflects a historical trend where a particular route, proven over years, emerged as the most reliable for success by 2020-2024 dataset.
 
-## Key Limitations
-
--   [**Data Quality**]{.underline}**:** Initial dataset required extensive cleanup due to inconsistencies (e.g., consolidated route information in one column instead of four).
-
--   [**Data Sparsity**]{.underline}**:** High variable count relative to entries limited conclusive findings.
-
-## Future Directions
-
--   **In-depth Dataset Exploration:** Our team intends to expand our analysis by leveraging the more comprehensive data available in the original dataset's second edition, accessible at: <https://www.himalayandatabase.com/hbn2019.html> This will enable a deeper investigation into the insights observed in the current smaller dataset.
-
 # Question 2
 
 # Question 2:
@@ -940,24 +930,23 @@ deaths_2024_raw |>
 -   2022 and 2023 had more deaths than 2021 and 2024
 -   Slightly more Hiker fatality than Staff fatality
 
-## Limitations
+# Conclusion, Limitations, and Future Directions
 
--   Some expeditions had very low number of total participants and some had very high number of participants. This made some percentages hard to compare (ie 100% fatality was due to only 1 person on the expedition).
--   Tried to address this with raw values, but may be another approach.
+## Key Limitations
+
+-   [**Data Quality**]{.underline}**:** Initial dataset required extensive cleanup due to inconsistencies (e.g., consolidated route information in one column instead of four).
+
+-   [**Data Sparsity**]{.underline}**:** High variable count relative to entries limited conclusive findings.
 
 ## Future Directions
 
--   **Wider Societal Analysis:** Our team intends to look at wider correlations or causal relationships regarding fatality during Himalayan expeditions, such as:
-
-    -   Are certain agencies owned by the same parent corporations? Are they tied to increased chance of fatalities?
-
-    -   What weather conditions during Spring do climbers face and have them been changing due to climate change and are there any commonalities in weather conditions during the more deadly years.
-
-    -   Is there any correlation between larger or smaller expedition groups in their likelihood of fatality?
-
-# Conclusion
+-   **In-depth Dataset Exploration:** Our team intends to expand our analysis by leveraging the more comprehensive data available in the original dataset's second edition, accessible at: <https://www.himalayandatabase.com/hbn2019.html> This will enable a deeper investigation into the insights observed in the current smaller dataset.
 
 ## Conclusion
+
+- The overwhelmingly dominant and historically proven route is the preferred and most successful path for this peak, with top-performing nations consistently prioritizing it due to its critical role in expedition success. Alternate routes are notably less effective.
+
+- If you go on a Himalayan expedition, don't do so with Seven Summit Treks in the Spring
 
 ## Images
 
