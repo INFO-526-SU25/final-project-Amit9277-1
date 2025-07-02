@@ -3,7 +3,7 @@ title: "Analytical Visualization on the History of Himalyan Expeditions "
 subtitle: "INFO 526 - Summer 2024 - Final Project"
 author: "Cat Xia and Amit Chawla"
 title-slide-attributes:
-  data-background-image: raimond-klavins-L6jxljMeUoo-unsplash.jpg
+  data-background-image: images/raimond-klavins-L6jxljMeUoo-unsplash.jpg
   data-background-size: stretch
   data-background-opacity: "0.7"
   data-slide-number: none
@@ -961,4 +961,4 @@ deaths_2024_raw |>
 
 ## Images
 
-![Image credit: Danielle Navarro, Percolate.](images/watercolour_sys02_img34_teacup-ocean.png){fig-align="center" width="500"}
+![Image credit: Raimond Klavins, Unsplash Royalty Free Images.](images/raimond-klavins-L6jxljMeUoo-unsplash.jpg){fig-align="center" width="500"}

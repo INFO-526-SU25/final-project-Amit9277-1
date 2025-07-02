@@ -102,7 +102,7 @@
     "href": "presentation.html#images",
     "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Images",
-    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
+    "text": "Images\n\n\n\nImage credit: Raimond Klavins, Unsplash Royalty Free Images."
   },
   {
     "objectID": "presentation.html#math-expressions",
@@ -186,7 +186,7 @@
     "href": "presentation.html#future-directions",
     "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Future Directions",
-    "text": "Future Directions"
+    "text": "Future Directions\n\nIn-depth Dataset Exploration: Our team intends to expand our analysis by leveraging the more comprehensive data available in the original dataset’s second edition, accessible at: https://www.himalayandatabase.com/hbn2019.html This will enable a deeper investigation into the insights observed in the current smaller dataset."
   },
   {
     "objectID": "Q1-Sol.html",
@@ -369,5 +369,19 @@
     "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Limitations",
     "text": "Limitations"
+  },
+  {
+    "objectID": "presentation.html#key-limitations",
+    "href": "presentation.html#key-limitations",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Key Limitations",
+    "text": "Key Limitations\n\nData Quality: Initial dataset required extensive cleanup due to inconsistencies (e.g., consolidated route information in one column instead of four).\nData Sparsity: High variable count relative to entries limited conclusive findings."
+  },
+  {
+    "objectID": "presentation.html#future-directions-1",
+    "href": "presentation.html#future-directions-1",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Future Directions",
+    "text": "Future Directions\n\nWider Societal Analysis: Our team intends to look at wider correlations or causal relationships regarding fatality during Himalayan expeditions, such as:\n\nAre certain agencies owned by the same parent corporations? Are they tied to increased chance of fatalities?\nWhat weather conditions during Spring do climbers face and have them been changing due to climate change and are there any commonalities in weather conditions during the more deadly years.\nIs there any correlation between larger or smaller expedition groups in their likelihood of fatality?"
   }
 ]
