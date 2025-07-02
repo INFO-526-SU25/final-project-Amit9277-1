@@ -100,7 +100,7 @@ deaths_2021_raw
 
 
 ```{r 2021}
-percent_2021 <- deaths_2021_av |>
+deaths_2021_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
   coord_flip(ylim = c(0, 1)) +
@@ -131,7 +131,7 @@ percent_2021 <- deaths_2021_av |>
 ```
 
 ```{r 2021}
-raw_2021 <- deaths_2021_raw |>
+deaths_2021_raw |>
   ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
   geom_col() +
   coord_flip(ylim = c(0, 5)) +
@@ -382,6 +382,7 @@ percent_2024 <- deaths_2024_av |>
     axis.ticks.x = element_blank(),
     panel.grid = element_blank()
   )
+percent_2024
 ```
 
 ```{r 2024}
@@ -407,6 +408,7 @@ raw_2024 <- deaths_2024_raw |>
     axis.ticks.x = element_blank(),
     panel.grid = element_blank()
   )
+raw_2024
 ```
 
 ```{r combine}
@@ -417,5 +419,30 @@ combined_plot
 ```{r}
 final_2021 <- (percent_2021 + raw_2021)
 final_2021
+```
+
+```{r}
+# Combine plots with patchwork
+combined_plot <- (p1 + p2) / (p3 + p4) +
+  plot_layout(guides = "collect") +
+  plot_annotation(
+    title = "National Route Preferences and Success Rates\nin High-Altitude Peak Expeditions (2020-2024)",
+    subtitle = "Bubble Size and Color Show Attempts, with Success Rates\nfor Top 3 Nations Across Four Most Popular Peaks",
+    caption = "Source: https://github.com/rfordatascience/tidytuesday",
+    theme = theme(
+      plot.title = element_text(face = "bold", size = 18, hjust = 0.2),
+      plot.subtitle = element_text(size = 14, hjust = 0.2),
+      plot.caption = element_text(size = 14)
+    )
+  ) &
+  theme(
+    legend.position = "bottom",
+    legend.box = "horizontal",
+    legend.title.align = 0.5,
+    #legend.margin = margin(t = 5, b = 5),
+    legend.title = element_text(size = 14)
+  )
+
+plot(combined_plot)
 ```
 

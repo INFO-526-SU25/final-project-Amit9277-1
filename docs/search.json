@@ -179,7 +179,7 @@
     "href": "presentation.html#limitations",
     "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Limitations",
-    "text": "Limitations"
+    "text": "Limitations\n\nSome expeditions had very low number of total participants and some had very high number of participants. This made some percentages hard to compare (ie 100% fatality was due to only 1 person on the expedition).\nTried to address this with raw values, but may be another approach."
   },
   {
     "objectID": "presentation.html#future-directions",
@@ -313,5 +313,61 @@
     "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Observations",
     "text": "Observations\n\nDominant Route Preference: A significant majority of attempts concentrated on a single, well-established route for this peak.\nMarginal Alternate Success: While other routes were attempted, their success rates or popularity were considerably lower, highlighting a clear preference for the primary path.\nStrategic Path-Peak Selection: Top-performing nations consistently favored a specific path-peak combination, indicating that route selection is a critical determinant of expedition success.\nInherent Route Bias: The observed pattern reflects a historical trend where a particular route, proven over years, emerged as the most reliable for success by 2020-2024 dataset."
+  },
+  {
+    "objectID": "presentation.html#question-1-1",
+    "href": "presentation.html#question-1-1",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Question 1:",
+    "text": "Question 1:\nAre certain routes favored by expeditions from particular nations, and do they have disparate success rates?\n\n\nIntroduction:\n\nThe idea is to find out if there is any affect on success or failure based on the chosen route.\nAnalysis truncates the low volume attempts to avoid outlines.\n\n\nApproach:\n\nFirst I have calibrated the general senses of top 4 peaks attempted by nations, to identify the general success rate of the peak.\nNext, visualized each peak and success percentage of popular chosen routes by nation, in a bubble chart\nTo finalize, the visualization and derive interpretation. I combined all 4 charts in one."
+  },
+  {
+    "objectID": "presentation.html#agencies-that-have-at-least-1-fatal-expedition-between-2021-2024",
+    "href": "presentation.html#agencies-that-have-at-least-1-fatal-expedition-between-2021-2024",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Agencies that have at least 1 fatal expedition between 2021-2024",
+    "text": "Agencies that have at least 1 fatal expedition between 2021-2024"
+  },
+  {
+    "objectID": "presentation.html#zoom-in-2021",
+    "href": "presentation.html#zoom-in-2021",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Zoom In: 2021",
+    "text": "Zoom In: 2021\n\n2021 Percent Deaths2021 Actual Deaths"
+  },
+  {
+    "objectID": "presentation.html#zoom-in-2022",
+    "href": "presentation.html#zoom-in-2022",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Zoom In: 2022",
+    "text": "Zoom In: 2022\n\n2022 Percent Deaths2022 Actual Deaths"
+  },
+  {
+    "objectID": "presentation.html#zoom-in-2023",
+    "href": "presentation.html#zoom-in-2023",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Zoom In: 2023",
+    "text": "Zoom In: 2023\n\n2023 Percent Deaths2023 Total Deaths"
+  },
+  {
+    "objectID": "presentation.html#zoom-in-2024",
+    "href": "presentation.html#zoom-in-2024",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Zoom In: 2024",
+    "text": "Zoom In: 2024\n\n2024 Percent Deaths2024 Total Deaths"
+  },
+  {
+    "objectID": "presentation.html#observations-1",
+    "href": "presentation.html#observations-1",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Observations",
+    "text": "Observations\n\nSeven Summit Trekks had the most expeditions that had at least one fatality but often were not the most fatal per individual treks, and had low percentage of fatalities for each expedition.\nSpring was significantly more deadly than Autumn\n2022 and 2023 had more deaths than 2021 and 2024\nSlightly more Hiker fatality than Staff fatality"
+  },
+  {
+    "objectID": "presentation.html#limitations-1",
+    "href": "presentation.html#limitations-1",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Limitations",
+    "text": "Limitations"
   }
 ]
