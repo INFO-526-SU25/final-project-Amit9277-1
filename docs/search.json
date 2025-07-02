@@ -65,126 +65,126 @@
   {
     "objectID": "presentation.html#layouts",
     "href": "presentation.html#layouts",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Layouts",
-    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis"
+    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\nlike\nthis\n\nAnd add footnotes"
   },
   {
     "objectID": "presentation.html#code",
     "href": "presentation.html#code",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Code",
     "text": "Code"
   },
   {
     "objectID": "presentation.html#plots",
     "href": "presentation.html#plots",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Plots",
     "text": "Plots"
   },
   {
     "objectID": "presentation.html#plot-and-text",
     "href": "presentation.html#plot-and-text",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Plot and text",
     "text": "Plot and text\n\n\n\nSome text\ngoes here"
   },
   {
     "objectID": "presentation.html#tables",
     "href": "presentation.html#tables",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Tables",
     "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\nAdelie\nTorgersen\n39.1\n18.7\n181\n3750\nmale\n\n\nAdelie\nTorgersen\n39.5\n17.4\n186\n3800\nfemale\n\n\nAdelie\nTorgersen\n40.3\n18.0\n195\n3250\nfemale\n\n\nAdelie\nTorgersen\nNA\nNA\nNA\nNA\nNA\n\n\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n\n\nAdelie\nTorgersen\n39.3\n20.6\n190\n3650\nmale"
   },
   {
     "objectID": "presentation.html#images",
     "href": "presentation.html#images",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Images",
-    "text": "Images\n\n\n\nImage credit: Danielle Navarro, Percolate."
+    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
   },
   {
     "objectID": "presentation.html#math-expressions",
     "href": "presentation.html#math-expressions",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Math Expressions",
     "text": "Math Expressions\nYou can write LaTeX math expressions inside a pair of dollar signs, e.g. $\\alpha+\\beta$ renders \\(\\alpha + \\beta\\). You can use the display style with double dollar signs:\n$$\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i$$\n\\[\n\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i\n\\]\nLimitations:\n\nThe source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting $$ must appear in the very beginning of a line, followed immediately by a non-space character, and the ending $$ must be at the end of a line, led by a non-space character;\nThere should not be spaces after the opening $ or before the closing $."
   },
   {
     "objectID": "presentation.html#feeling-adventurous",
     "href": "presentation.html#feeling-adventurous",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Feeling adventurous?",
-    "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that’s what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs. ::::::::: ::::::::::"
+    "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that’s what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs."
   },
   {
     "objectID": "presentation.html#introduction",
     "href": "presentation.html#introduction",
-    "title": "Project title",
-    "section": "",
-    "text": "Dataset: The History of Himalayan Mountaineering Expeditions from Tidytuesday, taken from the archive by Elizabeth Hawley from the Himalayan Dataset.\nQuestions:\n\nAre certain routes favored by expeditions from particular nations, and do they have disparate success rates?\nDo certain Agencies have a higher number of member/personal deaths than others with respect to season/date?"
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Introduction",
+    "text": "Introduction\nThis project explores intriguing patterns and insights into mountaineering expeditions in the Nepal Himalaya.\n\nBy analyzing an extensive dataset of Himalayan climbs, the project seeks to uncover relationships between the choices climbers make: -\n— such as their selected routes and expedition agencies\n— and their chances of success or risk of fatalities.\nThe analysis particularly aims to shed light on how these factors vary across different nations and time periods, offering a deeper understanding of what influences expedition outcomes in one of the world’s most challenging environments."
   },
   {
     "objectID": "presentation.html#variables",
     "href": "presentation.html#variables",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Variables",
-    "text": "Variables"
+    "text": "Variables\n\n\nExisting variables\n\nagency - Trekking agency\nmdeaths - Member deaths (per trip)\ntotmembers - total members (per trip)\nhdeaths - hired personnel deaths (per trip)\ntothired - total hired personnel (per trip)\nyear - year\nseason_factor - season\n\n\nNew variables\n\npmdeaths - mdeaths/totmembers - percent member deaths\nphdeaths -hdeaths/tothired -percent personnel deaths\nptotdeaths - (hdeaths+ mdeaths)/(tothired + totmembers ) - percent total deaths"
   },
   {
     "objectID": "presentation.html#graphs",
     "href": "presentation.html#graphs",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Graph(s)",
     "text": "Graph(s)"
   },
   {
     "objectID": "presentation.html#analysis",
     "href": "presentation.html#analysis",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Analysis",
-    "text": "Analysis"
+    "text": "Analysis\n\nPlotPlot Fact Check\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDominant Route Preference: A significant majority of attempts concentrated on a single, well-established route for this peak.\n\n\n\nMarginal Alternate Success: While other routes were attempted, their success rates or popularity were considerably lower, highlighting a clear preference for the primary path.\nStrategic Path-Peak Selection: Top-performing nations consistently favored a specific path-peak combination, indicating that route selection is a critical determinant of expedition success.\nInherent Route Bias: The observed pattern reflects a historical trend where a particular route, proven over years, emerged as the most reliable for success by 2020-2024 dataset."
   },
   {
     "objectID": "presentation.html#variables-1",
     "href": "presentation.html#variables-1",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Variables",
     "text": "Variables\n\n\nExisting variables\n\nagency - Trekking agency\nmdeaths - Member deaths (per trip)\ntotmembers - total members (per trip)\nhdeaths - hired personnel deaths (per trip)\ntothired - total hired personnel (per trip)\nyear - year\nseason_factor - season\n\n\nNew variables\n\npmdeaths - mdeaths/totmembers - percent member deaths\nphdeaths -hdeaths/tothired -percent personnel deaths\nptotdeaths - (hdeaths+ mdeaths)/(tothired + totmembers ) - percent total deaths"
   },
   {
     "objectID": "presentation.html#graph",
     "href": "presentation.html#graph",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Graph",
     "text": "Graph"
   },
   {
     "objectID": "presentation.html#analysis-1",
     "href": "presentation.html#analysis-1",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Analysis",
     "text": "Analysis"
   },
   {
     "objectID": "presentation.html#conclusion",
     "href": "presentation.html#conclusion",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Conclusion",
     "text": "Conclusion"
   },
   {
     "objectID": "presentation.html#limitations",
     "href": "presentation.html#limitations",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Limitations",
     "text": "Limitations"
   },
   {
     "objectID": "presentation.html#future-directions",
     "href": "presentation.html#future-directions",
-    "title": "Project title",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Future Directions",
     "text": "Future Directions"
   },
@@ -193,7 +193,7 @@
     "href": "Q1-Sol.html",
     "title": "Q1 Solution",
     "section": "",
-    "text": "if (!require(\"pacman\")) \n  install.packages(\"pacman\")\n\npacman::p_load(tidyverse,\n               janitor,\n               scales,\n               stringr,\n               ggthemes,\n               ggrepel,\n               patchwork,\n               grid)\n\n# set theme for ggplot2\nggplot2::theme_set(ggplot2::theme_minimal(base_size = 20))\n\n# set width of code output\noptions(width = 65)\n\n# set figure parameters for knitr\nknitr::opts_chunk$set(\n  fig.width = 11, # 7\" width\n  fig.asp = 0.618, # the golden ratio\n  fig.retina = 3, # dpi multiplier for displaying HTML output on retina\n  fig.align = \"center\", # center align figures\n  dpi = 300 # higher dpi, sharper image\n)\n\n\ntuesdata &lt;- tidytuesdayR::tt_load('2025-01-21')\n\nexped_tidy &lt;- tuesdata$exped_tidy\npeaks_tidy &lt;- tuesdata$peaks_tidy\n\n\nexped_tidy_cleaned &lt;- clean_names(exped_tidy)\npeaks_tidy_cleaned &lt;- clean_names(peaks_tidy)\n\npivoted_data &lt;- exped_tidy_cleaned |&gt;\n  pivot_longer(\n    cols = c(route1, route2, route3, route4, success1, success2, success3, success4),\n    names_to = c(\".value\", \"index\"),\n    names_pattern = \"(route|success)(\\\\d+)\"\n  )\n\npivoted_data &lt;- pivoted_data |&gt;\n  filter(!is.na(route))\n\npivoted_data &lt;- pivoted_data |&gt;\n  mutate(route = str_replace_all(route, \"S Col SE Ridge\", \"S Col-SE Ridge\"))\n\nsummary_data &lt;- pivoted_data |&gt;\n  group_by(peakid) |&gt;\n  summarize(\n    attempts = n(),\n    success_rate = (mean(success, na.rm = TRUE) * 100), # This remains NUMERIC for fill aesthetic\n    .groups = 'drop' # Good practice to drop grouping after summarize\n  ) |&gt;\n  arrange(desc(attempts)) |&gt;\n  slice_head(n = 4)\n\n# Create a SEPARATE column for the label, formatted as a character string\nsummary_data$success_rate_label &lt;- sprintf(\"%.1f%%\", summary_data$success_rate)\n\n# Join with peaks_tidy_cleaned to get peak names, keeping original peakid\nsummary_data &lt;- summary_data |&gt;\n  left_join(select(peaks_tidy_cleaned, peakid, pkname), by = \"peakid\")\n\nggplot(summary_data, aes(x = reorder(pkname, -attempts), y = attempts, fill = success_rate)) +\n  geom_col() +\n  geom_text(aes(label = success_rate_label), # Use the new character column for labels\n            vjust = 1, # Adjust vertical position if needed\n            nudge_y = -3,\n            color = \"black\") + # Choose a good color for readability\n  scale_fill_viridis_c(\n    option = \"viridis\", # Corrected 'options' to 'option'\n    name = \"Success Rate (%)\",\n    limits = c(0, 100),\n    labels = function(x) paste0(x, \"%\")\n  ) +\n  coord_cartesian(ylim = c(0, 200)) +\n  labs(\n    x = \"Peaks\",\n    y = \"Number of Attempts\",\n    title = \"Top 4 Peaks by Number of Attempts by all Nations\",\n    subtitle = \"Bar fill indicates success rate (%)\",\n    caption = \"Source: https://github.com/rfordatascience/tidytuesday\"\n  ) +\n  theme_minimal(base_size = 14)\n\n\n\n\n\n\n\n\n\nselected_peaks &lt;- c(\"EVER\", \"AMAD\", \"LHOT\", \"MANA\", \"HIML\")\n\npivoted_data_cleaned &lt;- pivoted_data |&gt;\n  filter(!is.na(route) & !is.na(nation))\n\nsummary_data_with_combined_key &lt;- pivoted_data_cleaned |&gt;\n  group_by(peakid, route, nation) |&gt;\n  summarize(\n    attempts_on_route_per_nation = n(),\n    success_rate_on_route = (mean(success, na.rm = TRUE) * 100),\n    .groups = 'drop'\n  ) |&gt;\n  mutate(peakid_route = paste(peakid, route, sep = \" - \")) |&gt;\n  arrange(peakid, route, desc(attempts_on_route_per_nation))\n\never_df &lt;- summary_data_with_combined_key |&gt;\n  filter(peakid == 'EVER')\n\n# Calculate total attempts per nation across all routes\ntotal_attempts &lt;- ever_df |&gt;\n  group_by(nation)|&gt;\n  summarise(total_attempts = sum(attempts_on_route_per_nation)) |&gt;\n  slice_max(order_by = total_attempts, n = 3)\n\n# Get the top 3 nations\ntop_nations &lt;- total_attempts$nation\n\n# Filter the dataframe to include only the top 3 nations\never_top3 &lt;- ever_df |&gt; \n  filter(nation %in% top_nations)\n\n# Create the bubble chart\np1 &lt;- ggplot(ever_top3, aes(x = route, y = success_rate_on_route)) +\n  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),\n             alpha = 0.7,\n             position = \"identity\") +\n  geom_text_repel(data = subset(ever_top3, attempts_on_route_per_nation &gt;= 1),\n                  aes(label = nation, color = attempts_on_route_per_nation),\n                  size = 5,\n                  box.padding = 0.7,\n                  point.padding = 0.6,\n                  min.segment.length = Inf) +\n  scale_color_viridis_c(option = \"turbo\",\n                        name = \"Attempts on Route\",\n                        breaks = c(1, 10, 20, 30, 40),\n                        limits = c(0, 40),\n                        guide = \"none\") +\n  scale_size_continuous(range = c(3, 15),\n                        name = \"Attempts on Route\",\n                        breaks = c(10, 20, 30),\n                        limits = c(0, 40),\n                        guide = \"none\")+\n  annotate(\"text\", y = 125, x = 0.7, label = \"Everest\", size = 5, fontface = \"bold\") +\n  labs(x = NULL,\n       y = \"Success Rate (%)\") +\n  scale_y_continuous(breaks = seq(0, 100, by = 25)) +\n  scale_x_discrete(labels = label_wrap(10)) +\n  coord_cartesian(ylim = c(-5, 125)) +\n  theme_minimal() +\n  theme(\n    axis.text.x = element_text(hjust = 0.5, size = 9),\n    legend.position = \"none\"\n  )\n\n\namad_df &lt;- summary_data_with_combined_key |&gt;\n  filter(peakid == 'AMAD')\n\n# Calculate total attempts per nation across all routes\ntotal_attempts &lt;- amad_df |&gt;\n  group_by(nation)|&gt;\n  summarise(total_attempts = sum(attempts_on_route_per_nation)) |&gt;\n  slice_max(order_by = total_attempts, n = 3)\n\n# Get the top 3 nations\ntop_nations &lt;- total_attempts$nation\n\n# Filter the dataframe to include only the top 3 nations\namad_top3 &lt;- amad_df |&gt; \n  filter(nation %in% top_nations)\n\nprint(amad_top3)\n\n# A tibble: 5 × 6\n  peakid route    nation attempts_on_route_per_nation\n  &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;                         &lt;int&gt;\n1 AMAD   N Ridge  USA                               1\n2 AMAD   SW Ridge USA                              23\n3 AMAD   SW Ridge UK                               21\n4 AMAD   SW Ridge Nepal                            11\n5 AMAD   W Face   Nepal                             1\n# ℹ 2 more variables: success_rate_on_route &lt;dbl&gt;,\n#   peakid_route &lt;chr&gt;\n\n# Create the bubble chart\np2 &lt;- ggplot(amad_top3, aes(x = route, y = success_rate_on_route)) +\n  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),\n             alpha = 0.7,\n             position = position_jitter(width = 0)) +\n  geom_text_repel(data = subset(amad_top3, attempts_on_route_per_nation &gt;= 1),\n                  aes(label = nation, color = attempts_on_route_per_nation),\n                  size = 5,\n                  box.padding = 0.6,\n                  point.padding = 0.8,\n                  min.segment.length = Inf) +\n  scale_color_viridis_c(option = \"turbo\",\n                        name = \"Attempts on Route\",\n                        breaks = c(1, 10, 20, 30, 40),\n                        limits = c(0, 40),\n                        guide = \"none\") +\n  scale_size_continuous(range = c(3, 15),\n                        name = \"Attempts on Route\",\n                        breaks = c(10, 20, 30),\n                        limits = c(0, 40),\n                        guide = \"none\") +\n  annotate(\"text\", y = 120, x = 0.9, label = \"Ama Dablam\", size = 5, fontface = \"bold\") +\n  labs(x = NULL,\n       y = NULL) +\n  scale_y_continuous(breaks = seq(0, 100, by = 25)) + # Adjusted seq start to 0 for clarity\n  scale_x_discrete(labels = label_wrap(10)) +\n  coord_cartesian(ylim = c(-5, 120)) +\n  theme_minimal() +\n  theme(\n    axis.text.x = element_text(hjust = 0.5, size = 9),\n    legend.position = \"none\"\n  )\n\n\nlhot_df &lt;- summary_data_with_combined_key |&gt;\n  filter(peakid == 'LHOT')\n\n# Calculate total attempts per nation across all routes\ntotal_attempts &lt;- lhot_df |&gt;\n  group_by(nation)|&gt;\n  summarise(total_attempts = sum(attempts_on_route_per_nation)) |&gt;\n  slice_max(order_by = total_attempts, n = 3)\n\n# Get the top 3 nations\ntop_nations &lt;- total_attempts$nation\n\n# Filter the dataframe to include only the top 3 nations\nlhot_top3 &lt;- lhot_df |&gt; \n  filter(nation %in% top_nations)\n\nprint(lhot_top3)\n\n# A tibble: 6 × 6\n  peakid route        nation attempts_on_route_per_nation\n  &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;                         &lt;int&gt;\n1 LHOT   S Col-W Face USA                              11\n2 LHOT   S Col-W Face India                             7\n3 LHOT   S Col-W Face Nepal                             6\n4 LHOT   W Face       Nepal                            11\n5 LHOT   W Face       India                            10\n6 LHOT   W Face       USA                               9\n# ℹ 2 more variables: success_rate_on_route &lt;dbl&gt;,\n#   peakid_route &lt;chr&gt;\n\n# Create the bubble chart\np3 &lt;- ggplot(lhot_top3, aes(x = route, y = success_rate_on_route)) +\n  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),\n             alpha = 0.6,\n             position = \"identity\") +\n  geom_text_repel(data = subset(lhot_top3, attempts_on_route_per_nation &gt;= 1),\n                  aes(label = nation, color = attempts_on_route_per_nation),\n                  size = 5,\n                  box.padding = 0.6,\n                  point.padding = 0.8,\n                  min.segment.length = Inf,\n                  position = \"identity\") +\n  scale_color_viridis_c(option = \"turbo\",\n                        name = \"Attempts on Route\",\n                        breaks = c(1, 10, 20, 30, 40),\n                        limits = c(0, 40),\n                        guide = \"none\") +\n  scale_size_continuous(range = c(3, 15),\n                        name = \"Attempts on Route\",\n                        breaks = c(10, 20, 30),\n                        limits = c(0, 40),\n                        guide = \"none\")+\n  annotate(\"text\", y = 130, x = 0.6, label = \"Lhotse\", size = 5, fontface = \"bold\") +\n  labs(x = \"Route\",\n       y = \"Success Rate (%)\") +\n  scale_y_continuous(breaks = seq(0, 100, by = 25)) +\n  scale_x_discrete(labels = label_wrap(10)) +\n  coord_cartesian(ylim = c(-5, 130)) +\n  theme_minimal() +\n  theme(\n    axis.text.x = element_text(hjust = 0.5, size = 9),\n    legend.position = \"none\"\n  )\n\n\nmana_df &lt;- summary_data_with_combined_key |&gt;\n  filter(peakid == 'MANA')\n\n# Calculate total attempts per nation across all routes\ntotal_attempts &lt;- mana_df |&gt;\n  group_by(nation)|&gt;\n  summarise(total_attempts = sum(attempts_on_route_per_nation)) |&gt;\n  slice_max(order_by = total_attempts, n = 3)\n\n# Get the top 3 nations\ntop_nations &lt;- total_attempts$nation\n\n# Filter the dataframe to include only the top 3 nations\nmana_top3 &lt;- mana_df |&gt; \n  filter(nation %in% top_nations)\n\nprint(mana_top3)\n\n# A tibble: 4 × 6\n  peakid route   nation attempts_on_route_per_nation\n  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;                         &lt;int&gt;\n1 MANA   NE Face Nepal                            20\n2 MANA   NE Face USA                              10\n3 MANA   NE Face China                             6\n4 MANA   NE Face UK                                6\n# ℹ 2 more variables: success_rate_on_route &lt;dbl&gt;,\n#   peakid_route &lt;chr&gt;\n\n# Create the bubble chart\np4 &lt;- ggplot(mana_top3, aes(x = route, y = success_rate_on_route)) +\n  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),\n             alpha = 0.7,\n             position = \"identity\") +\n  geom_text_repel(data = subset(mana_top3, attempts_on_route_per_nation &gt;= 1),\n                  aes(label = nation, color = attempts_on_route_per_nation),\n                  size = 5,\n                  box.padding = 0.6,\n                  point.padding = 0.8,\n                  min.segment.length = Inf,\n                  position = \"identity\") +\n  scale_color_viridis_c(option = \"turbo\",\n                        name = \"\\n\",\n                        breaks = c(1, 10, 20, 30, 40),\n                        limits = c(0, 40),\n                        guide = guide_colorbar(direction = \"horizontal\", title.position = \"top\")) +\n  scale_size_continuous(range = c(3, 15),\n                        name = \"                       Attempts on route metrix (size + color)\",\n                        breaks = c(1, 10, 20, 30, 40),\n                        limits = c(0, 40),\n                        guide = guide_legend(title.position = \"top\"))+\n  annotate(\"text\", y = 120, x = 0.55, label = \"Manaslu\", size = 5, fontface = \"bold\") +\n  labs (x = \"Route\",\n       y = NULL) +\n  scale_y_continuous(breaks = seq(0, 100, by = 25)) +\n  scale_x_discrete(labels = label_wrap(10)) +\n  coord_cartesian(ylim = c(-5, 120)) +\n  theme_minimal() +\n  theme(\n    axis.text.x = element_text(hjust = 0.5, size = 9),\n    legend.position = \"none\"\n  )\n\n\n# Combine plots with patchwork\ncombined_plot &lt;- (p1 + p2) / (p3 + p4) +\n  plot_layout(guides = \"collect\") +\n  plot_annotation(\n    title = \"National Route Preferences and Success Rates\\nin High-Altitude Peak Expeditions (2020-2024)\",\n    subtitle = \"Bubble Size and Color Show Attempts, with Success Rates\\nfor Top 3 Nations Across Four Most Popular Peaks\",\n    caption = \"Source: https://github.com/rfordatascience/tidytuesday\",\n    theme = theme(\n      plot.title = element_text(face = \"bold\", size = 18, hjust = 0.2),\n      plot.subtitle = element_text(size = 14, hjust = 0.2),\n      plot.caption = element_text(size = 14)\n    )\n  ) &\n  theme(\n    legend.position = \"bottom\",\n    legend.box = \"horizontal\",\n    legend.title.align = 0.5,\n    #legend.margin = margin(t = 5, b = 5),\n    legend.title = element_text(size = 14)\n  )\n\nplot(combined_plot)"
+    "text": "if (!require(\"pacman\")) \n  install.packages(\"pacman\")\n\npacman::p_load(tidyverse,\n               janitor,\n               scales,\n               stringr,\n               ggthemes,\n               ggrepel,\n               patchwork,\n               grid)\n\n# set theme for ggplot2\nggplot2::theme_set(ggplot2::theme_minimal(base_size = 20))\n\n# set width of code output\noptions(width = 65)\n\n# set figure parameters for knitr\nknitr::opts_chunk$set(\n  fig.width = 11, # 7\" width\n  fig.asp = 0.618, # the golden ratio\n  fig.retina = 3, # dpi multiplier for displaying HTML output on retina\n  fig.align = \"center\", # center align figures\n  dpi = 300 # higher dpi, sharper image\n)\n\n\ntuesdata &lt;- tidytuesdayR::tt_load('2025-01-21')\n\nexped_tidy &lt;- tuesdata$exped_tidy\npeaks_tidy &lt;- tuesdata$peaks_tidy\n\n\nexped_tidy_cleaned &lt;- clean_names(exped_tidy)\npeaks_tidy_cleaned &lt;- clean_names(peaks_tidy)\n\npivoted_data &lt;- exped_tidy_cleaned |&gt;\n  pivot_longer(\n    cols = c(route1, route2, route3, route4, success1, success2, success3, success4),\n    names_to = c(\".value\", \"index\"),\n    names_pattern = \"(route|success)(\\\\d+)\"\n  )\n\npivoted_data &lt;- pivoted_data |&gt;\n  filter(!is.na(route))\n\npivoted_data &lt;- pivoted_data |&gt;\n  mutate(route = str_replace_all(route, \"S Col SE Ridge\", \"S Col-SE Ridge\"))\n\nsummary_data &lt;- pivoted_data |&gt;\n  group_by(peakid) |&gt;\n  summarize(\n    attempts = n(),\n    success_rate = (mean(success, na.rm = TRUE) * 100), # This remains NUMERIC for fill aesthetic\n    .groups = 'drop' # Good practice to drop grouping after summarize\n  ) |&gt;\n  arrange(desc(attempts)) |&gt;\n  slice_head(n = 4)\n\n# Create a SEPARATE column for the label, formatted as a character string\nsummary_data$success_rate_label &lt;- sprintf(\"%.1f%%\", summary_data$success_rate)\n\n# Join with peaks_tidy_cleaned to get peak names, keeping original peakid\nsummary_data &lt;- summary_data |&gt;\n  left_join(select(peaks_tidy_cleaned, peakid, pkname), by = \"peakid\")\n\nggplot(summary_data, aes(x = reorder(pkname, -attempts), y = success_rate, fill = attempts)) +\n  geom_col() +\n  geom_text(aes(label = success_rate_label),\n            vjust = -0.5,  # Position above bars\n            color = \"black\") +\n  scale_fill_viridis_c(\n    option = \"viridis\",\n    name = \"Number of Attempts\"\n  ) +\n  coord_cartesian(ylim = c(0, 100)) +  # Success rate is in percent (0-100)\n  labs(\n    x = \"Peaks\",\n    y = \"Success Rate (%)\",\n    title = \"Success Rate of Top 4 Peaks Attempted by all Nations\",\n    subtitle = \"Bar height indicates success rate; color indicates attempts\",\n    caption = \"Source: https://github.com/rfordatascience/tidytuesday\"\n  ) +\n  theme_minimal(base_size = 14)\n\n\n\n\n\n\n\n\n\nselected_peaks &lt;- c(\"EVER\", \"AMAD\", \"LHOT\", \"MANA\", \"HIML\")\n\npivoted_data_cleaned &lt;- pivoted_data |&gt;\n  filter(!is.na(route) & !is.na(nation))\n\nsummary_data_with_combined_key &lt;- pivoted_data_cleaned |&gt;\n  group_by(peakid, route, nation) |&gt;\n  summarize(\n    attempts_on_route_per_nation = n(),\n    success_rate_on_route = (mean(success, na.rm = TRUE) * 100),\n    .groups = 'drop'\n  ) |&gt;\n  mutate(peakid_route = paste(peakid, route, sep = \" - \")) |&gt;\n  arrange(peakid, route, desc(attempts_on_route_per_nation))\n\never_df &lt;- summary_data_with_combined_key |&gt;\n  filter(peakid == 'EVER')\n\n# Calculate total attempts per nation across all routes\ntotal_attempts &lt;- ever_df |&gt;\n  group_by(nation)|&gt;\n  summarise(total_attempts = sum(attempts_on_route_per_nation)) |&gt;\n  slice_max(order_by = total_attempts, n = 3)\n\n# Get the top 3 nations\ntop_nations &lt;- total_attempts$nation\n\n# Filter the dataframe to include only the top 3 nations\never_top3 &lt;- ever_df |&gt; \n  filter(nation %in% top_nations)\n\n# Create the bubble chart\np1 &lt;- ggplot(ever_top3, aes(x = route, y = success_rate_on_route)) +\n  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),\n             alpha = 0.7,\n             position = \"identity\") +\n  geom_text_repel(data = subset(ever_top3, attempts_on_route_per_nation &gt;= 1),\n                  aes(label = nation, color = attempts_on_route_per_nation),\n                  size = 5,\n                  box.padding = 0.7,\n                  point.padding = 0.6,\n                  min.segment.length = Inf) +\n  scale_color_viridis_c(option = \"turbo\",\n                        name = \"Attempts on Route\",\n                        breaks = c(1, 10, 20, 30, 40),\n                        limits = c(0, 40),\n                        guide = \"none\") +\n  scale_size_continuous(range = c(3, 15),\n                        name = \"Attempts on Route\",\n                        breaks = c(10, 20, 30),\n                        limits = c(0, 40),\n                        guide = \"none\")+\n  annotate(\"text\", y = 125, x = 0.7, label = \"Everest\", size = 5, fontface = \"bold\") +\n  labs(x = NULL,\n       y = \"Success Rate (%)\") +\n  scale_y_continuous(breaks = seq(0, 100, by = 25)) +\n  scale_x_discrete(labels = label_wrap(10)) +\n  coord_cartesian(ylim = c(-5, 125)) +\n  theme_minimal() +\n  theme(\n    axis.text.x = element_text(hjust = 0.5, size = 9),\n    legend.position = \"none\"\n  )\n\n\namad_df &lt;- summary_data_with_combined_key |&gt;\n  filter(peakid == 'AMAD')\n\n# Calculate total attempts per nation across all routes\ntotal_attempts &lt;- amad_df |&gt;\n  group_by(nation)|&gt;\n  summarise(total_attempts = sum(attempts_on_route_per_nation)) |&gt;\n  slice_max(order_by = total_attempts, n = 3)\n\n# Get the top 3 nations\ntop_nations &lt;- total_attempts$nation\n\n# Filter the dataframe to include only the top 3 nations\namad_top3 &lt;- amad_df |&gt; \n  filter(nation %in% top_nations)\n\nprint(amad_top3)\n\n# A tibble: 5 × 6\n  peakid route    nation attempts_on_route_per_nation\n  &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;                         &lt;int&gt;\n1 AMAD   N Ridge  USA                               1\n2 AMAD   SW Ridge USA                              23\n3 AMAD   SW Ridge UK                               21\n4 AMAD   SW Ridge Nepal                            11\n5 AMAD   W Face   Nepal                             1\n# ℹ 2 more variables: success_rate_on_route &lt;dbl&gt;,\n#   peakid_route &lt;chr&gt;\n\n# Create the bubble chart\np2 &lt;- ggplot(amad_top3, aes(x = route, y = success_rate_on_route)) +\n  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),\n             alpha = 0.7,\n             position = position_jitter(width = 0)) +\n  geom_text_repel(data = subset(amad_top3, attempts_on_route_per_nation &gt;= 1),\n                  aes(label = nation, color = attempts_on_route_per_nation),\n                  size = 5,\n                  box.padding = 0.6,\n                  point.padding = 0.8,\n                  min.segment.length = Inf) +\n  scale_color_viridis_c(option = \"turbo\",\n                        name = \"Attempts on Route\",\n                        breaks = c(1, 10, 20, 30, 40),\n                        limits = c(0, 40),\n                        guide = \"none\") +\n  scale_size_continuous(range = c(3, 15),\n                        name = \"Attempts on Route\",\n                        breaks = c(10, 20, 30),\n                        limits = c(0, 40),\n                        guide = \"none\") +\n  annotate(\"text\", y = 120, x = 0.9, label = \"Ama Dablam\", size = 5, fontface = \"bold\") +\n  labs(x = NULL,\n       y = NULL) +\n  scale_y_continuous(breaks = seq(0, 100, by = 25)) + # Adjusted seq start to 0 for clarity\n  scale_x_discrete(labels = label_wrap(10)) +\n  coord_cartesian(ylim = c(-5, 120)) +\n  theme_minimal() +\n  theme(\n    axis.text.x = element_text(hjust = 0.5, size = 9),\n    legend.position = \"none\"\n  )\n\n\nlhot_df &lt;- summary_data_with_combined_key |&gt;\n  filter(peakid == 'LHOT')\n\n# Calculate total attempts per nation across all routes\ntotal_attempts &lt;- lhot_df |&gt;\n  group_by(nation)|&gt;\n  summarise(total_attempts = sum(attempts_on_route_per_nation)) |&gt;\n  slice_max(order_by = total_attempts, n = 3)\n\n# Get the top 3 nations\ntop_nations &lt;- total_attempts$nation\n\n# Filter the dataframe to include only the top 3 nations\nlhot_top3 &lt;- lhot_df |&gt; \n  filter(nation %in% top_nations)\n\nprint(lhot_top3)\n\n# A tibble: 6 × 6\n  peakid route        nation attempts_on_route_per_nation\n  &lt;chr&gt;  &lt;chr&gt;        &lt;chr&gt;                         &lt;int&gt;\n1 LHOT   S Col-W Face USA                              11\n2 LHOT   S Col-W Face India                             7\n3 LHOT   S Col-W Face Nepal                             6\n4 LHOT   W Face       Nepal                            11\n5 LHOT   W Face       India                            10\n6 LHOT   W Face       USA                               9\n# ℹ 2 more variables: success_rate_on_route &lt;dbl&gt;,\n#   peakid_route &lt;chr&gt;\n\n# Create the bubble chart\np3 &lt;- ggplot(lhot_top3, aes(x = route, y = success_rate_on_route)) +\n  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),\n             alpha = 0.6,\n             position = \"identity\") +\n  geom_text_repel(data = subset(lhot_top3, attempts_on_route_per_nation &gt;= 1),\n                  aes(label = nation, color = attempts_on_route_per_nation),\n                  size = 5,\n                  box.padding = 0.6,\n                  point.padding = 0.8,\n                  min.segment.length = Inf,\n                  position = \"identity\") +\n  scale_color_viridis_c(option = \"turbo\",\n                        name = \"Attempts on Route\",\n                        breaks = c(1, 10, 20, 30, 40),\n                        limits = c(0, 40),\n                        guide = \"none\") +\n  scale_size_continuous(range = c(3, 15),\n                        name = \"Attempts on Route\",\n                        breaks = c(10, 20, 30),\n                        limits = c(0, 40),\n                        guide = \"none\")+\n  annotate(\"text\", y = 130, x = 0.6, label = \"Lhotse\", size = 5, fontface = \"bold\") +\n  labs(x = \"Route\",\n       y = \"Success Rate (%)\") +\n  scale_y_continuous(breaks = seq(0, 100, by = 25)) +\n  scale_x_discrete(labels = label_wrap(10)) +\n  coord_cartesian(ylim = c(-5, 130)) +\n  theme_minimal() +\n  theme(\n    axis.text.x = element_text(hjust = 0.5, size = 9),\n    legend.position = \"none\"\n  )\n\n\nmana_df &lt;- summary_data_with_combined_key |&gt;\n  filter(peakid == 'MANA')\n\n# Calculate total attempts per nation across all routes\ntotal_attempts &lt;- mana_df |&gt;\n  group_by(nation)|&gt;\n  summarise(total_attempts = sum(attempts_on_route_per_nation)) |&gt;\n  slice_max(order_by = total_attempts, n = 3)\n\n# Get the top 3 nations\ntop_nations &lt;- total_attempts$nation\n\n# Filter the dataframe to include only the top 3 nations\nmana_top3 &lt;- mana_df |&gt; \n  filter(nation %in% top_nations)\n\nprint(mana_top3)\n\n# A tibble: 4 × 6\n  peakid route   nation attempts_on_route_per_nation\n  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;                         &lt;int&gt;\n1 MANA   NE Face Nepal                            20\n2 MANA   NE Face USA                              10\n3 MANA   NE Face China                             6\n4 MANA   NE Face UK                                6\n# ℹ 2 more variables: success_rate_on_route &lt;dbl&gt;,\n#   peakid_route &lt;chr&gt;\n\n# Create the bubble chart\np4 &lt;- ggplot(mana_top3, aes(x = route, y = success_rate_on_route)) +\n  geom_point(aes(color = attempts_on_route_per_nation, size = attempts_on_route_per_nation),\n             alpha = 0.7,\n             position = \"identity\") +\n  geom_text_repel(data = subset(mana_top3, attempts_on_route_per_nation &gt;= 1),\n                  aes(label = nation, color = attempts_on_route_per_nation),\n                  size = 5,\n                  box.padding = 0.6,\n                  point.padding = 0.8,\n                  min.segment.length = Inf,\n                  position = \"identity\") +\n  scale_color_viridis_c(option = \"turbo\",\n                        name = \"\\n\",\n                        breaks = c(1, 10, 20, 30, 40),\n                        limits = c(0, 40),\n                        guide = guide_colorbar(direction = \"horizontal\", title.position = \"top\")) +\n  scale_size_continuous(range = c(3, 15),\n                        name = \"                       Attempts on route metrix (size + color)\",\n                        breaks = c(1, 10, 20, 30, 40),\n                        limits = c(0, 40),\n                        guide = guide_legend(title.position = \"top\"))+\n  annotate(\"text\", y = 120, x = 0.55, label = \"Manaslu\", size = 5, fontface = \"bold\") +\n  labs (x = \"Route\",\n       y = NULL) +\n  scale_y_continuous(breaks = seq(0, 100, by = 25)) +\n  scale_x_discrete(labels = label_wrap(10)) +\n  coord_cartesian(ylim = c(-5, 120)) +\n  theme_minimal() +\n  theme(\n    axis.text.x = element_text(hjust = 0.5, size = 9),\n    legend.position = \"none\"\n  )\n\n\n# Combine plots with patchwork\ncombined_plot &lt;- (p1 + p2) / (p3 + p4) +\n  plot_layout(guides = \"collect\") +\n  plot_annotation(\n    title = \"National Route Preferences and Success Rates\\nin High-Altitude Peak Expeditions (2020-2024)\",\n    subtitle = \"Bubble Size and Color Show Attempts, with Success Rates\\nfor Top 3 Nations Across Four Most Popular Peaks\",\n    caption = \"Source: https://github.com/rfordatascience/tidytuesday\",\n    theme = theme(\n      plot.title = element_text(face = \"bold\", size = 18, hjust = 0.2),\n      plot.subtitle = element_text(size = 14, hjust = 0.2),\n      plot.caption = element_text(size = 14)\n    )\n  ) &\n  theme(\n    legend.position = \"bottom\",\n    legend.box = \"horizontal\",\n    legend.title.align = 0.5,\n    #legend.margin = margin(t = 5, b = 5),\n    legend.title = element_text(size = 14)\n  )\n\nplot(combined_plot)"
   },
   {
     "objectID": "Q2_code.html",
@@ -215,5 +215,103 @@
     "title": "Project title",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nAnd add footnotes↩︎"
+  },
+  {
+    "objectID": "presentation.html#dataset",
+    "href": "presentation.html#dataset",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Dataset",
+    "text": "Dataset\nDataset: The History of Himalayan Mountaineering Expeditions from Tidytuesday, taken from the archive by Elizabeth Hawley from the Himalayan Dataset."
+  },
+  {
+    "objectID": "presentation.html#question-one-are-certain-routes-favored-by-expeditions-from-particular-nations-and-do-they-have-disparate-success-rates",
+    "href": "presentation.html#question-one-are-certain-routes-favored-by-expeditions-from-particular-nations-and-do-they-have-disparate-success-rates",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Question One: Are certain routes favored by expeditions from particular nations, and do they have disparate success rates?",
+    "text": "Question One: Are certain routes favored by expeditions from particular nations, and do they have disparate success rates?"
+  },
+  {
+    "objectID": "presentation.html#introduction-1",
+    "href": "presentation.html#introduction-1",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Introduction",
+    "text": "Introduction"
+  },
+  {
+    "objectID": "presentation.html#approach",
+    "href": "presentation.html#approach",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Approach",
+    "text": "Approach"
+  },
+  {
+    "objectID": "presentation.html#visualization",
+    "href": "presentation.html#visualization",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Visualization",
+    "text": "Visualization"
+  },
+  {
+    "objectID": "presentation.html#dataset-overview-the-himalayan-database",
+    "href": "presentation.html#dataset-overview-the-himalayan-database",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Dataset Overview: The Himalayan Database",
+    "text": "Dataset Overview: The Himalayan Database\n\nContains the History of Himalayan Mountaineering Expeditions from Tidytuesday, taken from the archive by Elizabeth Hawley from the Himalayan Dataset.\nDetails peaks, expeditions, expedition related aspects, outcomes, and geographic data\nAnalysis uses two tidy tibbles: peaks and expeditions\nNote: Expeditions dataset filtered to years 2020–2024 for manageable file size"
+  },
+  {
+    "objectID": "presentation.html#the-himalayan-database",
+    "href": "presentation.html#the-himalayan-database",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "The Himalayan Database",
+    "text": "The Himalayan Database\n\nContains the History of Himalayan Mountaineering Expeditions from Tidytuesday, taken from the archive by Elizabeth Hawley from the Himalayan Dataset.\nDetails peaks, expeditions, expedition related aspects, outcomes, and geographic data\nAnalysis uses two tidy tibbles: peaks and expeditions\nNote: Expeditions dataset filtered to years 2020–2024 for manageable file size"
+  },
+  {
+    "objectID": "presentation.html#question-1",
+    "href": "presentation.html#question-1",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Question 1:",
+    "text": "Question 1:\nAre certain routes favored by expeditions from particular nations, and do they have disparate success rates?\n\n\nIntroduction:\n\nThe idea is to find out if there is any affect on success or failure based on the chosen route.\nAnalysis truncates the low volume attempts to avoid outlines.\n\n\nApproach:\n\nFirst I have calibrated the general senses of top 4 peaks attempted by nations, to identify the general success rate of the peak.\nNext, visualized each peak and success percentage of popular chosen routes by nation, in a bubble chart\nTo finalize, the visualization and derive interpretation. I combined all 4 charts in one."
+  },
+  {
+    "objectID": "presentation.html#general-senses",
+    "href": "presentation.html#general-senses",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "General Senses",
+    "text": "General Senses\n\n\nThe general senses shows that 3 out of top 4 peaks attempted for expedition shows fairly positive results around 90% success rate.\n\nNow we will see what role does choice of route plays here…."
+  },
+  {
+    "objectID": "presentation.html#general-senses-1",
+    "href": "presentation.html#general-senses-1",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "General Senses",
+    "text": "General Senses"
+  },
+  {
+    "objectID": "presentation.html#observation",
+    "href": "presentation.html#observation",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Observation",
+    "text": "Observation"
+  },
+  {
+    "objectID": "presentation.html#plot-analysis",
+    "href": "presentation.html#plot-analysis",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Plot Analysis",
+    "text": "Plot Analysis"
+  },
+  {
+    "objectID": "presentation.html#plot-fact-check",
+    "href": "presentation.html#plot-fact-check",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Plot Fact Check",
+    "text": "Plot Fact Check\n\nDominant Route Preference: A significant majority of attempts concentrated on a single, well-established route for this peak.\n\n\n\nMarginal Alternate Success: While other routes were attempted, their success rates or popularity were considerably lower, highlighting a clear preference for the primary path.\nStrategic Path-Peak Selection: Top-performing nations consistently favored a specific path-peak combination, indicating that route selection is a critical determinant of expedition success.\nInherent Route Bias: The observed pattern reflects a historical trend where a particular route, proven over years, emerged as the most reliable for success by 2020-2024 dataset."
+  },
+  {
+    "objectID": "presentation.html#observations",
+    "href": "presentation.html#observations",
+    "title": "Analytical Visualization on the History of Himalyan Expeditions",
+    "section": "Observations",
+    "text": "Observations\n\nDominant Route Preference: A significant majority of attempts concentrated on a single, well-established route for this peak.\nMarginal Alternate Success: While other routes were attempted, their success rates or popularity were considerably lower, highlighting a clear preference for the primary path.\nStrategic Path-Peak Selection: Top-performing nations consistently favored a specific path-peak combination, indicating that route selection is a critical determinant of expedition success.\nInherent Route Bias: The observed pattern reflects a historical trend where a particular route, proven over years, emerged as the most reliable for success by 2020-2024 dataset."
   }
 ]

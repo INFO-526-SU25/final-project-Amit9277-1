@@ -85,27 +85,25 @@ summary_data$success_rate_label <- sprintf("%.1f%%", summary_data$success_rate)
 summary_data <- summary_data |>
   left_join(select(peaks_tidy_cleaned, peakid, pkname), by = "peakid")
 
-ggplot(summary_data, aes(x = reorder(pkname, -attempts), y = attempts, fill = success_rate)) +
+ggplot(summary_data, aes(x = reorder(pkname, -attempts), y = success_rate, fill = attempts)) +
   geom_col() +
-  geom_text(aes(label = success_rate_label), # Use the new character column for labels
-            vjust = 1, # Adjust vertical position if needed
-            nudge_y = -3,
-            color = "black") + # Choose a good color for readability
+  geom_text(aes(label = success_rate_label),
+            vjust = -0.5,  # Position above bars
+            color = "black") +
   scale_fill_viridis_c(
-    option = "viridis", # Corrected 'options' to 'option'
-    name = "Success Rate (%)",
-    limits = c(0, 100),
-    labels = function(x) paste0(x, "%")
+    option = "viridis",
+    name = "Number of Attempts"
   ) +
-  coord_cartesian(ylim = c(0, 200)) +
+  coord_cartesian(ylim = c(0, 100)) +  # Success rate is in percent (0-100)
   labs(
     x = "Peaks",
-    y = "Number of Attempts",
-    title = "Top 4 Peaks by Number of Attempts by all Nations",
-    subtitle = "Bar fill indicates success rate (%)",
+    y = "Success Rate (%)",
+    title = "Success Rate of Top 4 Peaks Attempted by all Nations",
+    subtitle = "Bar height indicates success rate; color indicates attempts",
     caption = "Source: https://github.com/rfordatascience/tidytuesday"
   ) +
   theme_minimal(base_size = 14)
+
 ```
 
 ```{r}
