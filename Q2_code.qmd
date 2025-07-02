@@ -414,4 +414,8 @@ combined_plot <- wrap_plots(percent_2021, raw_2021, percent_2022, raw_2022, perc
 
 combined_plot
 ```
+```{r}
+final_2021 <- (percent_2021 + raw_2021)
+final_2021
+```
 

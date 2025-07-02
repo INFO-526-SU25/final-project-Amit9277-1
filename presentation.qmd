@@ -512,6 +512,18 @@ exped_tidy_deadly |>
   )
 ```
 
+## Observations
+
+- Seven Summit Trekks had the most expeditions that had at least one fatality but often were not the most fatal per individual treks, and had low percentage of fatalities for each expedition.
+- Spring was significantly more deadly than Autumn
+- 2022 and 2023 had more deaths than 2021 and 2024
+- Slightly more Hiker fatality than Staff fatality
+
+## Limitations
+
+- Some expeditions had very low number of total participants and some had very high number of participants. This made some percentages hard to compare (ie 100% fatality was due to only 1 person on the expedition). 
+- Tried to address this with raw values, but may be another approach.
+
 # Conclusion and Future Directions
 
 ## Conclusion
