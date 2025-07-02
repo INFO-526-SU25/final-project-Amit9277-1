@@ -85,6 +85,8 @@ This project explores intriguing patterns and insights into mountaineering exped
 
 -   `Note:` Expeditions dataset filtered to years 2020–2024 for manageable file size
 
+# Question 1
+
 ## Question 1:
 
 Are certain routes favored by expeditions from particular nations, and do they have disparate success rates?
@@ -444,6 +446,71 @@ plot(combined_plot)
 -   [**Marginal Alternate Success:**]{.underline} While other routes were attempted, their success rates or popularity were considerably lower, highlighting a clear preference for the primary path. 
 -   [**Strategic Path-Peak Selection:**]{.underline} Top-performing nations consistently favored a specific path-peak combination, indicating that **route selection is a critical determinant of expedition success**.
 -   [**Inherent Route Bias:**]{.underline} The observed pattern reflects a historical trend where a particular route, proven over years, emerged as the most reliable for success by 2020-2024 dataset.
+
+# Question 2
+
+# Question 2: 
+Do certain Agencies have a higher number of member/personal deaths than others with respect to season/date?
+
+::::: columns
+::: {.column width="50%"}
+Introduction:
+
+-   Do Himalayan expidition fatality corellate with any Agencies? If so, further research could look into the safety guidelines of the more fatal agencies and why they occur.
+
+-   Are fatalities more common in certain seasons?
+:::
+
+::: {.column width="50%"}
+Approach:
+
+-   First, look at number of fatal expeditions by agency
+
+-   Next, visualize and compare agencies by percent fatality and season.
+
+-   Lastly, see if the percent misrepresents the raw number.
+:::
+:::::
+
+## Agencies that have at least 1 fatal expedition between 2021-2024
+
+```{r data wrangling Q2}
+exped_tidy <- exped_tidy |>
+  mutate(
+    "pmdeaths" = mdeaths/totmembers,
+    "phdeaths" = hdeaths/tothired,
+    "totdeaths" = (hdeaths+ mdeaths),
+    "ptotdeaths" = totdeaths/(tothired + totmembers)
+  )
+exped_tidy_deadly <- exped_tidy |>
+  filter(pmdeaths > 0 | phdeaths > 0) |>
+  filter(!is.na(agency))
+exped_tidy_deadly <- exped_tidy_deadly |>
+  select(year, season_factor, host_factor, nation, agency, totmembers, smtmembers, mdeaths, tothired, hdeaths, totdeaths, pmdeaths, phdeaths, ptotdeaths)
+```
+
+```{r graph 1 Q2}
+exped_tidy_deadly |>
+  ggplot(aes(x = fct_rev(fct_infreq(agency)), fill = after_stat(count))) +
+  geom_bar() +
+  coord_flip() +
+  scale_y_continuous(breaks = c(0, 2, 4, 6, 8, 10)) +
+  scale_fill_gradient(low = "#ffce00", high = "darkred") +
+  labs(
+    title = "Number of expeditions through the Himalayas \nthat resulted in death by Agency",
+    subtitle = "from 2021 - 2024",
+    caption = "Source: Tidytuesday",
+    x = NULL,
+    y = "Number of expeditions that resulted in at least one death",
+    fill = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank()
+  )
+```
 
 # Conclusion and Future Directions
 

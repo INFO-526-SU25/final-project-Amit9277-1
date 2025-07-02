@@ -121,7 +121,7 @@ For each season, we will annotate temperature and weather conditions which will 
 ## Plan of Attack
 
 | Task Name | Assignee | Status | Due | Priority | Summary |
-|------------|------------|------------|------------|------------|------------|
+|----|----|----|----|----|----|
 | Prepare Proposal | Cat & Amit | Done | 2025-06-10 | High Priority | Collaboratively select a dataset and define two research questions. Both will come-up with a question. |
 | Proposal Peer Review | Cat & Amit | Done | 2025-06-16\* | High Priority | Each member will review one proposal from the assigned two proposal. Members will then review each others inputs and finalize it with mutual consent. Push the final review to respective repository as issue. |
 | Proposal Peer Review Edits | Cat | Done | 2025-06-18 | High Priority | Make edits based on reviews from peers and have the proposal ready for the instructor to review. |
