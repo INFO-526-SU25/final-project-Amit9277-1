@@ -11,6 +11,7 @@ library(tidyverse)
 library(janitor)
 library(forcats)
 library(dplyr)
+library(patchwork)
 ```
 
 ```{r load-dataset}
@@ -90,11 +91,16 @@ deaths_2021_av <- deaths_2021 %>%
   summarise(avg_ptotdeaths = mean(ptotdeaths, na.rm = TRUE),
             .groups = "drop")
 deaths_2021_av
+
+deaths_2021_raw <- deaths_2021 |>
+  group_by(agency, season_factor) %>%
+  summarize(total_deaths = sum(totdeaths), .groups = "drop")
+deaths_2021_raw
 ```
 
 
 ```{r 2021}
-deaths_2021_av |>
+percent_2021 <- deaths_2021_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
   coord_flip(ylim = c(0, 1)) +
@@ -102,7 +108,7 @@ deaths_2021_av |>
   labs(
     fill = "Season",
     x = "Trekking Agency",
-    y = "Total Percent Death (Average)",
+    y = "Total Death",
     title = "Percent total deaths by Agency in 2021",
     caption = "Source: TidyTuesday",
     subtitle = "M is trekking member death, H is hired staff death"
@@ -124,6 +130,37 @@ deaths_2021_av |>
   )
 ```
 
+```{r 2021}
+raw_2021 <- deaths_2021_raw |>
+  ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 5)) +
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Deaths",
+    title = "Percent total deaths by Agency in 2021",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 1, 2, 3, 4, 5)
+  ) +
+  #annotate("text", y = 2, x = 3, label = "M 1") +
+  #annotate("text", y = 2, x = 2, label = "H 1") +
+  #annotate("text", y = 2, x = 1, label = "Trek 1: M 2") +
+  #annotate("text", y = 4, x = 1, label = "Trek 2: H 1") +
+  #annotate("text", y = 4, x = 4, label = "M 3") +
+  #annotate("text", y = 4, x = 5, label = "M 3") +
+  annotate("text", y = 4, x = 5, label = "Total Treks: 2") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
 ```{r}
 deaths_2022 <- exped_tidy_deadly |>
   filter(year == 2022)
@@ -134,11 +171,16 @@ deaths_2022_av <- deaths_2022 %>%
   summarise(avg_ptotdeaths = mean(ptotdeaths, na.rm = TRUE),
             .groups = "drop")
 deaths_2022_av
+
+deaths_2022_raw <- deaths_2022 |>
+  group_by(agency, season_factor) %>%
+  summarize(total_deaths = sum(totdeaths), .groups = "drop")
+deaths_2022_raw
 ```
 
 
 ```{r 2022}
-deaths_2022_av |>
+percent_2022 <- deaths_2022_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
   coord_flip(ylim = c(0, 1)) +
@@ -173,6 +215,42 @@ deaths_2022_av |>
 ```
 
 
+```{r 2022}
+raw_2022 <- deaths_2022_raw |>
+  ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 5)) +
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Percent Death (Average)",
+    title = "Percent total deaths by Agency in 2022",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 1, 2, 3, 4, 5)
+  ) +
+  #annotate("text", y = 2, x = 1, label = "M 1") +
+  #annotate("text", y = 2, x = 2, label = "H 1") +
+  #annotate("text", y = 2, x = 3, label = "M 1") +
+  #annotate("text", y = 2, x = 4, label = "M 1") +
+  #annotate("text", y = 2, x = 5, label = "M 1") +
+  #annotate("text", y = 1, x = 6, label = "Trek 1: M 1") +
+  #annotate("text", y = 2.7, x = 6, label = "Trek 2: H 1") +
+  #annotate("text", y = 4.5, x = 6, label = "Trek 3: H 1") +
+  #annotate("text", y = 1, x = 7, label = "Trek 1: M 1") +
+  #annotate("text", y = 3, x = 7, label = "Trek 2: H 1") +
+  annotate("text", y = 4, x = 6, label = "Total Treks: 3") +
+  annotate("text", y = 3, x = 7, label = "Total Treks: 2") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
 ```{r}
 deaths_2023 <- exped_tidy_deadly |>
   filter(year == 2023)
@@ -183,11 +261,16 @@ deaths_2023_av <- deaths_2023 %>%
   summarise(avg_ptotdeaths = mean(ptotdeaths, na.rm = TRUE),
             .groups = "drop")
 deaths_2023_av
+
+deaths_2023_raw <- deaths_2023 |>
+  group_by(agency, season_factor) %>%
+  summarize(total_deaths = sum(totdeaths), .groups = "drop")
+deaths_2023_raw
 ```
 
 
 ```{r 2023}
-deaths_2023_av |>
+percent_2023 <- deaths_2023_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
   coord_flip(ylim = c(0, 1)) +
@@ -226,6 +309,33 @@ deaths_2023_av |>
   )
 ```
 
+
+```{r 2023}
+raw_2023 <- deaths_2023_raw |>
+  ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 5)) +
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Death",
+    title = "Total deaths by Agency in 2023",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 1, 2, 3, 4, 5)
+  ) +
+  annotate("text", y = 3, x = 6, label = "Total Treks: 2") +
+  annotate("text", y = 3, x = 12, label = "Total Treks: 3") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
 ```{r}
 deaths_2024 <- exped_tidy_deadly |>
   filter(year == 2024)
@@ -236,10 +346,15 @@ deaths_2024_av <- deaths_2024 %>%
   summarise(avg_ptotdeaths = mean(ptotdeaths, na.rm = TRUE),
             .groups = "drop")
 deaths_2024_av
+
+deaths_2024_raw <- deaths_2024 |>
+  group_by(agency, season_factor) %>%
+  summarize(total_deaths = sum(totdeaths), .groups = "drop")
+deaths_2024_raw
 ```
 
 ```{r 2024}
-deaths_2024_av |>
+percent_2024 <- deaths_2024_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
   coord_flip(ylim = c(0, 1)) +
@@ -268,3 +383,35 @@ deaths_2024_av |>
     panel.grid = element_blank()
   )
 ```
+
+```{r 2024}
+raw_2024 <- deaths_2024_raw |>
+  ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 5)) +
+  scale_fill_manual(values = c("lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Death",
+    title = "Total deaths by Agency in 2024",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 1, 2, 3, 4, 5)
+  ) +
+  annotate("text", y = 4, x = 4, label = "Total Treks: 2") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+```{r combine}
+combined_plot <- wrap_plots(percent_2021, raw_2021, percent_2022, raw_2022, percent_2023, raw_2023, percent_2024, raw_2024, ncol = 2) 
+
+combined_plot
+```
+
