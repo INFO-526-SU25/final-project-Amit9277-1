@@ -169,7 +169,7 @@ ggplot(summary_data, aes(x = reorder(pkname, -attempts), y = success_rate, fill 
   labs(
     x = "Peaks",
     y = "Success Rate (%)",
-    title = "Success Rate of Top 4 Peaks \nAttempted by all Nations",
+    title = "Success Rate of Top 4 Peaks \nAttempted by all Nations (2020-2024)",
     subtitle = "Bar height indicates success rate; color indicates attempts",
     caption = "Source: https://github.com/rfordatascience/tidytuesday"
   ) +
