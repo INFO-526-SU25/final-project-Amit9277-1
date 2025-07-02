@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: Project Title
+  title: Analytical Visualization on the History of Himalyan Expeditions
   navbar:
     right:
       - icon: github
