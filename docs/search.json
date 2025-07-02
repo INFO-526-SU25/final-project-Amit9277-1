@@ -102,7 +102,7 @@
     "href": "presentation.html#images",
     "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Images",
-    "text": "Images\n\n\n\nImage credit: Raimond Klavins, Unsplash Royalty Free Images."
+    "text": "Images\n\nImage credit: Raimond Klavins, Unsplash Royalty Free Images."
   },
   {
     "objectID": "presentation.html#math-expressions",
@@ -123,7 +123,7 @@
     "href": "presentation.html#introduction",
     "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Introduction",
-    "text": "Introduction\nThis project explores intriguing patterns and insights into mountaineering expeditions in the Nepal Himalaya.\n\nBy analyzing an extensive dataset of Himalayan climbs, the project seeks to uncover relationships between the choices climbers make: -\n— such as their selected routes and expedition agencies\n— and their chances of success or risk of fatalities.\nThe analysis particularly aims to shed light on how these factors vary across different nations and time periods, offering a deeper understanding of what influences expedition outcomes in one of the world’s most challenging environments."
+    "text": "Introduction\nThis project explores intriguing patterns and insights into mountaineering expeditions in the Nepal Himalaya.\n\nBy analyzing an extensive dataset of Himalayan climbs, the project seeks to uncover relationships between the choices climbers make: -\n— such as their selected routes and expedition agencies.\n— and their chances of success or risk of fatalities.\nThe analysis particularly aims to shed light on how these factors vary across different nations and time periods, offering a deeper understanding of what influences expedition outcomes in one of the world’s most challenging environments."
   },
   {
     "objectID": "presentation.html#variables",
@@ -263,7 +263,7 @@
     "href": "presentation.html#the-himalayan-database",
     "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "The Himalayan Database",
-    "text": "The Himalayan Database\n\nContains the History of Himalayan Mountaineering Expeditions from Tidytuesday, taken from the archive by Elizabeth Hawley from the Himalayan Dataset.\nDetails peaks, expeditions, expedition related aspects, outcomes, and geographic data\nAnalysis uses two tidy tibbles: peaks and expeditions\nNote: Expeditions dataset filtered to years 2020–2024 for manageable file size"
+    "text": "The Himalayan Database\n\nContains the History of Himalayan Mountaineering Expeditions from Tidytuesday, taken from the archive of Elizabeth Hawley on ‘The Himalayan Dataset’.\nDetails peaks, expeditions, expedition related aspects, outcomes, and geographic data.\nAnalysis uses two tidy tibbles: peaks and expeditions.\nNote: Expeditions dataset filtered to years 2020–2024 for manageable file size."
   },
   {
     "objectID": "presentation.html#question-1",
@@ -319,7 +319,7 @@
     "href": "presentation.html#question-1-1",
     "title": "Analytical Visualization on the History of Himalyan Expeditions",
     "section": "Question 1:",
-    "text": "Question 1:\nAre certain routes favored by expeditions from particular nations, and do they have disparate success rates?\n\n\nIntroduction:\n\nThe idea is to find out if there is any affect on success or failure based on the chosen route.\nAnalysis truncates the low volume attempts to avoid outlines.\n\n\nApproach:\n\nFirst I have calibrated the general senses of top 4 peaks attempted by nations, to identify the general success rate of the peak.\nNext, visualized each peak and success percentage of popular chosen routes by nation, in a bubble chart\nTo finalize, the visualization and derive interpretation. I combined all 4 charts in one."
+    "text": "Question 1:\nAre certain routes favored by expeditions from particular nations, and do they have disparate success rates?\n\n\nIntroduction:\n\nThe idea is to find out if there is any affect on success or failure based on the chosen route.\nAnalysis truncates the low volume attempts to avoid outliers.\n\n\nApproach:\n\nFirst I have calibrated the general senses of top 4 peaks attempted by nations, to identify the general success rate of the peak.\nNext, visualized each peak and success percentage of popular chosen routes by nation, in a bubble chart.\nTo finalize, the visualization and derive interpretation. I combined all 4 charts in one."
   },
   {
     "objectID": "presentation.html#agencies-that-have-at-least-1-fatal-expedition-between-2021-2024",

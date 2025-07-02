@@ -1,6 +1,6 @@
 ---
 title: "Analytical Visualization on the History of Himalyan Expeditions "
-subtitle: "INFO 526 - Summer 2024 - Final Project"
+subtitle: "INFO 526 - Summer 2025 - Final Project"
 author: "Cat Xia and Amit Chawla"
 title-slide-attributes:
   data-background-image: images/raimond-klavins-L6jxljMeUoo-unsplash.jpg
@@ -69,7 +69,7 @@ This project explores intriguing patterns and insights into mountaineering exped
 
 -   By analyzing an extensive dataset of Himalayan climbs, the project seeks to uncover relationships between the choices climbers make: -
 
-    — such as their selected routes and expedition agencies
+    — such as their selected routes and expedition agencies.
 
     — and their chances of success or risk of fatalities.
 
@@ -77,13 +77,13 @@ This project explores intriguing patterns and insights into mountaineering exped
 
 ## The Himalayan Database
 
--   Contains the History of Himalayan Mountaineering Expeditions from Tidytuesday, taken from the archive by Elizabeth Hawley from the Himalayan Dataset.
+-   Contains the History of Himalayan Mountaineering Expeditions from Tidytuesday, taken from the archive of Elizabeth Hawley on 'The Himalayan Dataset'.
 
--   Details peaks, expeditions, expedition related aspects, outcomes, and geographic data
+-   Details peaks, expeditions, expedition related aspects, outcomes, and geographic data.
 
--   Analysis uses two tidy tibbles: peaks and expeditions
+-   Analysis uses two tidy tibbles: peaks and expeditions.
 
--   `Note:` Expeditions dataset filtered to years 2020–2024 for manageable file size
+-   `Note:` Expeditions dataset filtered to years 2020–2024 for manageable file size.
 
 # Question 1
 
@@ -97,7 +97,7 @@ Introduction:
 
 -   The idea is to find out if there is any affect on success or failure based on the chosen route.
 
--   Analysis truncates the low volume attempts to avoid outlines.
+-   Analysis truncates the low volume attempts to avoid outliers.
 :::
 
 ::: {.column width="50%"}
@@ -105,7 +105,7 @@ Approach:
 
 -   First I have calibrated the general senses of top 4 peaks attempted by nations, to identify the general success rate of the peak.
 
--   Next, visualized each peak and success percentage of popular chosen routes by nation, in a bubble chart
+-   Next, visualized each peak and success percentage of popular chosen routes by nation, in a bubble chart.
 
 -   To finalize, the visualization and derive interpretation. I combined all 4 charts in one.
 :::
@@ -944,10 +944,12 @@ deaths_2024_raw |>
 
 ## Conclusion
 
-- The overwhelmingly dominant and historically proven route is the preferred and most successful path for this peak, with top-performing nations consistently prioritizing it due to its critical role in expedition success. Alternate routes are notably less effective.
+-   The overwhelmingly dominant and historically proven route is the preferred and most successful path for this peak, with top-performing nations consistently prioritizing it due to its critical role in expedition success. Alternate routes are notably less effective.
 
-- If you go on a Himalayan expedition, don't do so with Seven Summit Treks in the Spring
+-   If you go on a Himalayan expedition, don't do so with Seven Summit Treks in the Spring
 
 ## Images
 
 ![Image credit: Raimond Klavins, Unsplash Royalty Free Images.](images/raimond-klavins-L6jxljMeUoo-unsplash.jpg){fig-align="center" width="500"}
+
+# Thank you.
