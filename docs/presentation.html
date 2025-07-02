@@ -196,7 +196,7 @@ Cat Xia and Amit Chawla
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="presentation_files/figure-html/unnamed-chunk-1-1.png" width="3300"></p>
+<p><img data-src="presentation_files/figure-revealjs/unnamed-chunk-1-1.png" width="3300"></p>
 </figure>
 </div>
 </div>
@@ -205,15 +205,8 @@ Cat Xia and Amit Chawla
 </section>
 <section id="plot-analysis" class="slide level2">
 <h2>Plot Analysis</h2>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The `legend.title.align` argument of `theme()` is deprecated as of ggplot2
-3.5.0.
-ℹ Please use theme(legend.title = element_text(hjust)) instead.</code></pre>
-</div>
 
-</div>
-<img data-src="presentation_files/figure-html/Combined all plots for second visualization-1.png" width="3300" class="r-stretch"></section>
+<img data-src="presentation_files/figure-revealjs/Combined all plots for second visualization-1.png" width="3300" class="r-stretch"></section>
 <section id="observations" class="slide level2">
 <h2>Observations</h2>
 <ul>
@@ -251,7 +244,7 @@ Cat Xia and Amit Chawla
 <section id="agencies-that-have-at-least-1-fatal-expedition-between-2021-2024" class="slide level2">
 <h2>Agencies that have at least 1 fatal expedition between 2021-2024</h2>
 
-<img data-src="presentation_files/figure-html/graph death by agency Q2-1.png" width="3300" class="r-stretch"></section>
+<img data-src="presentation_files/figure-revealjs/graph death by agency Q2-1.png" width="3300" class="r-stretch"></section>
 <section id="zoom-in-2021" class="slide level2">
 <h2>Zoom In: 2021</h2>
 <div class="panel-tabset">
@@ -262,7 +255,7 @@ Cat Xia and Amit Chawla
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="presentation_files/figure-html/percent deaths 2021-1.png" width="3300"></p>
+<p><img data-src="presentation_files/figure-revealjs/percent deaths 2021-1.png" width="3300"></p>
 </figure>
 </div>
 </div>
@@ -273,7 +266,7 @@ Cat Xia and Amit Chawla
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="presentation_files/figure-html/sum deaths 2021-1.png" width="3300"></p>
+<p><img data-src="presentation_files/figure-revealjs/sum deaths 2021-1.png" width="3300"></p>
 </figure>
 </div>
 </div>
@@ -292,7 +285,7 @@ Cat Xia and Amit Chawla
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="presentation_files/figure-html/percent deaths 2022-1.png" width="3300"></p>
+<p><img data-src="presentation_files/figure-revealjs/percent deaths 2022-1.png" width="3300"></p>
 </figure>
 </div>
 </div>
@@ -303,7 +296,7 @@ Cat Xia and Amit Chawla
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="presentation_files/figure-html/sum deaths 2022-1.png" width="3300"></p>
+<p><img data-src="presentation_files/figure-revealjs/sum deaths 2022-1.png" width="3300"></p>
 </figure>
 </div>
 </div>
@@ -322,7 +315,7 @@ Cat Xia and Amit Chawla
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="presentation_files/figure-html/percent deaths 2023-1.png" width="3300"></p>
+<p><img data-src="presentation_files/figure-revealjs/percent deaths 2023-1.png" width="3300"></p>
 </figure>
 </div>
 </div>
@@ -333,7 +326,7 @@ Cat Xia and Amit Chawla
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="presentation_files/figure-html/sum deaths 2023-1.png" width="3300"></p>
+<p><img data-src="presentation_files/figure-revealjs/sum deaths 2023-1.png" width="3300"></p>
 </figure>
 </div>
 </div>
@@ -352,7 +345,7 @@ Cat Xia and Amit Chawla
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="presentation_files/figure-html/percent deaths 2024-1.png" width="3300"></p>
+<p><img data-src="presentation_files/figure-revealjs/percent deaths 2024-1.png" width="3300"></p>
 </figure>
 </div>
 </div>
@@ -363,7 +356,7 @@ Cat Xia and Amit Chawla
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="presentation_files/figure-html/sum deaths 2024-1.png" width="3300"></p>
+<p><img data-src="presentation_files/figure-revealjs/sum deaths 2024-1.png" width="3300"></p>
 </figure>
 </div>
 </div>
@@ -630,6 +623,82 @@ Cat Xia and Amit Chawla
         ]
       });
     </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")

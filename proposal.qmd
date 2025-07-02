@@ -91,9 +91,7 @@ New variables to be created:
 *attempts* (numeric) - Count of expeditions per (*nation, route*) pair.\
 success*\_rate* (numeric, 0-1) - For each (*nation, route*):
 
-$$
-\text{success_rate} = \frac{\text{total successes}}{\text{total attempts}}
-$$
+![](images/math-equation.png){fig-alt="text{success_rate} = \\frac{\\text{total successes}}{\\text{total attempts}" fig-align="center"}
 
 The approach to utilize the pivoted columns will be represent the routes bifurcation by individual peaks and then it will be plotted with correspondence to the success rate and number of attempts.
 
