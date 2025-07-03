@@ -5,7 +5,7 @@ Final Project repo for INFO 526 Summer 2025. Authored by Cat Xia and Amit Chawla
 
 Project links:
 - [Website](https://info-526-su25.github.io/final-project-Amit9277-1/)
-- [Final presentation](https://youtu.be/jSLO4GZstj8)
+- [Final presentation](https://youtu.be/jHAOFrIHhXA)
 
 ### Disclosure:
 Derived from the original course by Mine Çetinkaya-Rundel @ Duke University
