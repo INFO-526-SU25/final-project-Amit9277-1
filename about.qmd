@@ -8,4 +8,4 @@ This project was developed by **\[Chawala-Xia\]** For [INFO 526 - Data Analysis 
 
 -   Amit Chawla, continuing with his 1st year at University of Arizona, enrolled in Masters in Data Science Program (online) .
 
--   Cat Xia
+-   Cat Xia, beginning 1st year Masters in Data Science Program under College of Information Sciences

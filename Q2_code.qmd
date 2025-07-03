@@ -22,7 +22,7 @@ library(dplyr)
 library(patchwork)
 ```
 
-```{r}
+```{r load dataset}
 #| label: load-dataset
 #| message: false
 
@@ -40,39 +40,60 @@ head(exped_tidy, n=10)
 #head(peaks_tidy, n=10)
 ```
 
-```{r}
+```{r mutate new columns}
 exped_tidy <- exped_tidy |>
+  #mutate new columns
   mutate(
     "pmdeaths" = mdeaths/totmembers,
     "phdeaths" = hdeaths/tothired,
     "totdeaths" = (hdeaths+ mdeaths),
     "ptotdeaths" = totdeaths/(tothired + totmembers)
   )
+
+#filter for all epeditions with at least one death
 exped_tidy_deadly <- exped_tidy |>
   filter(pmdeaths > 0 | phdeaths > 0) |>
   filter(!is.na(agency))
+
+#create a subset dataframe that clears out unecessary columns
 exped_tidy_deadly <- exped_tidy_deadly |>
   select(year, season_factor, host_factor, nation, agency, totmembers, smtmembers, mdeaths, tothired, hdeaths, totdeaths, pmdeaths, phdeaths, ptotdeaths)
 exped_tidy_deadly
 ```
 
-```{r}
+```{r Check out of total}
+#| label: check agencies out of total
+
+#assigns deadly agencies to one tibble
 deadly_agencies <- unique(exped_tidy_deadly$agency)
+
+#assigns non-deadly agencies to one tibble
 non_deadly <- exped_tidy |>
   filter(!agency %in% deadly_agencies)
 non_deadly_agencies <- unique(non_deadly$agency)
+
+#prints out the length for each so that I can view these values. Will not be used for graphing
 length(non_deadly_agencies)
 length(deadly_agencies)
 ```
 
-```{r}
+```{r Graph Main}
+#| label: graph main
 
 exped_tidy_deadly |>
+  #graphs agency by number of fatal expeditions. fct_infreq was debugged consulting with AI after looking at documentation. Same with after_stat(count)
   ggplot(aes(x = fct_rev(fct_infreq(agency)), fill = after_stat(count))) +
   geom_bar() +
+  
+  #flips coordinates for better readbility of agencies
   coord_flip() +
+  
+  #Increased number of breaks
   scale_y_continuous(breaks = c(0, 2, 4, 6, 8, 10)) +
+  
+  #colored where red is more deadly. I wanted a low intensity representing an increasing intensity so I settled on yellow
   scale_fill_gradient(low = "#ffce00", high = "darkred") +
+  
   labs(
     title = "Number of expeditions through the Himalayas \nthat resulted in death by Agency",
     subtitle = "from 2021 - 2024",
@@ -82,6 +103,8 @@ exped_tidy_deadly |>
     fill = NULL
   ) +
   theme_minimal() +
+  
+  #got rid of grid to improve readability
   theme(
     legend.position = "none",
     panel.grid.minor = element_blank(),
@@ -89,17 +112,23 @@ exped_tidy_deadly |>
   )
 ```
 
-```{r}
+```{r data wrangling 2021}
+
+#filtered for only 2021 data
 deaths_2021 <- exped_tidy_deadly |>
   filter(year == 2021)
 deaths_2021
 
+#grouped to create the average percent deaths per agency
 deaths_2021_av <- deaths_2021 %>%
+  #grouped by season for color reasons
   group_by(agency, season_factor) %>%
+  #we used the average percent for the x axis to better compare between groups
   summarise(avg_ptotdeaths = mean(ptotdeaths, na.rm = TRUE),
             .groups = "drop")
 deaths_2021_av
 
+#raw death values, similar approach as above
 deaths_2021_raw <- deaths_2021 |>
   group_by(agency, season_factor) %>%
   summarize(total_deaths = sum(totdeaths), .groups = "drop")
@@ -107,10 +136,17 @@ deaths_2021_raw
 ```
 
 ```{r2021 deaths av}
+# label: 2021 percent death graph
+
 deaths_2021_av |>
+  #graph by descending percent total deaths by agency. Color is for season
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
+  
+  #set coordinates for better comparison between groups
   coord_flip(ylim = c(0, 1)) +
+  
+  #colored based on majority season color association
   scale_fill_manual(values = c("orange", "lightgreen")) +
   labs(
     fill = "Season",
@@ -120,10 +156,14 @@ deaths_2021_av |>
     caption = "Source: TidyTuesday",
     subtitle = "M is trekking member death, H is hired staff death"
   ) +
+  
+  #rename x values to have percent
   scale_y_continuous(
     breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1),
     labels = c("0%", "20%", "40%", "60%", "80%", "100%")
   ) +
+  
+  #individual labels for each individual percent death rather than average and distingish it between member and hired staff
   annotate("text", y = 0.2, x = 1, label = "M 6.6%") +
   annotate("text", y = 0.2, x = 2, label = "H 3.3%") +
   annotate("text", y = 0.3, x = 3, label = "Trek 1: M 54%") +
@@ -131,6 +171,8 @@ deaths_2021_av |>
   annotate("text", y = 0.3, x = 4, label = "M 20%") +
   annotate("text", y = 0.4, x = 5, label = "M 75%") +
   theme_minimal() +
+  
+  #cleaned up grid for better readability of annotations
   theme(
     axis.ticks.x = element_blank(),
     panel.grid = element_blank()
@@ -138,11 +180,19 @@ deaths_2021_av |>
 ```
 
 ```{r 2021 deaths raw}
+#| labels: 2021 raw death values
+
 deaths_2021_raw |>
+  #same as above, except with total deaths and not percents
   ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
   geom_col() +
+  
+  #sets coordinates for easier comparison between groups
   coord_flip(ylim = c(0, 5)) +
+  
+  #colored same as above for easy comparison
   scale_fill_manual(values = c("orange", "lightgreen")) +
+  
   labs(
     fill = "Season",
     x = "Trekking Agency",
@@ -151,24 +201,34 @@ deaths_2021_raw |>
     caption = "Source: TidyTuesday",
     subtitle = "M is trekking member death, H is hired staff death"
   ) +
+  
+  #set breaks
   scale_y_continuous(
     breaks = c(0, 1, 2, 3, 4, 5)
   ) +
+  
+  #will not use this annotation after all
   #annotate("text", y = 2, x = 3, label = "M 1") +
   #annotate("text", y = 2, x = 2, label = "H 1") +
   #annotate("text", y = 2, x = 1, label = "Trek 1: M 2") +
   #annotate("text", y = 4, x = 1, label = "Trek 2: H 1") +
   #annotate("text", y = 4, x = 4, label = "M 3") +
   #annotate("text", y = 4, x = 5, label = "M 3") +
+  
+  #instead annotate with number of treks because most deaths were 1 or 2 total so the prior labels are somewhat superfulous and messy
   annotate("text", y = 4, x = 5, label = "Total Treks: 2") +
   theme_minimal() +
+  
+  #clean grid for better readability
   theme(
     axis.ticks.x = element_blank(),
     panel.grid = element_blank()
   )
 ```
 
-```{r}
+All code below are copy and pasted of the graphs above witht the year and specific annotations changed.
+
+```{r 2022 data wrangling}
 deaths_2022 <- exped_tidy_deadly |>
   filter(year == 2022)
 deaths_2022
@@ -186,7 +246,7 @@ deaths_2022_raw
 ```
 
 ```{r 2022 Percent}
-percent_2022 <- deaths_2022_av |>
+deaths_2022_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
   coord_flip(ylim = c(0, 1)) +
@@ -221,7 +281,7 @@ percent_2022 <- deaths_2022_av |>
 ```
 
 ```{r 2022 Raw}
-raw_2022 <- deaths_2022_raw |>
+deaths_2022_raw |>
   ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
   geom_col() +
   coord_flip(ylim = c(0, 5)) +
@@ -256,7 +316,7 @@ raw_2022 <- deaths_2022_raw |>
   )
 ```
 
-```{r}
+```{r 2023 data wrangling}
 deaths_2023 <- exped_tidy_deadly |>
   filter(year == 2023)
 deaths_2023
@@ -274,7 +334,7 @@ deaths_2023_raw
 ```
 
 ```{r 2023 Percent}
-percent_2023 <- deaths_2023_av |>
+deaths_2023_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
   coord_flip(ylim = c(0, 1)) +
@@ -314,7 +374,7 @@ percent_2023 <- deaths_2023_av |>
 ```
 
 ```{r 2023 Raw}
-raw_2023 <- deaths_2023_raw |>
+deaths_2023_raw |>
   ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
   geom_col() +
   coord_flip(ylim = c(0, 5)) +
@@ -339,7 +399,7 @@ raw_2023 <- deaths_2023_raw |>
   )
 ```
 
-```{r}
+```{r 2024 data wrangling}
 deaths_2024 <- exped_tidy_deadly |>
   filter(year == 2024)
 deaths_2024
@@ -357,7 +417,7 @@ deaths_2024_raw
 ```
 
 ```{r 2024 Percent}
-percent_2024 <- deaths_2024_av |>
+deaths_2024_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
   coord_flip(ylim = c(0, 1)) +
@@ -389,7 +449,7 @@ percent_2024
 ```
 
 ```{r 2024 Raw}
-raw_2024 <- deaths_2024_raw |>
+deaths_2024_raw |>
   ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
   geom_col() +
   coord_flip(ylim = c(0, 5)) +
@@ -414,8 +474,9 @@ raw_2024 <- deaths_2024_raw |>
 raw_2024
 ```
 
+Was not able to use patchwork to combine graphs due to different y values
+
 ```{r combine}
-#| include: false
 #combined_plot <- wrap_plots(percent_2021, raw_2021, percent_2022, raw_2022, percent_2023, raw_2023, percent_2024, raw_2024, ncol = 2) 
 
 #combined_plot
