@@ -609,7 +609,7 @@ deaths_2021_raw |>
     fill = "Season",
     x = "Trekking Agency",
     y = "Total Deaths",
-    title = "Percent total deaths by Agency in 2021",
+    title = "Total deaths by Agency in 2021",
     caption = "Source: TidyTuesday",
     subtitle = "M is trekking member death, H is hired staff death"
   ) +
