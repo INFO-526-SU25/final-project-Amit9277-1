@@ -25,7 +25,7 @@ The Himalayan Database, a meticulous archive originating from the pioneering wor
 
 Mountaineering in the Nepal Himalaya represents one of humanity's most profound engagements with extreme natural environments, characterized by unparalleled challenges and breathtaking achievements. Understanding the dynamics and outcomes of these expeditions is crucial for both historical context and future endeavors. This project embarks on an exploratory analysis of a *specific segment* of the rich historical data encapsulated within The Himalayan Database, an enduring legacy of Elizabeth Hawley's dedicated efforts to document every facet of Himalayan climbing history. Originally compiled from a vast array of sources and made freely available online since 2017, the full database serves as a cornerstone for mountaineering research.
 
-Our study specifically focuses on intriguing patterns and insights derived from mountaineering expeditions undertaken in the Nepal Himalaya *during the years 2020 to 2024*. By analyzing this extensive, yet focused, dataset of Himalayan climbs—structured into 'peaks' and 'expeditions' tibbles—this project seeks to uncover significant relationships between the strategic choices climbers make—such as their selected routes and expedition agencies—and their chances of achieving success or facing the tragic risk of fatalities. The analysis particularly aims to shed light on how these critical factors vary across different nations and evolving time periods within this contemporary five-year window. Through this focused exploration of a recent subset of The Himalayan Database, we aspire to offer a deeper, data-driven understanding of what influences expedition outcomes in one of the world's most challenging and captivating mountaineering environments.
+Our study specifically focuses on intriguing patterns and insights derived from mountaineering expeditions undertaken in the Nepal Himalaya *during the years 2020 to 2024*. By analyzing this extensive, yet focused, dataset of Himalayan climbs (structured into 'peaks' and 'expeditions' tibbles) this project seeks to uncover significant relationships between the strategic choices climbers make, such as their selected routes and expedition agencies, and their chances of achieving success or facing the tragic risk of fatalities. The analysis particularly aims to shed light on how these critical factors vary across different nations and evolving time periods within this contemporary five-year window. Through this focused exploration of a recent subset of The Himalayan Database, we aspire to offer a deeper, data-driven understanding of what influences expedition outcomes in one of the world's most challenging and captivating mountaineering environments.
 
 ## Question 1
 
@@ -628,13 +628,42 @@ The combined bubble plots for Everest, Lhotse, Ama Dablam, and Manaslu reveal cl
 
 ## Question 2
 
+Do certain Agencies have a higher number of member/personal deaths than others with respect to season/date?
+
+## Introduction
+
+This question seeks to look at the correlation between agencies and fatality rate and if there are any important trends, especially with respect to season and date. The findings of this question are interesting because it would raise a lot of further questions regarding why these correlations are seen, if there are specific safety policies or certain weather patterns that could lead to some agencies having a higher fatality rate than others, to name a few.
+
+## Approach
+
+For this question, we first created variables for both the total death per expedition, as well as percentage death per expedition for the member or customer, hired staff, and the total percentage. Then, we started with a general graph that looks at Agencies and how many deadly expeditions they had total between 2021 and 2024. Then we zoom in per year and look at the percentage as well as total death by Agency (and by season). Lastly, we create a graph looking at the total actual deaths (raw totals) for each agency in case there are any differences conclusions we can draw with the percentage graph.
+
+Initially, we sought to add all the percentage and raw graphs into one large graph, faceted by year, but quickly realized that this would be unfeasible to do so cleanly as all the y values (or Agencies) would change depending on the year and depending on which had more or less fatality. Thus, we chose to have them as side by side plots on two tabs to easily swap between.
+
+## Observations
+
+1.  Firstly, the agency, Seven Summits Treks, has the most fatal expeditions from 2021 - 2024, with 10 expeditions with at least one fatality, which is significantly higher than the other agencies which only have one or two fatal expeditions.
+    -   Unexpectedly, when we looked at the percentage graphs by year, we can see that Seven Summits Treks often has a low or medium percentage fatality.
+
+    -   The actual deaths were relatively similar across the board, with usually only 1 or 2 people dying per expedition.
+
+    -   This likely means that Seven Summit Treks has a larger group per expedition (30 + people) than other agencies so that even though they have relatively similar total deaths per expedition, their percent fatality is much lower than the others with a small group (4 to 5 people)
+
+        -   However, we cannot conclude that the higher number of fatal expeditions is due to having more expeditions per year because we did not look at all expeditions, only the deadly ones.
+2.  Spring has more fatal expeditions than Autumn from 2021 - 2024.
+    -   There is not enough data to conclude whether or not Autumn has a higher fatal percent rate than Spring when an expedition has at least one fatality. (i.e. spring has more fatal expeditions but only one person dies per expedition vs Autumn having less but more people die)
+
+    -   We also cannot conclude whether or not this difference is due to an increased or decreased number of expeditions in each season.
+3.  2022 and 2023 had more fatal expeditions and more agencies with fatal expeditions than for 2021 and 2024.
+4.  Although there is slightly more member or customer deaths than hired staff deaths from 2021 to 2024 per expedition, but the data is too close to be able to reject the null hypothesis.
+
 ## Conclusion, Limitations, and Future Directions
 
 ### Conclusion
 
 Our analysis of 2020-2024 Himalayan expeditions reveals that the overwhelmingly dominant and historically proven routes are consistently preferred and yield the highest success rates. Top-performing nations strategically prioritize these established paths, underscoring route selection as a critical determinant of expedition success. Conversely, alternative routes demonstrate notably lower effectiveness.
 
-Additionally, if you go on a Himalayan expedition, don't do so with Seven Summit Treks in the Spring
+Seven Summits Treks has the most fatal expeditions with at least one death irregardless of member or staff death. Spring has more deadly expeditions than Autumn. 2022 and 2023 have more deadly expeditions than 2021 and 2024. There is seemingly slightly more member or customer death and hired staff but the data is inconclusive. Overall, however, although we were able to see certain agencies that had a higher number of expeditions with at least one fatality, this data is not conclusively correlate more Himalayan expedition fatalities to one or a few specific agencies that are more egregious than the rest.
 
 ### Key Limitations
 
@@ -644,12 +673,14 @@ Our analysis faced two primary limitations:
 
 -   **Data Sparsity:** A high variable count relative to the number of entries in our filtered dataset limited the ability to draw universally conclusive findings and complex statistical relationships.
 
+For question 2, the data could benefit from a wider reaching question that took in account comparisons between non-fatal and fatal expeditions. Additionally, raw death total graphs were included because certain variables seemed to have high percent death, but was due to an overcompensation of percentage calculations for small groups. Lastly, patchwork was unable to join the graphs which meant that each graph took up more space.
+
 ### Future Directions
 
 Building on these insights, future research should focus on:
 
 -   **In-depth Dataset Exploration:** Leveraging the comprehensive original Himalayan Database (<https://www.himalayandatabase.com/hbn2019.html>) to conduct more robust analyses and explore broader historical trends.
 
--   **Expanded Variable Analysis:** Investigating a wider range of factors, such as leadership roles, team sizes, and seasonal influences.
+-   **Expanded Variable Analysis:** Investigating a wider range of factors, such as leadership roles, team sizes, and seasonal influences. Additionally, it should take into account group number and non-fatal expeditions as well as other potential correlating variables.
 
 -   **Predictive Modeling:** Developing models to forecast expedition success based on various input factors, aiding future planning and risk management.
