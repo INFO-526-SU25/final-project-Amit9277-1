@@ -640,6 +640,841 @@ For this question, we first created variables for both the total death per exped
 
 Initially, we sought to add all the percentage and raw graphs into one large graph, faceted by year, but quickly realized that this would be unfeasible to do so cleanly as all the y values (or Agencies) would change depending on the year and depending on which had more or less fatality. Thus, we chose to have them as side by side plots on two tabs to easily swap between.
 
+## Analysis
+
+::: panel-tabset
+## Agency by Fatal Expeditions
+
+``` R
+agency_by_fatal <- exped_tidy_deadly |>
+  #graphs agency by number of fatal expeditions. fct_infreq was debugged consulting with AI after looking at documentation. Same with after_stat(count)
+  ggplot(aes(x = fct_rev(fct_infreq(agency)), fill = after_stat(count))) +
+  geom_bar() +
+  
+  #flips coordinates for better readbility of agencies
+  coord_flip() +
+  
+  #Increased number of breaks
+  scale_y_continuous(breaks = c(0, 2, 4, 6, 8, 10)) +
+  
+  #colored where red is more deadly. I wanted a low intensity representing an increasing intensity so I settled on yellow
+  scale_fill_gradient(low = "#ffce00", high = "darkred") +
+  
+  labs(
+    title = "Number of expeditions through the Himalayas \nthat resulted in death by Agency",
+    subtitle = "from 2021 - 2024",
+    caption = "Source: Tidytuesday",
+    x = NULL,
+    y = "Number of expeditions that resulted in at least one death",
+    fill = NULL
+  ) +
+  theme_minimal() +
+  
+  #got rid of grid to improve readability
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank()
+  )
+```
+
+## 2021 Percent Deaths
+
+``` R
+percent_2021 <- deaths_2021_av |>
+  #graph by descending percent total deaths by agency. Color is for season
+  ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
+  geom_col() +
+  
+  #set coordinates for better comparison between groups
+  coord_flip(ylim = c(0, 1)) +
+  
+  #colored based on majority season color association
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Death",
+    title = "Percent total deaths by Agency in 2021",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  
+  #rename x values to have percent
+  scale_y_continuous(
+    breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1),
+    labels = c("0%", "20%", "40%", "60%", "80%", "100%")
+  ) +
+  
+  #individual labels for each individual percent death rather than average and distingish it between member and hired staff
+  annotate("text", y = 0.2, x = 1, label = "M 6.6%") +
+  annotate("text", y = 0.2, x = 2, label = "H 3.3%") +
+  annotate("text", y = 0.3, x = 3, label = "Trek 1: M 54%") +
+  annotate("text", y = 0.7, x = 3, label = "Trek 2: H 10%") +
+  annotate("text", y = 0.3, x = 4, label = "M 20%") +
+  annotate("text", y = 0.4, x = 5, label = "M 75%") +
+  theme_minimal() +
+  
+  #cleaned up grid for better readability of annotations
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+## 2021 Total Deaths
+
+``` R
+tota_2021 <- deaths_2021_raw |>
+  #same as above, except with total deaths and not percents
+  ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
+  geom_col() +
+  
+  #sets coordinates for easier comparison between groups
+  coord_flip(ylim = c(0, 5)) +
+  
+  #colored same as above for easy comparison
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Deaths",
+    title = "Percent total deaths by Agency in 2021",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  
+  #set breaks
+  scale_y_continuous(
+    breaks = c(0, 1, 2, 3, 4, 5)
+  ) +
+  
+  #instead annotate with number of treks because most deaths were 1 or 2 total so the prior labels are somewhat superfulous and messy
+  annotate("text", y = 4, x = 5, label = "Total Treks: 2") +
+  theme_minimal() +
+  
+  #clean grid for better readability
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+## 2022 Percent Deaths
+
+``` R
+percent_2022 <- deaths_2022_av |>
+  ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 1)) +
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Percent Death (Average)",
+    title = "Percent total deaths by Agency in 2022",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1),
+    labels = c("0%", "20%", "40%", "60%", "80%", "100%")
+  ) +
+  annotate("text", y = 0.2, x = 1, label = "H 20%") +
+  annotate("text", y = 0.2, x = 2, label = "H 4.7%") +
+  annotate("text", y = 0.2, x = 3, label = "M 7.6%") +
+  annotate("text", y = 0.3, x = 4, label = "Trek 1: M 6.25%") +
+  annotate("text", y = 0.7, x = 4, label = "Trek 2: H 10%") +
+  annotate("text", y = 0.32, x = 4.8, label = "Trek 1: M 14.2%") +
+  annotate("text", y = 0.32, x = 5.2, label = "Trek 2: H 6.25%") +
+  annotate("text", y = 0.8, x = 5, label = "Trek 3: H 6.67%") +
+  annotate("text", y = 0.25, x = 6, label = "M 20%") +
+  annotate("text", y = 0.3, x = 7, label = "M 14.28%") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+## 2022 Total Deaths
+
+``` R
+total_2022 <- deaths_2022_raw |>
+  ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 5)) +
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Percent Death (Average)",
+    title = "Percent total deaths by Agency in 2022",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 1, 2, 3, 4, 5)
+  ) +
+  annotate("text", y = 4, x = 6, label = "Total Treks: 3") +
+  annotate("text", y = 3, x = 7, label = "Total Treks: 2") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+:::
+
+::: panel-tabset
+## 2023 Percent Deaths
+
+``` R
+percent_2023 <- deaths_2023_av |>
+  ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 1)) +
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Percent Death (Average)",
+    title = "Percent total deaths by Agency in 2023",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1),
+    labels = c("0%", "20%", "40%", "60%", "80%", "100%")
+  ) +
+  annotate("text", y = 0.2, x = 1, label = "M 5.8%") +
+  annotate("text", y = 0.2, x = 2, label = "Trek 1: M 4.7%") +
+  annotate("text", y = 0.5, x = 2, label = "Trek 2: M 6.7%") +
+  annotate("text", y = 0.8, x = 2, label = "Trek 3: 6.3%") +
+  annotate("text", y = 0.2, x = 3, label = "M 10%") +
+  annotate("text", y = 0.2, x = 4, label = "M 1.66%") +
+  annotate("text", y = 0.2, x = 5, label = "M 15.3%") +
+  annotate("text", y = 0.2, x = 6, label = "H 10%") +
+  annotate("text", y = 0.2, x = 7, label = "M 13.3%") +
+  annotate("text", y = 0.2, x = 8, label = "M 20%") +
+  annotate("text", y = 0.23, x = 9, label = "H 25%") +
+  annotate("text", y = 0.25, x = 10, label = "M 16.7%") +
+  annotate("text", y = 0.5, x = 11, label = "Trek 1: M 5.3%") +
+  annotate("text", y = 0.8, x = 11, label = "Trek 2: M 33.3%") +
+  annotate("text", y = 0.5, x = 12, label = "M 100%") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+## 2023 Total Deaths
+
+``` R
+total_2023 <- deaths_2023_raw |>
+  ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 5)) +
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Death",
+    title = "Total deaths by Agency in 2023",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 1, 2, 3, 4, 5)
+  ) +
+  annotate("text", y = 3, x = 6, label = "Total Treks: 2") +
+  annotate("text", y = 3, x = 12, label = "Total Treks: 3") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+## 2024 Percent Deaths
+
+``` R
+percent_2024 <- deaths_2024_av |>
+  ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 1)) +
+  scale_fill_manual(values = "lightgreen") +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Percent Death (Average)",
+    title = "Percent total deaths by Agency in 2024",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1),
+    labels = c("0%", "20%", "40%", "60%", "80%", "100%")
+  ) +
+  annotate("text", y = 0.2, x = 2, label = "M 6.7%") +
+  annotate("text", y = 0.3, x = 1, label = "Trek 1: M 4.5% H 3.3%") +
+  annotate("text", y = 0.7, x = 1, label = "Trek 2: H 3.2%") +
+  annotate("text", y = 0.2, x = 3, label = "M 10%") +
+  annotate("text", y = 0.2, x = 4, label = "M 11.1% H 2%") +
+  annotate("text", y = 0.5, x = 5, label = "M 50%") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+## 2024 Total Deaths
+
+``` R
+total_2024 <- deaths_2024_raw |>
+  ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 5)) +
+  scale_fill_manual(values = c("lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Death",
+    title = "Total deaths by Agency in 2024",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 1, 2, 3, 4, 5)
+  ) +
+  annotate("text", y = 4, x = 4, label = "Total Treks: 2") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+:::
+
+## Visualization
+
+```{r load dataset}
+
+tuesdata <- tidytuesdayR::tt_load('2025-01-21')
+
+#Although our two questions only use exped_tidy, we have added code to make a separate peaks_tidy in case we find out that we need variables from that dataframe later on.
+
+exped_tidy <- tuesdata$exped_tidy
+#peaks_tidy <- tuesdata$peaks_tidy
+
+exped_tidy <- clean_names(exped_tidy)
+#peaks_tidy <- clean_names(peaks_tidy)
+
+head(exped_tidy, n=10)
+#head(peaks_tidy, n=10)
+```
+
+```{r mutate new columns}
+exped_tidy <- exped_tidy |>
+  #mutate new columns
+  mutate(
+    "pmdeaths" = mdeaths/totmembers,
+    "phdeaths" = hdeaths/tothired,
+    "totdeaths" = (hdeaths+ mdeaths),
+    "ptotdeaths" = totdeaths/(tothired + totmembers)
+  )
+
+#filter for all epeditions with at least one death
+exped_tidy_deadly <- exped_tidy |>
+  filter(pmdeaths > 0 | phdeaths > 0) |>
+  filter(!is.na(agency))
+
+#create a subset dataframe that clears out unecessary columns
+exped_tidy_deadly <- exped_tidy_deadly |>
+  select(year, season_factor, host_factor, nation, agency, totmembers, smtmembers, mdeaths, tothired, hdeaths, totdeaths, pmdeaths, phdeaths, ptotdeaths)
+exped_tidy_deadly
+```
+
+```{r Graph Main}
+#| label: graph main
+
+agency_by_fatal <- exped_tidy_deadly |>
+  #graphs agency by number of fatal expeditions. fct_infreq was debugged consulting with AI after looking at documentation. Same with after_stat(count)
+  ggplot(aes(x = fct_rev(fct_infreq(agency)), fill = after_stat(count))) +
+  geom_bar() +
+  
+  #flips coordinates for better readbility of agencies
+  coord_flip() +
+  
+  #Increased number of breaks
+  scale_y_continuous(breaks = c(0, 2, 4, 6, 8, 10)) +
+  
+  #colored where red is more deadly. I wanted a low intensity representing an increasing intensity so I settled on yellow
+  scale_fill_gradient(low = "#ffce00", high = "darkred") +
+  
+  labs(
+    title = "Number of expeditions through the Himalayas \nthat resulted in death by Agency",
+    subtitle = "from 2021 - 2024",
+    caption = "Source: Tidytuesday",
+    x = NULL,
+    y = "Number of expeditions that resulted in at least one death",
+    fill = NULL
+  ) +
+  theme_minimal() +
+  
+  #got rid of grid to improve readability
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_blank()
+  )
+```
+
+```{r data wrangling 2021}
+
+#filtered for only 2021 data
+deaths_2021 <- exped_tidy_deadly |>
+  filter(year == 2021)
+
+#grouped to create the average percent deaths per agency
+deaths_2021_av <- deaths_2021 %>%
+  #grouped by season for color reasons
+  group_by(agency, season_factor) %>%
+  #we used the average percent for the x axis to better compare between groups
+  summarise(avg_ptotdeaths = mean(ptotdeaths, na.rm = TRUE),
+            .groups = "drop")
+
+#raw death values, similar approach as above
+deaths_2021_raw <- deaths_2021 |>
+  group_by(agency, season_factor) %>%
+  summarize(total_deaths = sum(totdeaths), .groups = "drop")
+```
+
+```{r 2021 deaths av}
+# label: 2021 percent death graph
+
+percent_2021 <- deaths_2021_av |>
+  #graph by descending percent total deaths by agency. Color is for season
+  ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
+  geom_col() +
+  
+  #set coordinates for better comparison between groups
+  coord_flip(ylim = c(0, 1)) +
+  
+  #colored based on majority season color association
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Death",
+    title = "Percent total deaths by Agency in 2021",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  
+  #rename x values to have percent
+  scale_y_continuous(
+    breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1),
+    labels = c("0%", "20%", "40%", "60%", "80%", "100%")
+  ) +
+  
+  #individual labels for each individual percent death rather than average and distingish it between member and hired staff
+  annotate("text", y = 0.2, x = 1, label = "M 6.6%") +
+  annotate("text", y = 0.2, x = 2, label = "H 3.3%") +
+  annotate("text", y = 0.3, x = 3, label = "Trek 1: M 54%") +
+  annotate("text", y = 0.7, x = 3, label = "Trek 2: H 10%") +
+  annotate("text", y = 0.3, x = 4, label = "M 20%") +
+  annotate("text", y = 0.4, x = 5, label = "M 75%") +
+  theme_minimal() +
+  
+  #cleaned up grid for better readability of annotations
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+```{r 2021 deaths raw}
+#| labels: 2021 raw death values
+
+total_2021 <- deaths_2021_raw |>
+  #same as above, except with total deaths and not percents
+  ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
+  geom_col() +
+  
+  #sets coordinates for easier comparison between groups
+  coord_flip(ylim = c(0, 5)) +
+  
+  #colored same as above for easy comparison
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Deaths",
+    title = "Total deaths by Agency in 2021",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  
+  #set breaks
+  scale_y_continuous(
+    breaks = c(0, 1, 2, 3, 4, 5)
+  ) +
+  
+  #instead annotate with number of treks because most deaths were 1 or 2 total so the prior labels are somewhat superfulous and messy
+  annotate("text", y = 4, x = 5, label = "Total Treks: 2") +
+  theme_minimal() +
+  
+  #clean grid for better readability
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+```{r 2022 data wrangling}
+#All code below are copy and pasted of the graphs above witht the year and specific annotations changed.
+deaths_2022 <- exped_tidy_deadly |>
+  filter(year == 2022)
+
+deaths_2022_av <- deaths_2022 %>%
+  group_by(agency, season_factor) %>%
+  summarise(avg_ptotdeaths = mean(ptotdeaths, na.rm = TRUE),
+            .groups = "drop")
+
+deaths_2022_raw <- deaths_2022 |>
+  group_by(agency, season_factor) %>%
+  summarize(total_deaths = sum(totdeaths), .groups = "drop")
+```
+
+```{r 2022 Percent}
+#All code below are copy and pasted of the graphs above witht the year and specific annotations changed.
+
+percent_2022 <- deaths_2022_av |>
+  ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 1)) +
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Percent Death (Average)",
+    title = "Percent total deaths by Agency in 2022",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1),
+    labels = c("0%", "20%", "40%", "60%", "80%", "100%")
+  ) +
+  annotate("text", y = 0.2, x = 1, label = "H 20%") +
+  annotate("text", y = 0.2, x = 2, label = "H 4.7%") +
+  annotate("text", y = 0.2, x = 3, label = "M 7.6%") +
+  annotate("text", y = 0.3, x = 4, label = "Trek 1: M 6.25%") +
+  annotate("text", y = 0.7, x = 4, label = "Trek 2: H 10%") +
+  annotate("text", y = 0.32, x = 4.8, label = "Trek 1: M 14.2%") +
+  annotate("text", y = 0.32, x = 5.2, label = "Trek 2: H 6.25%") +
+  annotate("text", y = 0.8, x = 5, label = "Trek 3: H 6.67%") +
+  annotate("text", y = 0.25, x = 6, label = "M 20%") +
+  annotate("text", y = 0.3, x = 7, label = "M 14.28%") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+```{r 2022 Raw}
+#All code below are copy and pasted of the graphs above witht the year and specific annotations changed.
+
+total_2022 <- deaths_2022_raw |>
+  ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 5)) +
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Percent Death (Average)",
+    title = "Total deaths by Agency in 2022",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 1, 2, 3, 4, 5)
+  ) +
+
+  annotate("text", y = 4, x = 6, label = "Total Treks: 3") +
+  annotate("text", y = 3, x = 7, label = "Total Treks: 2") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+```{r 2023 data wrangling}
+#All code below are copy and pasted of the graphs above witht the year and specific annotations changed.
+deaths_2023 <- exped_tidy_deadly |>
+  filter(year == 2023)
+
+deaths_2023_av <- deaths_2023 %>%
+  group_by(agency, season_factor) %>%
+  summarise(avg_ptotdeaths = mean(ptotdeaths, na.rm = TRUE),
+            .groups = "drop")
+
+deaths_2023_raw <- deaths_2023 |>
+  group_by(agency, season_factor) %>%
+  summarize(total_deaths = sum(totdeaths), .groups = "drop")
+```
+
+```{r 2023 Percent}
+#All code below are copy and pasted of the graphs above witht the year and specific annotations changed.
+
+percent_2023 <- deaths_2023_av |>
+  ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 1)) +
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Percent Death (Average)",
+    title = "Percent total deaths by Agency in 2023",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1),
+    labels = c("0%", "20%", "40%", "60%", "80%", "100%")
+  ) +
+  annotate("text", y = 0.2, x = 1, label = "M 5.8%") +
+  annotate("text", y = 0.2, x = 2, label = "Trek 1: M 4.7%") +
+  annotate("text", y = 0.5, x = 2, label = "Trek 2: M 6.7%") +
+  annotate("text", y = 0.8, x = 2, label = "Trek 3: 6.3%") +
+  annotate("text", y = 0.2, x = 3, label = "M 10%") +
+  annotate("text", y = 0.2, x = 4, label = "M 1.66%") +
+  annotate("text", y = 0.2, x = 5, label = "M 15.3%") +
+  annotate("text", y = 0.2, x = 6, label = "H 10%") +
+  annotate("text", y = 0.2, x = 7, label = "M 13.3%") +
+  annotate("text", y = 0.2, x = 8, label = "M 20%") +
+  annotate("text", y = 0.23, x = 9, label = "H 25%") +
+  annotate("text", y = 0.25, x = 10, label = "M 16.7%") +
+  annotate("text", y = 0.5, x = 11, label = "Trek 1: M 5.3%") +
+  annotate("text", y = 0.8, x = 11, label = "Trek 2: M 33.3%") +
+  annotate("text", y = 0.5, x = 12, label = "M 100%") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+```{r 2023 Raw}
+#All code below are copy and pasted of the graphs above witht the year and specific annotations changed.
+
+total_2023 <- deaths_2023_raw |>
+  ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 5)) +
+  scale_fill_manual(values = c("orange", "lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Death",
+    title = "Total deaths by Agency in 2023",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 1, 2, 3, 4, 5)
+  ) +
+  annotate("text", y = 3, x = 6, label = "Total Treks: 2") +
+  annotate("text", y = 3, x = 12, label = "Total Treks: 3") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+```{r 2024 data wrangling}
+#All code below are copy and pasted of the graphs above witht the year and specific annotations changed.
+
+deaths_2024 <- exped_tidy_deadly |>
+  filter(year == 2024)
+
+deaths_2024_av <- deaths_2024 %>%
+  group_by(agency, season_factor) %>%
+  summarise(avg_ptotdeaths = mean(ptotdeaths, na.rm = TRUE),
+            .groups = "drop")
+
+deaths_2024_raw <- deaths_2024 |>
+  group_by(agency, season_factor) %>%
+  summarize(total_deaths = sum(totdeaths), .groups = "drop")
+```
+
+```{r 2024 Percent}
+#All code below are copy and pasted of the graphs above witht the year and specific annotations changed.
+
+percent_2024 <- deaths_2024_av |>
+  ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 1)) +
+  scale_fill_manual(values = "lightgreen") +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Percent Death (Average)",
+    title = "Percent total deaths by Agency in 2024",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1),
+    labels = c("0%", "20%", "40%", "60%", "80%", "100%")
+  ) +
+  annotate("text", y = 0.2, x = 2, label = "M 6.7%") +
+  annotate("text", y = 0.3, x = 1, label = "Trek 1: M 4.5% H 3.3%") +
+  annotate("text", y = 0.7, x = 1, label = "Trek 2: H 3.2%") +
+  annotate("text", y = 0.2, x = 3, label = "M 10%") +
+  annotate("text", y = 0.2, x = 4, label = "M 11.1% H 2%") +
+  annotate("text", y = 0.5, x = 5, label = "M 50%") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+```{r 2024 Raw}
+#All code below are copy and pasted of the graphs above witht the year and specific annotations changed.
+
+total_2024 <- deaths_2024_raw |>
+  ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
+  geom_col() +
+  coord_flip(ylim = c(0, 5)) +
+  scale_fill_manual(values = c("lightgreen")) +
+  labs(
+    fill = "Season",
+    x = "Trekking Agency",
+    y = "Total Death",
+    title = "Total deaths by Agency in 2024",
+    caption = "Source: TidyTuesday",
+    subtitle = "M is trekking member death, H is hired staff death"
+  ) +
+  scale_y_continuous(
+    breaks = c(0, 1, 2, 3, 4, 5)
+  ) +
+  annotate("text", y = 4, x = 4, label = "Total Treks: 2") +
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_blank(),
+    panel.grid = element_blank()
+  )
+```
+
+```{r}
+#| label: agency by fatal
+
+plot(agency_by_fatal)
+
+```
+
+**Alt Text:** Bar graph showing the number of expeditions between 2021 and 2024 with at least one fatality for each Agency, sourced from Tidy-Tuesday. The Agency values are as follows: Seven Summit Trekks 10, 7 Summits Adventure 2, 8K Expeditions 2, Beyul Adventure 2, Himalayan Guides 2, Pioneer Adventure 2, Satori Adventures 2, 14 Summits 1, Annapurna Treks 1, Asian Trekking 1, Expedition Himalaya 1, Glacier Himalaya Treks, High Five Adventures 1, Image Nepal 1, Makalu Adventure 1, Peak Promotion 1, Pralhad Chapagin 1, Shangri-La Nepal Treks 1, Snowy Horizon Treks 1, TAGnepal Trekking 1, TAGnepal Trekking (Snowy Horison pmt) 1, and Yeti Adventure 1. The graph clearly shows that Seven Summit Treks is has significantly more than the rest.
+
+::: panel-tabset
+## Percent Fatal 2021
+
+```{r}
+#| label: Percent Fatal 2021
+
+plot(percent_2021)
+
+```
+
+**Alt ID:** The bar graph shows the percent total death by each Agency that had at least one expedition with fatality in 2021 as well as which season each trek is in. Pralhad Chapagain has about 80% fatality in Autumn, TAGnepal Trekking (Snowy) has about 20% fatality in Autumn, with Seven Summit Treks, 7 Summits Adventure, and TAGnepal Trekking less than 10 percent each and in Spring. The graph is attempting to show that not only does Pralhad Chapagin have the highest percent death but Seven Summit Treks has a much lower percent death than anticipated.
+
+## Total Fatal 2021
+
+```{r}
+#| label: Total Fatal 2021
+
+plot(total_2021)
+
+```
+
+**Alt ID:** The bar graph shows the total death by Agency in 2021 with Seven Summit Treks having 3 deaths per 2 treks in Spring, Pralhad Chapagain having 3 deaths in Autumn, TAGnepal Trekking (Snowy) with one death in Autumn, and both TAGnepal Trekking and 7 Summit Adventure with one death in spring. The graph is trying to show that Seven Summit Treks and Pralhad Chapagain have the same number of actual deaths that occured in 2021.
+:::
+
+::: panel-tabset
+## Percent Fatal 2022
+
+```{r}
+#| label: Percent Fatal 2022
+
+plot(percent_2022)
+
+```
+
+**Alt ID:** The bar graph shows the percent total death by each Agency that had at least one expedition with fatality in 2022 as well as which season each trek is in. The important agencies of note are High Five Adventures with around 14% in spring, Shangri-La Nepal Treks with around 12% in Autumn, and Seven Summit Treks with three treks but around 10% in total between autumn and Spring. The rest are below 10%. There are a total of 7 agencies in 2022 with at least one deadly expedition.
+
+## Total Fatal 2022
+
+```{r}
+#| label: Total Fatal 2022
+
+plot(total_2022)
+
+```
+
+Alt ID: The bar graph shows the Total death by each Agency that had at least one expedition with fatality in 2022 as well as which season each trek is in. The Agencies of note are Satori Adventures with 2 deaths in Autumn and Seven Summit Treks which has three deaths, two in spring and one in autumn. The rest only have one death.There are a total of 7 agencies in 2022 with at least one deadly expedition.
+:::
+
+::: panel-tabset
+## Percent Fatal 2023
+
+```{r}
+#| label: Percent Fatal 2023
+
+plot(percent_2023)
+
+```
+
+## Total Fatal 2023
+
+```{r}
+#| label: Total Fatal 2023
+
+plot(total_2023)
+
+```
+:::
+
+::: panel-tabset
+## Percent Fatal 2024
+
+```{r}
+#| label: Percent Fatal 2024
+
+plot(percent_2024)
+
+```
+
+## Total Fatal 2024
+
+```{r}
+#| label: Total Fatal 2024
+
+plot(total_2024)
+
+```
+:::
+
 ## Observations
 
 1.  Firstly, the agency, Seven Summits Treks, has the most fatal expeditions from 2021 - 2024, with 10 expeditions with at least one fatality, which is significantly higher than the other agencies which only have one or two fatal expeditions.

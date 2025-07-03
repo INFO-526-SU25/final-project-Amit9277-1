@@ -445,7 +445,6 @@ deaths_2024_av |>
     axis.ticks.x = element_blank(),
     panel.grid = element_blank()
   )
-percent_2024
 ```
 
 ```{r 2024 Raw}
@@ -471,7 +470,6 @@ deaths_2024_raw |>
     axis.ticks.x = element_blank(),
     panel.grid = element_blank()
   )
-raw_2024
 ```
 
 Was not able to use patchwork to combine graphs due to different y values
