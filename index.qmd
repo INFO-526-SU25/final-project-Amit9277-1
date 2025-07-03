@@ -630,17 +630,17 @@ The combined bubble plots for Everest, Lhotse, Ama Dablam, and Manaslu reveal cl
 
 Do certain Agencies have a higher number of member/personal deaths than others with respect to season/date?
 
-## Introduction
+### Introduction
 
 This question seeks to look at the correlation between agencies and fatality rate and if there are any important trends, especially with respect to season and date. The findings of this question are interesting because it would raise a lot of further questions regarding why these correlations are seen, if there are specific safety policies or certain weather patterns that could lead to some agencies having a higher fatality rate than others, to name a few.
 
-## Approach
+### Approach
 
 For this question, we first created variables for both the total death per expedition, as well as percentage death per expedition for the member or customer, hired staff, and the total percentage. Then, we started with a general graph that looks at Agencies and how many deadly expeditions they had total between 2021 and 2024. Then we zoom in per year and look at the percentage as well as total death by Agency (and by season). Lastly, we create a graph looking at the total actual deaths (raw totals) for each agency in case there are any differences conclusions we can draw with the percentage graph.
 
 Initially, we sought to add all the percentage and raw graphs into one large graph, faceted by year, but quickly realized that this would be unfeasible to do so cleanly as all the y values (or Agencies) would change depending on the year and depending on which had more or less fatality. Thus, we chose to have them as side by side plots on two tabs to easily swap between.
 
-## Analysis
+### Analysis
 
 ::: panel-tabset
 ## Agency by Fatal Expeditions
@@ -959,7 +959,7 @@ total_2024 <- deaths_2024_raw |>
 ```
 :::
 
-## Visualization
+### Visualization
 
 ```{r load dataset}
 #| message: FALSE
@@ -1478,7 +1478,7 @@ plot(total_2024)
 **Alt ID:** The bar graph shows the total number of deaths by trekking agency in 2024, with all deaths occurring in the Spring season. Deaths are classified as trekking member (M) or hired staff (H). Yeti Adventure recorded the highest number with 1 death (M). Four other agencies—8K Expeditions, Snowy Horizon Treks, Makalu Adventure, and Seven Summit Treks—each recorded 1 death as well. For 8K Expeditions, the death included both a trekking member (M) and hired staff (H). Seven Summit Treks conducted 2 treks, both resulting in one death (one hired staff each). Overall, 5 agencies had at least one fatality in 2024, all during Spring.
 :::
 
-## Observations
+### Observations
 
 1.  Firstly, the agency, Seven Summits Treks, has the most fatal expeditions from 2021 - 2024, with 10 expeditions with at least one fatality, which is significantly higher than the other agencies which only have one or two fatal expeditions.
     -   Unexpectedly, when we looked at the percentage graphs by year, we can see that Seven Summits Treks often has a low or medium percentage fatality.
