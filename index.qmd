@@ -645,7 +645,7 @@ Initially, we sought to add all the percentage and raw graphs into one large gra
 ::: panel-tabset
 ## Agency by Fatal Expeditions
 
-``` R
+``` r
 agency_by_fatal <- exped_tidy_deadly |>
   #graphs agency by number of fatal expeditions. fct_infreq was debugged consulting with AI after looking at documentation. Same with after_stat(count)
   ggplot(aes(x = fct_rev(fct_infreq(agency)), fill = after_stat(count))) +
@@ -680,7 +680,7 @@ agency_by_fatal <- exped_tidy_deadly |>
 
 ## 2021 Percent Deaths
 
-``` R
+``` r
 percent_2021 <- deaths_2021_av |>
   #graph by descending percent total deaths by agency. Color is for season
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
@@ -724,7 +724,7 @@ percent_2021 <- deaths_2021_av |>
 
 ## 2021 Total Deaths
 
-``` R
+``` r
 tota_2021 <- deaths_2021_raw |>
   #same as above, except with total deaths and not percents
   ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
@@ -763,7 +763,7 @@ tota_2021 <- deaths_2021_raw |>
 
 ## 2022 Percent Deaths
 
-``` R
+``` r
 percent_2022 <- deaths_2022_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
@@ -800,7 +800,7 @@ percent_2022 <- deaths_2022_av |>
 
 ## 2022 Total Deaths
 
-``` R
+``` r
 total_2022 <- deaths_2022_raw |>
   ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
   geom_col() +
@@ -830,7 +830,7 @@ total_2022 <- deaths_2022_raw |>
 ::: panel-tabset
 ## 2023 Percent Deaths
 
-``` R
+``` r
 percent_2023 <- deaths_2023_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
@@ -872,7 +872,7 @@ percent_2023 <- deaths_2023_av |>
 
 ## 2023 Total Deaths
 
-``` R
+``` r
 total_2023 <- deaths_2023_raw |>
   ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
   geom_col() +
@@ -900,7 +900,7 @@ total_2023 <- deaths_2023_raw |>
 
 ## 2024 Percent Deaths
 
-``` R
+``` r
 percent_2024 <- deaths_2024_av |>
   ggplot(aes(x = fct_reorder(agency, avg_ptotdeaths, .desc = FALSE), y = avg_ptotdeaths, fill = season_factor)) +
   geom_col() +
@@ -933,7 +933,7 @@ percent_2024 <- deaths_2024_av |>
 
 ## 2024 Total Deaths
 
-``` R
+``` r
 total_2024 <- deaths_2024_raw |>
   ggplot(aes(x = fct_reorder(agency, total_deaths, .desc = FALSE), y = total_deaths, fill = season_factor)) +
   geom_col() +
@@ -962,22 +962,17 @@ total_2024 <- deaths_2024_raw |>
 ## Visualization
 
 ```{r load dataset}
+#| message: FALSE
 
 tuesdata <- tidytuesdayR::tt_load('2025-01-21')
 
-#Although our two questions only use exped_tidy, we have added code to make a separate peaks_tidy in case we find out that we need variables from that dataframe later on.
-
 exped_tidy <- tuesdata$exped_tidy
-#peaks_tidy <- tuesdata$peaks_tidy
-
 exped_tidy <- clean_names(exped_tidy)
-#peaks_tidy <- clean_names(peaks_tidy)
-
-head(exped_tidy, n=10)
-#head(peaks_tidy, n=10)
 ```
 
 ```{r mutate new columns}
+#| message: FALSE
+
 exped_tidy <- exped_tidy |>
   #mutate new columns
   mutate(
@@ -995,7 +990,7 @@ exped_tidy_deadly <- exped_tidy |>
 #create a subset dataframe that clears out unecessary columns
 exped_tidy_deadly <- exped_tidy_deadly |>
   select(year, season_factor, host_factor, nation, agency, totmembers, smtmembers, mdeaths, tothired, hdeaths, totdeaths, pmdeaths, phdeaths, ptotdeaths)
-exped_tidy_deadly
+
 ```
 
 ```{r Graph Main}
