@@ -1385,7 +1385,7 @@ plot(agency_by_fatal)
 
 ```
 
-**Alt Text:** Bar graph showing the number of expeditions between 2021 and 2024 with at least one fatality for each Agency, sourced from Tidy-Tuesday. The Agency values are as follows: Seven Summit Trekks 10, 7 Summits Adventure 2, 8K Expeditions 2, Beyul Adventure 2, Himalayan Guides 2, Pioneer Adventure 2, Satori Adventures 2, 14 Summits 1, Annapurna Treks 1, Asian Trekking 1, Expedition Himalaya 1, Glacier Himalaya Treks, High Five Adventures 1, Image Nepal 1, Makalu Adventure 1, Peak Promotion 1, Pralhad Chapagin 1, Shangri-La Nepal Treks 1, Snowy Horizon Treks 1, TAGnepal Trekking 1, TAGnepal Trekking (Snowy Horison pmt) 1, and Yeti Adventure 1. The graph clearly shows that Seven Summit Treks is has significantly more than the rest.
+**Alt ID:** The horizontal bar graph shows the number of expeditions through the Himalayas that resulted in death by agency from 2021-2024. Seven Summit Treks had by far the most deadly expeditions with approximately 10 expeditions resulting in at least one death (shown in dark red). All other agencies had significantly fewer deadly expeditions, with most having 1-2 expeditions each (shown in yellow/orange). The agencies with deadly expeditions include 7 Summits Adventure, 8K Expeditions, Bejul Adventure, Himalayan Guides, Pioneer Adventure, Satori Adventures, 14 Summits, Annapurna Treks, Asian Trekking, Expedition Himalaya, Glacier Himalaya Treks, High Five Adventures (Pioneer Adventures pvt), Imagine Nepal, Makalu Adventure, Peak Promotion, Pralhad Chapagain (Freelancer at Expes.com), Shangri-La Nepal Treks, Snowy Horizon Treks, TAGnepal Trekking, TAGnepal Trekking (Snowy Horizon pvt), and Yeti Adventure. A total of approximately 22 agencies had at least one deadly expedition during this four-year period.
 
 ::: panel-tabset
 ## Percent Fatal 2021
@@ -1397,7 +1397,7 @@ plot(percent_2021)
 
 ```
 
-**Alt ID:** The bar graph shows the percent total death by each Agency that had at least one expedition with fatality in 2021 as well as which season each trek is in. Pralhad Chapagain has about 80% fatality in Autumn, TAGnepal Trekking (Snowy) has about 20% fatality in Autumn, with Seven Summit Treks, 7 Summits Adventure, and TAGnepal Trekking less than 10 percent each and in Spring. The graph is attempting to show that not only does Pralhad Chapagin have the highest percent death but Seven Summit Treks has a much lower percent death than anticipated.
+**Alt ID:** The bar graph shows the percent total deaths by each trekking agency that had at least one expedition fatality in 2021, with bars color-coded by season (Autumn in orange, Spring in green). The chart distinguishes between trekking member (M) and hired staff (H) deaths. Pralhad Chapagain (Freelancer at Expes.com) had the highest death rate at 75% (Autumn, trekking member). TAGnepal Trekking (Snowy Horizon pvt) follows with 20% (Autumn, trekking member). Seven Summit Treks had two expeditions: Trek 1 with 54% trekking member deaths and Trek 2 with 10% hired staff deaths (both Spring). Other agencies include 7 Summits Adventure with 3.3% hired staff deaths (Spring) and TAGnepal Trekking with 6.6% trekking member deaths (Spring). A total of 5 agencies in 2021 had at least one deadly expedition.
 
 ## Total Fatal 2021
 
@@ -1408,7 +1408,7 @@ plot(total_2021)
 
 ```
 
-**Alt ID:** The bar graph shows the total death by Agency in 2021 with Seven Summit Treks having 3 deaths per 2 treks in Spring, Pralhad Chapagain having 3 deaths in Autumn, TAGnepal Trekking (Snowy) with one death in Autumn, and both TAGnepal Trekking and 7 Summit Adventure with one death in spring. The graph is trying to show that Seven Summit Treks and Pralhad Chapagain have the same number of actual deaths that occured in 2021.
+**Alt ID:** The bar graph shows the total deaths by each trekking agency that had at least one expedition fatality in 2021, with bars color-coded by season (Autumn in orange, Spring in green). The chart distinguishes between trekking member (M) and hired staff (H) deaths. Seven Summit Treks had the highest number of deaths with 2 total treks resulting in approximately 5 deaths (Spring). Pralhad Chapagain (Freelancer at Expes.com) had around 3 deaths (Autumn). TAGnepal Trekking (Snowy Horizon pvt) had approximately 1 death (Autumn). TAGnepal Trekking had around 1 death (Spring), and 7 Summits Adventure had approximately 1 death (Spring). A total of 5 agencies in 2021 had at least one deadly expedition, with the majority of deaths occurring in the Spring season.
 :::
 
 ::: panel-tabset
@@ -1421,7 +1421,7 @@ plot(percent_2022)
 
 ```
 
-**Alt ID:** The bar graph shows the percent total death by each Agency that had at least one expedition with fatality in 2022 as well as which season each trek is in. The important agencies of note are High Five Adventures with around 14% in spring, Shangri-La Nepal Treks with around 12% in Autumn, and Seven Summit Treks with three treks but around 10% in total between autumn and Spring. The rest are below 10%. There are a total of 7 agencies in 2022 with at least one deadly expedition.
+**Alt ID:** The bar graph shows the percent total deaths by each trekking agency that had at least one expedition fatality in 2022, with bars color-coded by season (Autumn in orange, Spring in green). The chart distinguishes between trekking member (M) and hired staff (H) deaths. 7 Summits Adventure had the highest death rate at 20% hired staff deaths (Spring). Shangri-La Nepal Treks follows with 20% trekking member deaths (Autumn). High Five Adventures (Pioneer Adventures pvt) had 14.28% trekking member deaths (Spring). Seven Summit Treks had three expeditions: Trek 1 with 14.2% trekking member deaths (Autumn), Trek 2 with 6.25% hired staff deaths (Autumn), and Trek 3 with 6.67% hired staff deaths (Spring). Satori Adventures had two expeditions: Trek 1 with 6.25% trekking member deaths (Autumn) and Trek 2 with 10% hired staff deaths (Autumn). Pioneer Adventure had 7.6% trekking member deaths (Spring), and Bejul Adventure had 4.7% hired staff deaths (Spring). A total of 7 agencies in 2022 had at least one deadly expedition.
 
 ## Total Fatal 2022
 
@@ -1432,7 +1432,7 @@ plot(total_2022)
 
 ```
 
-Alt ID: The bar graph shows the Total death by each Agency that had at least one expedition with fatality in 2022 as well as which season each trek is in. The Agencies of note are Satori Adventures with 2 deaths in Autumn and Seven Summit Treks which has three deaths, two in spring and one in autumn. The rest only have one death.There are a total of 7 agencies in 2022 with at least one deadly expedition.
+**Alt ID:** The bar graph shows the total deaths by each trekking agency that had at least one expedition fatality in 2022, with bars color-coded by season (Autumn in orange, Spring in green). The chart distinguishes between trekking member (M) and hired staff (H) deaths. Seven Summit Treks had the highest number of deaths with 3 total treks resulting in approximately 3 deaths (combination of Spring and Autumn seasons). Satori Adventures had 2 total treks with around 2 deaths (Autumn). Shangri-La Nepal Treks had approximately 1 death (Autumn). Pioneer Adventure, High Five Adventures (Pioneer Adventures pvt), Bejul Adventure, and 7 Summits Adventure each had around 1 death (all Spring season). A total of 7 agencies in 2022 had at least one deadly expedition, with deaths occurring in both Spring and Autumn seasons.
 :::
 
 ::: panel-tabset
@@ -1445,6 +1445,8 @@ plot(percent_2023)
 
 ```
 
+**Alt ID:** The bar graph shows the percent total deaths by each trekking agency that had at least one expedition fatality in 2023, with bars color-coded by season (Autumn in orange, Spring in green). The chart distinguishes between trekking member (M) and hired staff (H) deaths. Notable agencies include Annapurna Treks with a 100% death rate (Spring, trekking member), and Himalayan Guides with three expeditions totaling nearly 39% deaths (Autumn and Spring). Other agencies with high percentages include Peak Promotion (\~25%), 14 Summits (\~17%), and Asian Trekking (\~15%). Seven Summit Treks had three expeditions with death rates between \~4.7% and 6.7%, averaging around 6%. A total of 12 agencies in 2023 had at least one deadly expedition.
+
 ## Total Fatal 2023
 
 ```{r}
@@ -1453,6 +1455,8 @@ plot(percent_2023)
 plot(total_2023)
 
 ```
+
+**Alt ID:** The bar graph shows the total number of deaths by trekking agency in 2023, with each bar color-coded by season (Autumn in orange, Spring in green). Deaths are categorized as trekking member (M) or hired staff (H). Seven Summit Treks had the highest number with 5 total deaths across 3 treks (all in Spring). Imagine Nepal and Pioneer Adventure follow with 3 and 2 deaths respectively. Most other agencies had 1 death each. Himalayan Guides recorded 2 deaths across Autumn and Spring. Only three agencies had deaths in Autumn: Himalayan Guides, 14 Summits, and 8K Expeditions. In total, 12 agencies reported at least one fatality in 2023.
 :::
 
 ::: panel-tabset
@@ -1465,6 +1469,8 @@ plot(percent_2024)
 
 ```
 
+**Alt ID:** The bar graph shows the percent total deaths by trekking agency in 2024, based on expeditions with at least one fatality, all occurring during the Spring season. Deaths are marked as trekking member (M) or hired staff (H). Yeti Adventure had the highest death rate at 50% (M). Other agencies include 8K Expeditions with 11.1% M and 2% H, Snowy Horizon Treks with 10% M, and Makalu Adventure with 6.7% M. Seven Summit Treks had two expeditions with lower death rates: Trek 1 with 4.5% M and 3.3% H, and Trek 2 with 3.2% H. A total of 5 agencies recorded deadly expeditions in Spring 2024.
+
 ## Total Fatal 2024
 
 ```{r}
@@ -1473,6 +1479,8 @@ plot(percent_2024)
 plot(total_2024)
 
 ```
+
+**Alt ID:** The bar graph shows the total number of deaths by trekking agency in 2024, with all deaths occurring in the Spring season. Deaths are classified as trekking member (M) or hired staff (H). Yeti Adventure recorded the highest number with 1 death (M). Four other agencies—8K Expeditions, Snowy Horizon Treks, Makalu Adventure, and Seven Summit Treks—each recorded 1 death as well. For 8K Expeditions, the death included both a trekking member (M) and hired staff (H). Seven Summit Treks conducted 2 treks, both resulting in one death (one hired staff each). Overall, 5 agencies had at least one fatality in 2024, all during Spring.
 :::
 
 ## Observations
